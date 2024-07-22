@@ -3,8 +3,6 @@ plugins {
 	id 'maven-publish'
 }
 
-version = project.version
-
 static def moduleDependencies(project, List<String> depNames) {
 	def deps = depNames.iterator().collect { project.dependencies.project(path: ":$it", configuration: 'namedElements') }
 

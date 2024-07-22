@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "id": "plure-logger",
+  "version": "${version}",
+  "name": "Plure Logger",
+  "description": "Server-side user actions logger",
+  "authors": [
+    "Ftrless"
+  ],
+  "contact": {
+    "homepage": "https://fabricmc.net/",
+    "sources": "https://github.com/FabricMC/fabric-example-mod"
+  },
+  "entrypoints": {
+    "server": [
+      "com.enthusiasm.plurelogger.PlureLoggerEntrypoint"
+    ]
+  },
+  "license": "CC0-1.0",
+  "icon": "assets/modid/icon.png",
+  "environment": "*",
+  "mixins": [],
+  "depends": {
+    "fabricloader": ">=0.15.10",
+    "minecraft": "~1.20.1",
+    "java": ">=21",
+    "fabric-api": "*"
+  }
+}
