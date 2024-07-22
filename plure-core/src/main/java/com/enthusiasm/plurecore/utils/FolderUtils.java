@@ -14,6 +14,17 @@ public class FolderUtils {
         return FabricLoader.getInstance().getConfigDir();
     }
 
+    public static Path getDataFolder() {
+        return FabricLoader.getInstance().getGameDir().resolve("world").resolve("plure_storage");
+    }
+
+    public static Path getDataFolder(String folder) {
+        return FabricLoader.getInstance().getGameDir()
+                .resolve("world")
+                .resolve("plure_storage")
+                .resolve(folder);
+    }
+
     public static Future<?> createFolderAsync(String folderPath) {
         return ThreadUtils.runAsync(() -> {
             try {

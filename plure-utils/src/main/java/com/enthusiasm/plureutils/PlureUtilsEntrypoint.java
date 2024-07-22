@@ -1,5 +1,6 @@
 package com.enthusiasm.plureutils;
 
+import com.enthusiasm.plureutils.config.ConfigManager;
 import com.enthusiasm.plureutils.data.DataManager;
 import com.enthusiasm.plureutils.service.RandomTeleportService;
 import com.enthusiasm.plureutils.service.RestartService;
@@ -18,10 +19,14 @@ public class PlureUtilsEntrypoint implements DedicatedServerModInitializer {
     public void onInitializeServer() {
         LOGGER.info("Initializing PlureUtils");
 
+        ConfigManager.init();
+
         CommandRegistrationCallback.EVENT.register(CommandRegistry::register);
         ServerLifecycleEvents.SERVER_STARTING.register(this::onServerStarting);
         ServerLifecycleEvents.SERVER_STARTED.register(this::onServerStarted);
         ServerTickEvents.END_SERVER_TICK.register(this::onTick);
+
+        LOGGER.info("PlureUtils initialized");
     }
 
     private void onServerStarting(MinecraftServer minecraftServer) {

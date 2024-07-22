@@ -26,6 +26,7 @@ def getSubprojectVersion(project) {
 allprojects {
 	group = project.maven_group
 
+	apply plugin: "java-library"
 	apply plugin: "fabric-loom"
 
 	tasks.withType(JavaCompile).configureEach {
@@ -53,6 +54,10 @@ allprojects {
 		}
 	}
 
+	loom.runs.configureEach {
+		vmArg("-enableassertions")
+	}
+
 	jar {
 		from rootProject.file("LICENSE")
 	}
@@ -73,6 +78,23 @@ allprojects {
 
 		modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 	}
+}
+
+loom {
+	runs {
+		server {
+			ideConfigGenerated project.rootProject == project
+		}
+	}
+}
+
+configurations {
+	productionRuntime {
+		extendsFrom configurations.minecraftLibraries
+		extendsFrom configurations.loaderLibraries
+		extendsFrom configurations.minecraftRuntimeLibraries
+	}
+	productionRuntimeServer
 }
 
 subprojects {
@@ -101,7 +123,9 @@ subprojects.each {
 dependencies {
 	afterEvaluate {
 		(subprojects).forEach {
-			api project(path: "${it.path}", configuration: "namedElements")
+			def projectName = it.name
+			api project(path: ":${projectName}", configuration: "namedElements")
+			include project("${projectName}:")
 		}
 	}
 }

@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "id": "plure-utils",
+  "id": "plure-core",
   "version": "${version}",
-  "name": "Plure Utils",
-  "description": "Server-side useful utils",
+  "name": "Plure Core",
+  "description": "Server-side useful features for plure mods",
   "authors": [
     "Ftrless"
   ],
