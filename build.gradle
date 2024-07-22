@@ -68,11 +68,27 @@ allprojects {
 		mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
 		modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
+		include modImplementation("me.lucko:fabric-permissions-api:0.3.1")
+		implementation "com.electronwill.night-config:toml:${project.nightconfig_version}"
+
 		modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 	}
 }
 
 subprojects {
+	repositories {
+		maven {
+			url "https://maven.architectury.dev/"
+		}
+		maven {
+			url "https://maven.saps.dev/minecraft"
+			content {
+				includeGroup "dev.latvian.mods"
+				includeGroup "dev.ftb.mods"
+			}
+		}
+	}
+
 	base {
 		archivesName = project.name
 	}

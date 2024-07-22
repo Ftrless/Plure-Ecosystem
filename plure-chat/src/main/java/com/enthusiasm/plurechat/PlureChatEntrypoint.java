@@ -9,6 +9,8 @@ public class PlureChatEntrypoint implements DedicatedServerModInitializer {
 
     @Override
     public void onInitializeServer() {
-        LOGGER.info("Initializing PlureUtils");
+        LOGGER.info("Initializing PlureChat");
+
+        ChatService.init();
     }
 }

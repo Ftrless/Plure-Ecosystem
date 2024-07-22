@@ -1,0 +1,12 @@
+{
+  "required": true,
+  "package": "com.enthusiasm.plurechat.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "MessageCommandMixin",
+    "ServerPlayNetworkHandlerMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

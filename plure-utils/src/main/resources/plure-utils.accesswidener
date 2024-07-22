@@ -1,0 +1,4 @@
+accessWidener	v1	named
+
+accessible class net/minecraft/server/MinecraftServer$ResourceManagerHolder
+accessible method net/minecraft/server/world/ServerChunkManager getChunkHolder (J)Lnet/minecraft/server/world/ChunkHolder;

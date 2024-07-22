@@ -20,6 +20,7 @@
   "icon": "assets/modid/icon.png",
   "environment": "*",
   "mixins": [],
+  "accessWidener": "plure-core.accesswidener",
   "depends": {
     "fabricloader": ">=0.15.10",
     "minecraft": "~1.20.1",

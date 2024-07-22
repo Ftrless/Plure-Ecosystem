@@ -1,1 +1,10 @@
 version = getSubprojectVersion(project)
+
+moduleDependencies(project, [
+        "plure-core",
+        "plure-chat"
+])
+
+dependencies {
+    modApi "dev.ftb.mods:ftb-teams-fabric:${project.ftb_teams_version}"
+}

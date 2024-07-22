@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.enthusiasm.plureutils.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "BypassLimitMixin"
+  ],
+  "client": [],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
