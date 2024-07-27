@@ -1,1 +1,9 @@
 version = getSubprojectVersion(project)
+
+moduleDependencies(project, [
+        "plure-core"
+])
+
+dependencies {
+    modImplementation include("eu.pb4:sgui:${project.sgui_version}")
+}

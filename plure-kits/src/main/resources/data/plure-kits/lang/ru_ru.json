@@ -1,0 +1,13 @@
+{
+  "cmd.kit.add.feedback": "Кит %s создан из текущего инвентаря.",
+  "cmd.kit.claim.error.not-found": "Кит с именем %s не существует.",
+  "cmd.kit.claim.error.insufficient-rights": "Недостаточно прав для получения кита %s.",
+  "cmd.kit.claim.error.insufficient-playing-time": "Для того чтобы получить кит '%s', вам необходимо отыграть %d %s на сервере. Осталось %dh %dm.",
+  "cmd.kit.claim.error.one-time-use": "Кит %s можно получить только 1 раз.",
+  "cmd.cmd.kit.claim.error.on-cooldown": "Кит %s на перезарядке. Осталось: %s.",
+  "cmd.kit.claim.feedback": "Кит %s успешно получен.",
+  "cmd.kit.reload.feedback": "Киты перезагружены.",
+  "cmd.kit.remove.feedback": "Кит с именем %s успешно удален.",
+  "cmd.kit.reset-all.feedback": "Все перезарядки китов сброшены для %s.",
+  "cmd.kit.reset-kit.feedback": "Перезарядки кита '%s' сброшены для %s."
+}

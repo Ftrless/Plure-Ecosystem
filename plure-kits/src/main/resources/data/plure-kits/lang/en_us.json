@@ -1,0 +1,13 @@
+{
+  "cmd.kit.add.feedback": "Kit %s created from current inventory.",
+  "cmd.kit.claim.error.not-found": "A kit named %s does not exist.",
+  "cmd.kit.claim.error.insufficient-rights": "Insufficient rights to receive kit %s.",
+  "cmd.kit.claim.error.insufficient-playing-time": "In order to get kit '%s', you need to play %d %s on the server. There are %dh %dm left.",
+  "cmd.kit.claim.error.one-time-use": "Kit %s can only be retrieved once.",
+  "cmd.cmd.kit.claim.error.on-cooldown": "Kit %s is recharging. %s left.",
+  "cmd.kit.claim.feedback": "Kit %s successfully received.",
+  "cmd.kit.reload.feedback": "Kits reloaded.",
+  "cmd.kit.remove.feedback": "Kit with name %s successfully removed.",
+  "cmd.kit.reset-all.feedback": "All kits reloads are reset for the %s.",
+  "cmd.kit.reset-kit.feedback": "Kit '%s' reloads are reset for the %s."
+}
