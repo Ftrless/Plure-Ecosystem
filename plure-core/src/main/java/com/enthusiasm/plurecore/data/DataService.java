@@ -24,7 +24,7 @@ public class DataService {
         }
 
         Set<DataHolderEntry> dataHolderEntries = loadDataEntryHolders(dataClass,
-                definition.folder() != null
+                !definition.folder().isEmpty()
                         ? definition.folder()
                         : null
         );
@@ -40,7 +40,7 @@ public class DataService {
         DataSerializable definition = dataClass.getAnnotation(DataSerializable.class);
         DataHolder<T> holder = new DataHolder<>(dataClass, definition, dataName);
 
-        return new DataHolderEntry(dataName, holder, false);
+        return new DataHolderEntry(dataName, holder);
     }
 
     private static <T> Set<DataHolderEntry> loadDataEntryHolders(

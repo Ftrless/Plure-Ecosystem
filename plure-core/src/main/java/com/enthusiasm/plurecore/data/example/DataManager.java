@@ -21,8 +21,6 @@ public class DataManager {
         for (DataHolderEntry dataHolderEntry : dataHolderEntries) {
             DataHolder<WarpData> dataHolder = (DataHolder<WarpData>) dataHolderEntry.dataHolder();
             WarpData warpData = dataHolder.getDataClassDefinition();
-
-            PlureCoreEntrypoint.LOGGER.info(warpData.testData);
         }
     }
 }

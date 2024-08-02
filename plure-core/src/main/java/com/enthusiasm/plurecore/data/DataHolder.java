@@ -24,8 +24,8 @@ public class DataHolder<T> {
     public static final Logger LOGGER = LoggerFactory.getLogger("PlureCore-Data");
 
     private final DataSerializable annotation;
-    private final Class<T> dataClass;
     private final String playerUUID;
+    private Class<T> dataClass;
     private T dataClassDefinition;
 
     public DataHolder(Class<T> dataClass, DataSerializable annotation, String playerUUID) {
@@ -108,6 +108,10 @@ public class DataHolder<T> {
         return dataClass;
     }
 
+    public void setDataClass(Class<T> dataClass) {
+        this.dataClass = dataClass;
+    }
+
     public T getDataClassDefinition() {
         return dataClassDefinition;
     }
@@ -129,7 +133,7 @@ public class DataHolder<T> {
         String dataName = getPlayerUUID();
 
         Path baseFolder = FolderUtils.getDataFolder();
-        Path dataPath = definition.folder() != null ? baseFolder.resolve(definition.folder()) : baseFolder;
+        Path dataPath = !definition.folder().isEmpty() ? baseFolder.resolve(definition.folder()) : baseFolder;
 
         return new File(dataPath.toFile(), dataName + ".dat");
     }
