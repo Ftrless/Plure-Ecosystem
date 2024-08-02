@@ -5,8 +5,10 @@ import net.minecraft.nbt.NbtElement;
 import net.minecraft.nbt.NbtList;
 import net.minecraft.nbt.NbtString;
 
+import java.util.UUID;
+
 public class NBTUtils {
-    public static NbtCompound writeTagFromPrimaryType(NbtCompound tag, String key, Object value) {
+    public static void writeTagFromPrimaryType(NbtCompound tag, String key, Object value) {
         switch (value) {
             case Integer i -> tag.putInt(key, i);
             case String s -> tag.putString(key, s);
@@ -17,7 +19,7 @@ public class NBTUtils {
             case Float v -> tag.putFloat(key, v);
             case Double v -> tag.putDouble(key, v);
             case byte[] bytes -> tag.putByteArray(key, bytes);
-            case int[] ints -> tag.putIntArray(key, ints);
+            case int[] intArray -> tag.putIntArray(key, intArray);
             case String[] list -> {
                 NbtList nbtList = new NbtList();
                 for (String s : list) {
@@ -25,11 +27,10 @@ public class NBTUtils {
                 }
                 tag.put(key, nbtList);
             }
+            case UUID uuid -> tag.putUuid(key, uuid);
             case NbtCompound nbtCompound -> tag.put(key, nbtCompound);
             case null, default -> throw new IllegalArgumentException("Unsupported type for value: " + value);
         }
-
-        return tag;
     }
 
     public static Object getPrimaryTypeFromTag(NbtCompound tag, String key, Class<?> type) {
@@ -52,6 +53,7 @@ public class NBTUtils {
                 }
                 yield array;
             }
+            case "UUID" -> tag.getUuid(key);
             case "NbtCompound" -> tag.getCompound(key);
             default -> throw new IllegalArgumentException("Unsupported type for class: " + type);
         };
