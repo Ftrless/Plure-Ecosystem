@@ -1,5 +1,9 @@
 version = getSubprojectVersion(project)
 
+moduleDependencies(project, [
+        "plure-core"
+])
+
 dependencies {
     modCompileOnly("net.luckperms:api:${project.luckperms_version}") { transitive false }
 }

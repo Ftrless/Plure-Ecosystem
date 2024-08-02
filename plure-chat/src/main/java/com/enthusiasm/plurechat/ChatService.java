@@ -3,6 +3,7 @@ package com.enthusiasm.plurechat;
 import com.enthusiasm.plurechat.api.MessageEventsAPI;
 import com.enthusiasm.plurechat.compat.LuckPermsAPI;
 import com.enthusiasm.plurechat.event.MessageEvents;
+import com.enthusiasm.plurecore.utils.text.FormatUtils;
 import net.fabricmc.fabric.api.message.v1.ServerMessageEvents;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -10,7 +11,6 @@ import net.minecraft.text.MutableText;
 import net.minecraft.text.Style;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
-import net.minecraft.util.math.MathHelper;
 
 import java.util.stream.Stream;
 
@@ -47,7 +47,7 @@ public class ChatService {
         MutableText messageBuilder = Text.empty();
 
         messageBuilder.append(wrapContentWithStyle("[", DISPLAY_STYLE));
-        messageBuilder.append(wrapContentWithStyle("PM", Style.EMPTY.withColor(rgbToMinecraftColor(100,149,237))));
+        messageBuilder.append(wrapContentWithStyle("PM", Style.EMPTY.withColor(FormatUtils.getColor(FormatUtils.Colors.FOCUS))));
         messageBuilder.append(wrapContentWithStyle("]", DISPLAY_STYLE));
         messageBuilder.append(INDENT);
 
@@ -104,9 +104,9 @@ public class ChatService {
         if (!forSender) {
             messageBuilder.append(wrapContentWithStyle("→", DISPLAY_STYLE));
             messageBuilder.append(INDENT);
-            messageBuilder.append(wrapContentWithStyle("Я", Style.EMPTY.withColor(Formatting.AQUA)));
+            messageBuilder.append(wrapContentWithStyle("Я", Style.EMPTY.withColor(FormatUtils.getColor(FormatUtils.Colors.FOCUS))));
         } else {
-            messageBuilder.append(wrapContentWithStyle("Я", Style.EMPTY.withColor(Formatting.AQUA)));
+            messageBuilder.append(wrapContentWithStyle("Я", Style.EMPTY.withColor(FormatUtils.getColor(FormatUtils.Colors.FOCUS))));
             messageBuilder.append(INDENT);
             messageBuilder.append(wrapContentWithStyle("→", DISPLAY_STYLE));
         }
@@ -145,12 +145,5 @@ public class ChatService {
 
     private static MutableText wrapContentWithStyle(String text, Style style) {
         return Text.of(text).copy().setStyle(style);
-    }
-
-    private static int rgbToMinecraftColor(int red, int green, int blue) {
-        int r = MathHelper.clamp(red, 0, 255);
-        int g = MathHelper.clamp(green, 0, 255);
-        int b = MathHelper.clamp(blue, 0, 255);
-        return (r << 16) + (g << 8) + b;
     }
 }
