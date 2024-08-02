@@ -11,10 +11,10 @@ public class PermissionHolder {
     public enum Permission {
         CLAIM("claim"),
         ADD("add"),
-        DELETE("delete"),
+        REMOVE("remove"),
         RESET_PER_PLAYER("reset-player"),
         RESET_PER_KIT("reset-kit"),
-        RESET_PER_ALL("reset-all"),
+        RELOAD("reload"),
         VIEW("view");
 
         private final String permissionString;

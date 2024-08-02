@@ -68,6 +68,10 @@ public class KitService {
                 );
     }
 
+    public static void addKit(String kitName, KitData kit) {
+        KITS.put(kitName, kit);
+    }
+
     @Nullable
     public static KitData getKit(String kitName) {
         return KITS.getOrDefault(kitName, null);

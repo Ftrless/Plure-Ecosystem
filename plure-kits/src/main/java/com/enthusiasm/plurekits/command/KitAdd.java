@@ -41,6 +41,7 @@ public class KitAdd implements Command<ServerCommandSource> {
         kitInventory.copyFrom(senderPlayer.getInventory());
 
         KitData kitData = new KitData(kitInventory, cooldown, needsPlayed);
+        KitService.addKit(kitName, kitData);
 
         try {
             NbtCompound kitNbt = new NbtCompound();

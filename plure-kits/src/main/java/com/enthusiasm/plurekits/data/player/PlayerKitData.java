@@ -1,63 +1,49 @@
 package com.enthusiasm.plurekits.data.player;
 
-import net.minecraft.nbt.NbtCompound;
+import com.enthusiasm.plurekits.PlureKitsEntrypoint;
+import com.enthusiasm.plurekits.database.DatabaseService;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Util;
-import org.jetbrains.annotations.NotNull;
 
-import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
-public class PlayerKitData extends PlayerData {
+public class PlayerKitData {
     private final Map<String, Long> kitUsedTimes;
+    private final ServerPlayerEntity player;
+    private final DatabaseService databaseService;
 
-    public PlayerKitData(ServerPlayerEntity player, File saveFile) {
-        super(player, saveFile);
-        kitUsedTimes = new HashMap<>();
+    public PlayerKitData(ServerPlayerEntity player) {
+        this.kitUsedTimes = new HashMap<>();
+        this.player = player;
+        this.databaseService = PlureKitsEntrypoint.getDatabaseService();
+        loadFromDatabase();
     }
 
     public void useKit(String kitName) {
-        kitUsedTimes.put(kitName, Util.getEpochTimeMs());
-        setDirty(true);
-        save();
+        long currentTime = Util.getEpochTimeMs();
+        kitUsedTimes.put(kitName, currentTime);
+        databaseService.saveKitCooldown(player.getUuidAsString(), kitName, currentTime);
     }
 
     public long getKitUsedTime(String kitName) {
-        try {
-            return kitUsedTimes.get(kitName);
-        } catch (NullPointerException notYetUsed) {
-            return 0;
-        }
-    }
-
-    @Override
-    public @NotNull NbtCompound writeNbt(NbtCompound nbt) {
-        NbtCompound kitUsedTimesNbt = new NbtCompound();
-        kitUsedTimes.forEach(kitUsedTimesNbt::putLong);
-
-        nbt.put("kitUsedTimes", kitUsedTimesNbt);
-
-        return nbt;
-    }
-
-    @Override
-    public void fromNbt(NbtCompound nbtCompound) {
-        NbtCompound dataTag = nbtCompound.getCompound("data");
-        NbtCompound kitUsedTimesNbt = dataTag.getCompound("kitUsedTimes");
-
-        for (String key : kitUsedTimesNbt.getKeys()) {
-            this.kitUsedTimes.put(key, kitUsedTimesNbt.getLong(key));
-        }
+        return kitUsedTimes.getOrDefault(kitName, 0L);
     }
 
     public void resetKitCooldown(String kitName) {
-        this.kitUsedTimes.remove(kitName);
-        this.setDirty(true);
+        kitUsedTimes.remove(kitName);
+        databaseService.resetKitCooldown(player.getUuidAsString(), kitName);
     }
 
     public void resetAllKits() {
-        this.kitUsedTimes.clear();
-        this.setDirty(true);
+        kitUsedTimes.clear();
+        databaseService.resetAllKitCooldowns(player.getUuidAsString());
+    }
+
+    private void loadFromDatabase() {
+        Map<String, Long> cooldowns = databaseService.getKitCooldownsForPlayer(player.getUuidAsString());
+        if (cooldowns != null) {
+            kitUsedTimes.putAll(cooldowns);
+        }
     }
 }
