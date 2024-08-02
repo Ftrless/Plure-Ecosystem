@@ -1,6 +1,5 @@
 package com.enthusiasm.plurecore.cache;
 
-import com.enthusiasm.plurecore.PlureCoreEntrypoint;
 import com.enthusiasm.plurecore.utils.FileUtils;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -11,13 +10,11 @@ import java.lang.reflect.Type;
 import java.nio.file.Path;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.locks.ReentrantLock;
 
 public class CacheService {
     private static final Map<UUID, String> cache = new ConcurrentHashMap<>();
 
     private static final Gson GSON = new Gson();
-    private static final ReentrantLock lock = new ReentrantLock();
     private static final String CACHE_FILE_NAME = "usernamecache.json";
     private static String CACHE_FILE_PATH;
 
@@ -80,37 +77,25 @@ public class CacheService {
     }
 
     private static void loadCacheFromDisk() {
-        lock.lock();
+        String content = FileUtils.readFileAsync(Path.of(CACHE_FILE_PATH));
 
-        FileUtils.readFileAsync(Path.of(CACHE_FILE_PATH))
-                .thenAcceptAsync((result) -> {
-                    if (result == null) {
-                        lock.unlock();
-                        return;
-                    }
+        if (content == null) {
+            return;
+        }
 
-                    Type type = new TypeToken<List<CacheEntry>>() {}.getType();
-                    List<CacheEntry> loadedEntries = GSON.fromJson(result, type);
+        Type type = new TypeToken<List<CacheEntry>>() {}.getType();
+        List<CacheEntry> loadedEntries = GSON.fromJson(content, type);
 
-                    if (loadedEntries != null) {
-                        loadedEntries.forEach(entry -> cache.put(entry.uuid(), entry.nickname()));
-                    }
-                }).thenRun(lock::unlock);
+        if (loadedEntries != null) {
+            loadedEntries.forEach(entry -> cache.put(entry.uuid(), entry.nickname()));
+        }
     }
 
     private static void saveCacheToDisk() {
-        lock.lock();
+        List<CacheEntry> cacheEntries = new ArrayList<>();
+        cache.forEach((uuid, nickname) -> cacheEntries.add(new CacheEntry(uuid, nickname)));
 
-        try {
-            List<CacheEntry> cacheEntries = new ArrayList<>();
-            cache.forEach((uuid, nickname) -> cacheEntries.add(new CacheEntry(uuid, nickname)));
-
-            String json = GSON.toJson(cacheEntries);
-            FileUtils.writeFileAsync(Path.of(CACHE_FILE_PATH), json, false)
-                    .thenRun(lock::unlock);
-        } catch (Exception e) {
-            PlureCoreEntrypoint.LOGGER.error("Ошибка сохранения кеша: {}", e.getMessage());
-            lock.unlock();
-        }
+        String json = GSON.toJson(cacheEntries);
+        FileUtils.writeFileAsync(Path.of(CACHE_FILE_PATH), json, false);
     }
 }
