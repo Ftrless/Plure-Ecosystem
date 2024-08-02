@@ -68,6 +68,19 @@ allprojects {
 		}
 	}
 
+	repositories {
+		maven { url "https://maven.architectury.dev/" }
+		maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
+		maven { url 'https://maven.nucleoid.xyz' }
+		maven {
+			url "https://maven.saps.dev/minecraft"
+			content {
+				includeGroup "dev.latvian.mods"
+				includeGroup "dev.ftb.mods"
+			}
+		}
+	}
+
 	dependencies {
 		minecraft "com.mojang:minecraft:${project.minecraft_version}"
 		mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
@@ -88,29 +101,7 @@ loom {
 	}
 }
 
-configurations {
-	productionRuntime {
-		extendsFrom configurations.minecraftLibraries
-		extendsFrom configurations.loaderLibraries
-		extendsFrom configurations.minecraftRuntimeLibraries
-	}
-	productionRuntimeServer
-}
-
 subprojects {
-	repositories {
-		maven {
-			url "https://maven.architectury.dev/"
-		}
-		maven {
-			url "https://maven.saps.dev/minecraft"
-			content {
-				includeGroup "dev.latvian.mods"
-				includeGroup "dev.ftb.mods"
-			}
-		}
-	}
-
 	base {
 		archivesName = project.name
 	}
