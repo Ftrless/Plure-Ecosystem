@@ -3,3 +3,8 @@ version = getSubprojectVersion(project)
 loom {
     accessWidenerPath = file("src/main/resources/plure-core.accesswidener")
 }
+
+dependencies {
+    implementation(include('com.zaxxer:HikariCP:4.0.3'))
+    implementation(include('org.mariadb.jdbc:mariadb-java-client:3.1.3'))
+}
