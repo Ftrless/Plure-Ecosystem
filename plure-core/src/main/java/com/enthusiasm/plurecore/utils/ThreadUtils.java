@@ -76,6 +76,10 @@ public final class ThreadUtils {
         players.forEach(player -> runAsync(() -> task.accept(player)));
     }
 
+    public static ExecutorService getAsyncExecutor() {
+        return ASYNC_EXECUTOR;
+    }
+
     /**
      * Останавливает все исполнители.
      */

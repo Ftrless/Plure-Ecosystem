@@ -49,6 +49,7 @@ public class HikariService {
 
         config.setMaximumPoolSize(this.credentials.getMaxPoolSize());
         config.setMinimumIdle(this.credentials.getMinIdleConnections());
+        config.setIdleTimeout(10_000);
         config.setMaxLifetime(this.credentials.getMaxLifetime());
         config.setKeepaliveTime(this.credentials.getKeepAliveTime());
         config.setConnectionTimeout(this.credentials.getConnectionTimeout());
