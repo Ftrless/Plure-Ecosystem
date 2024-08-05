@@ -37,7 +37,7 @@ public class KitAll implements Command<ServerCommandSource> {
         Function<Map.Entry<String, KitData>, Boolean> canUseKit = (entry) ->
                 (playerKitData.getKitUsedTime(entry.getKey()) + entry.getValue().getCooldown()) - currentTime <= 0;
 
-        SimpleGuiBuilder guiBuilder = new SimpleGuiBuilder(ScreenHandlerType.GENERIC_9X4, false);
+        SimpleGuiBuilder guiBuilder = new SimpleGuiBuilder(ScreenHandlerType.GENERIC_9X6, false);
         guiBuilder.setLockPlayerInventory(true);
         guiBuilder.setTitle(Text.literal("Взять кит"));
 
