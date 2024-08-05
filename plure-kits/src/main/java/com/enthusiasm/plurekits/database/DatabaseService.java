@@ -7,8 +7,10 @@ import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.CompletableFuture;
 
 public class DatabaseService extends AbstractDatabaseService {
     public DatabaseService(HikariService connection) {
@@ -53,19 +55,27 @@ public class DatabaseService extends AbstractDatabaseService {
         executePreparedQuery(query, playerUuid, kitName, usedTime, usedTime);
     }
 
-    public Map<String, Long> getKitCooldownsForPlayer(String playerUuid) {
+    public CompletableFuture<Map<String, Long>> getKitCooldownsForPlayer(String playerUuid) {
         String query = "SELECT kit_name, used_time FROM kits_cooldowns WHERE player_uuid = ?";
         Map<String, Long> kitCooldowns = new HashMap<>();
-        try (ResultSet rs = executeSelectQuery(query, playerUuid)) {
-            while (rs != null && rs.next()) {
-                String kitName = rs.getString("kit_name");
-                long usedTime = rs.getLong("used_time");
-                kitCooldowns.put(kitName, usedTime);
-            }
-        } catch (SQLException e) {
-            LOGGER.error("Error fetching kit cooldowns for player '{}': {}", playerUuid, e.getMessage());
-        }
-        return kitCooldowns;
+
+        return executeSelectQuery(query, playerUuid)
+                .thenApplyAsync(rs -> {
+                    try (rs) {
+                        while (rs != null && rs.next()) {
+                            String kitName = rs.getString("kit_name");
+                            long usedTime = rs.getLong("used_time");
+                            kitCooldowns.put(kitName, usedTime);
+                        }
+                    } catch (SQLException e) {
+                        LOGGER.error("Error fetching kit cooldowns for player '{}': {}", playerUuid, e.getMessage());
+                    }
+                    return kitCooldowns;
+                })
+                .exceptionally(e -> {
+                    LOGGER.error("Exception in getKitCooldownsForPlayer: {}", e.getMessage());
+                    return Collections.emptyMap();
+                });
     }
 
     public void resetKitCooldown(String playerUuid, String kitName) {

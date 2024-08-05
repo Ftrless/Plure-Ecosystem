@@ -7,6 +7,7 @@ import net.minecraft.util.Util;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.CompletableFuture;
 
 public class PlayerKitData {
     private final Map<String, Long> kitUsedTimes;
@@ -41,9 +42,8 @@ public class PlayerKitData {
     }
 
     private void loadFromDatabase() {
-        Map<String, Long> cooldowns = databaseService.getKitCooldownsForPlayer(player.getUuidAsString());
-        if (cooldowns != null) {
-            kitUsedTimes.putAll(cooldowns);
-        }
+        CompletableFuture<Map<String, Long>> cooldowns = databaseService.getKitCooldownsForPlayer(player.getUuidAsString());
+
+        cooldowns.thenAccept(kitUsedTimes::putAll);
     }
 }

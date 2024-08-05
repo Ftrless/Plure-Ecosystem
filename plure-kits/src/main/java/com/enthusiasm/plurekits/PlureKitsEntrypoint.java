@@ -8,6 +8,8 @@ import com.enthusiasm.plurekits.database.DatabaseService;
 import com.enthusiasm.plurekits.event.PlayerEvents;
 import net.fabricmc.api.DedicatedServerModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
+import net.minecraft.server.MinecraftServer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -44,6 +46,11 @@ public class PlureKitsEntrypoint implements DedicatedServerModInitializer {
         );
 
         CommandRegistrationCallback.EVENT.register(CommandRegistry::register);
+        ServerLifecycleEvents.SERVER_STOPPING.register(this::onServerStopping);
+    }
+
+    private void onServerStopping(MinecraftServer minecraftServer) {
+        getDatabaseService().shutdown();
     }
 
     public static DatabaseService getDatabaseService() {
