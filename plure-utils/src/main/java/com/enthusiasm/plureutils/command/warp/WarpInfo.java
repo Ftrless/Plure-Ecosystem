@@ -41,7 +41,7 @@ public class WarpInfo implements Command<ServerCommandSource> {
             throw CommandHelper.createException(notExist);
         }
 
-        String world = WorldUtils.findWorldKey(warpData.world, server).getValue().toString();
+        String world = WorldUtils.findRegistryKey(warpData.world, server, false).getValue().toString();
 
         PlayerUtils.sendFeedback(
                 context,

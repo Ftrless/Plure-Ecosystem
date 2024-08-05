@@ -34,7 +34,27 @@
   "cmd.home.delete.error.not-exist": "Точка дома еще не установлена.",
   "cmd.home.delete.error.not-owner": "У вас недостаточно прав, чтобы удалить эту точку дома.",
   "cmd.home.tp.feedback": "Телепортация на точку дома.",
+  "cmd.home.tp.error.not-exist": "Точка дома еще не установлена.",
   "cmd.home.tp.error.unknown-world": "Неизвестный мир.",
+
+  "cmd.spawn.set.feedback": "Точка спавна установлена.",
+  "cmd.spawn.tp.feedback": "Вы телепортировались на спавн.",
+  "cmd.spawn.force.feedback": "Игрок %s принудительно телепортирован на спавн.",
+
+  "cmd.tpa.error.self-tpa": "Вы не можете запросить телепортацию к самому себе.",
+  "cmd.tpa.feedback.receiver": "%s хочет телепортироваться к вам.",
+  "cmd.tpa.feedback": "Запрос на телепортацию к игроку отправлен.",
+  "cmd.tpaaccept.error.no-active-request": "Нет активных запросов на телепортацию.",
+  "cmd.tpaaccept.feedback.initiator": "%s принял ваш запрос на телепортацию.",
+  "cmd.tpaaccept.feedback.receiver": "%s телепортировался к вам.",
+  "cmd.tpaaccept.feedback.initiator.oneself": "%s принял запрос на телепортацию к вам.",
+  "cmd.tpaaccept.feedback.receiver.oneself": "Вы были телепортированы к %s.",
+  "cmd.tpadeny.error.no-active-request": "Нет активных запросов на телепортацию.",
+  "cmd.tpadeny.feedback.reciever": "Вы отклонили запрос на телепортацию.",
+  "cmd.tpadeny.feedback.initiator": "%s отклонил ваш запрос на телепортацию.",
+  "cmd.tpahere.error.self-tpa": "Вы не можете запросить телепортацию к самому себе.",
+  "cmd.tpahere.feedback.receiver": "%s отправил запрос на телепортацию к себе.",
+  "cmd.tpahere.feedback": "Вы отправили запрос на телепортацию игрока %s к себе.",
 
   "cmd.playtime.feedback": "Наигранное время: %s",
   "cmd.playtime.target.feedback": "Наигранное время %s'а: %s",
@@ -72,6 +92,16 @@
   "cmd.rtp.feedback.position-finding": "Поиск безопасной локации. Пожалуйста, подождите...",
   "cmd.rtp.feedback.position-found": "Безопасная локация найдена. Телепортация через 3 секунды...",
   "cmd.rtp.feedback": "Телепортирование к случайной позиции (%s, %s, %s).",
+
+  "cmd.fly.feedback": "Режим полета %s.",
+  "cmd.god.feedback": "Режим бога %s.",
+
+  "cmd.restart.at.feedback": "Сервер перезапуститься через %s.",
+  "cmd.restart.force.feedback": "Принудительный перезапуск сервера стоится через %s.",
+  "cmd.restart.postpone.feedback": "Перезапуск сервера отложен на %s.",
+
+  "cmd.tppos.feedback": "Телепортация в %s, %s, %s.",
+  "cmd.trashbin.name": "Корзина",
 
   "translate.voteday": "Установку дневного времени",
   "translate.votesun": "Установку ясной погоды",

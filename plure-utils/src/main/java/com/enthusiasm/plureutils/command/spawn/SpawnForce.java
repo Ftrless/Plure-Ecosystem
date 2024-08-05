@@ -30,10 +30,15 @@ public class SpawnForce implements Command<ServerCommandSource> {
         SpawnDataManager spawnDataManager = DataManager.getSpawnDataManager();
         SpawnData spawnData = spawnDataManager.getSpawn();
 
-        Message notExist = TextUtils.translation("cmd.forcespawn.error.not-exist", FormatUtils.Colors.ERROR);
+        Message notExist = TextUtils.translation("cmd.spawn.force.error.not-exist", FormatUtils.Colors.ERROR);
+        Message notFound = TextUtils.translation("cmd.spawn.force.error.not-found", FormatUtils.Colors.ERROR);
 
         if (spawnData == null) {
             throw CommandHelper.createException(notExist);
+        }
+
+        if (targetPlayer == null) {
+            throw CommandHelper.createException(notFound);
         }
 
         PlayerUtils.teleportPlayer(

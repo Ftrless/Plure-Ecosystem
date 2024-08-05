@@ -40,6 +40,10 @@ public class WarpCreate implements Command<ServerCommandSource> {
             throw CommandHelper.createException(alreadyExist);
         }
 
+        if (global.equals("public")) {
+            return;
+        }
+
         warpDataManager.addWarp(warpName, new WarpData(
                 senderPlayer.getWorld().getRegistryKey().toString(),
                 senderPlayer.getUuid(),

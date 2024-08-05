@@ -15,20 +15,42 @@ import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
+import org.jetbrains.annotations.Nullable;
 
 public class HomeTp implements Command<ServerCommandSource> {
     @Override
     public int run(CommandContext<ServerCommandSource> context) throws CommandSyntaxException {
         ServerPlayerEntity senderPlayer = context.getSource().getPlayerOrThrow();
 
-        exec(context, senderPlayer);
+        HomeData homeData = exec(senderPlayer);
+
+        PlayerUtils.sendFeedback(context, "cmd.home.tp.feedback");
+        runTp(senderPlayer, homeData);
 
         return SINGLE_SUCCESS;
     }
 
-    public void exec(CommandContext<ServerCommandSource> context, ServerPlayerEntity senderPlayer) throws CommandSyntaxException {
+    public int runForPlayer(CommandContext<ServerCommandSource> context) throws CommandSyntaxException {
+        ServerPlayerEntity senderPlayer = context.getSource().getPlayerOrThrow();
+        ServerPlayerEntity targetPlayer = PlayerUtils.getPlayer(context);
+
+        HomeData homeData = exec(targetPlayer);
+
+        PlayerUtils.sendFeedback(context, "cmd.home.tp.target.feedback");
+        runTp(senderPlayer, homeData);
+
+        return SINGLE_SUCCESS;
+    }
+
+    public HomeData exec(@Nullable ServerPlayerEntity targetPlayer) throws CommandSyntaxException {
+        Message playerNotExists = TextUtils.translation("cmd.home.tp.target.error.not-exist", FormatUtils.Colors.ERROR);
+
+        if (targetPlayer == null) {
+            throw CommandHelper.createException(playerNotExists);
+        }
+
         HomeDataManager homeDataManager = DataManager.getHomeDataManager();
-        HomeData homeData = homeDataManager.getHome(senderPlayer.getUuid());
+        HomeData homeData = homeDataManager.getHome(targetPlayer.getUuid());
 
         Message notExists = TextUtils.translation("cmd.home.tp.error.not-exist", FormatUtils.Colors.ERROR);
 
@@ -36,21 +58,23 @@ public class HomeTp implements Command<ServerCommandSource> {
             throw CommandHelper.createException(notExists);
         }
 
-        if (!homeData.owner.equals(senderPlayer.getUuid())
-                && !PermissionsHolder.check(senderPlayer, PermissionsHolder.Permission.BYPASS_TYPE_HOME, 4)) {
+        if (!homeData.owner.equals(targetPlayer.getUuid())
+                && !PermissionsHolder.check(targetPlayer, PermissionsHolder.Permission.BYPASS_TYPE_HOME, 4)) {
             throw CommandHelper.createException(notExists);
         }
 
+        return homeData;
+    }
+
+    private void runTp(ServerPlayerEntity targetPlayer, HomeData homeData) {
         PlayerUtils.teleportPlayer(
-                senderPlayer,
+                targetPlayer,
                 homeData.x,
                 homeData.y,
                 homeData.z,
                 homeData.yaw,
                 homeData.pitch,
-                WorldUtils.getServerWorld(homeData.world, context.getSource().getServer())
+                WorldUtils.getServerWorld(homeData.world, targetPlayer.getServer())
         );
-
-        PlayerUtils.sendFeedback(context, "cmd.home.tp.feedback");
     }
 }

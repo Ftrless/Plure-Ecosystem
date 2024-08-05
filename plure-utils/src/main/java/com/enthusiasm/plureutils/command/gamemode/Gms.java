@@ -31,6 +31,6 @@ public class Gms implements Command<ServerCommandSource> {
 
         senderPlayer.changeGameMode(GameMode.SURVIVAL);
 
-        PlayerUtils.sendFeedback(context, "cmd.gm.feedback", "survival");
+        PlayerUtils.sendFeedback(context, "cmd.gm.feedback", "выживания");
     }
 }

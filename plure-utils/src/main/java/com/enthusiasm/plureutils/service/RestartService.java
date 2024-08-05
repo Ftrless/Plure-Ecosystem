@@ -54,12 +54,13 @@ public class RestartService {
         );
     }
 
+    public static long getRemainingTime() {
+        return scheduledRestartTask == null ? 0 : scheduledRestartTask.getDelay(TimeUnit.MILLISECONDS);
+    }
+
     private static void broadcastMessage(String message, String restartAt) {
         MutableText broadcastText = TextUtils.translation(message, FormatUtils.Colors.DEFAULT, restartAt);
 
-        ThreadUtils.runForEachPlayerAsync(
-                SERVER_INSTANCE.getPlayerManager().getPlayerList(),
-                (player) -> player.sendMessage(broadcastText)
-        );
+        SERVER_INSTANCE.getPlayerManager().getPlayerList().forEach(player -> player.sendMessage(broadcastText));
     }
 }

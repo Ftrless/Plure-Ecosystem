@@ -4,7 +4,9 @@
   "package": "com.enthusiasm.plureutils.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "BypassLimitMixin"
+    "BypassLimitMixin",
+    "PlayerEntityMixin",
+    "ServerPlayerEntityMixin"
   ],
   "client": [],
   "injectors": {

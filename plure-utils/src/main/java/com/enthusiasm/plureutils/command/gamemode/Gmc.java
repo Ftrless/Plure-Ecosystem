@@ -31,6 +31,6 @@ public class Gmc implements Command<ServerCommandSource> {
 
         senderPlayer.changeGameMode(GameMode.CREATIVE);
 
-        PlayerUtils.sendFeedback(context, "cmd.gm.feedback", "creative");
+        PlayerUtils.sendFeedback(context, "cmd.gm.feedback", "творческий");
     }
 }

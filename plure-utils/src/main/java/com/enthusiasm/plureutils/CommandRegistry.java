@@ -11,7 +11,12 @@ import com.enthusiasm.plureutils.command.playtime.PlaytimeTop;
 import com.enthusiasm.plureutils.command.spawn.SpawnForce;
 import com.enthusiasm.plureutils.command.spawn.SpawnSet;
 import com.enthusiasm.plureutils.command.spawn.SpawnTp;
+import com.enthusiasm.plureutils.command.tpa.Tpa;
+import com.enthusiasm.plureutils.command.tpa.TpaAccept;
+import com.enthusiasm.plureutils.command.tpa.TpaDeny;
+import com.enthusiasm.plureutils.command.tpa.TpaHere;
 import com.enthusiasm.plureutils.command.util.*;
+import com.enthusiasm.plureutils.command.util.screens.*;
 import com.enthusiasm.plureutils.command.vote.Vote;
 import com.enthusiasm.plureutils.command.vote.VoteDay;
 import com.enthusiasm.plureutils.command.vote.VoteSun;
@@ -22,6 +27,7 @@ import com.enthusiasm.plureutils.command.weather.Sunny;
 import com.enthusiasm.plureutils.util.suggetion.NickSuggestion;
 import com.enthusiasm.plureutils.util.suggetion.VoteSuggestion;
 import com.enthusiasm.plureutils.util.suggetion.WarpSuggestion;
+import com.enthusiasm.plureutils.util.suggetion.WorldSuggestion;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.BoolArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
@@ -29,6 +35,8 @@ import com.mojang.brigadier.tree.CommandNode;
 import com.mojang.brigadier.tree.RootCommandNode;
 import me.lucko.fabric.api.permissions.v0.Permissions;
 import net.minecraft.command.CommandRegistryAccess;
+import net.minecraft.command.argument.EntityArgumentType;
+import net.minecraft.command.argument.Vec3ArgumentType;
 import net.minecraft.server.command.ServerCommandSource;
 
 import static net.minecraft.server.command.CommandManager.*;
@@ -47,11 +55,13 @@ public class CommandRegistry {
         registerWarpCommands(warpNode);
         registerHomeCommands(homeNode);
         registerSpawnCommands(spawnNode);
+        registerTpaCommands(rootNode);
         registerPlaytimeCommands(rootNode);
         registerWeatherCommands(rootNode);
         registerGamemodeCommands(rootNode);
         registerVoteCommands(rootNode);
         registerUtilCommands(rootNode);
+        registerScreensCommands(rootNode);
     }
 
     public static void registerWarpCommands(CommandNode<ServerCommandSource> node) {
@@ -141,6 +151,9 @@ public class CommandRegistry {
         node.addChild(literal("tp")
                 .requires(Permissions.require(PermissionsHolder.Permission.TP_HOME.getPermissionString(), 4))
                 .executes(new HomeTp())
+                .then(argument("target_player", StringArgumentType.word())
+                        .suggests(NickSuggestion.NICK_SUGGESTION_PROVIDER)
+                        .executes(new HomeTp()::runForPlayer))
                 .build()
         );
 
@@ -169,6 +182,38 @@ public class CommandRegistry {
                 .then(argument("target_player", StringArgumentType.word())
                         .suggests(NickSuggestion.NICK_SUGGESTION_PROVIDER)
                         .executes(new SpawnForce())
+                ).build()
+        );
+    }
+
+    public static void registerTpaCommands(RootCommandNode<ServerCommandSource> node) {
+        node.addChild(literal("tpa")
+                .requires(Permissions.require(PermissionsHolder.Permission.TPA.getPermissionString(),4))
+                .then(argument("target_player", EntityArgumentType.player())
+                        .executes(new Tpa())
+                ).build()
+        );
+
+        node.addChild(literal("tpahere")
+                .requires(Permissions.require(PermissionsHolder.Permission.TPAHERE.getPermissionString(),4))
+                .then(argument("target_player", EntityArgumentType.player())
+                        .executes(new TpaHere())
+                ).build()
+        );
+
+        node.addChild(literal("tpaaccept")
+                .requires(Permissions.require(PermissionsHolder.Permission.TPAACCEPT.getPermissionString(),4))
+                .executes(new TpaAccept()::runAuto)
+                .then(argument("target_player", EntityArgumentType.player())
+                        .executes(new TpaAccept())
+                ).build()
+        );
+
+        node.addChild(literal("tpadeny")
+                .requires(Permissions.require(PermissionsHolder.Permission.TPADENY.getPermissionString(),4))
+                .executes(new TpaDeny()::runAuto)
+                .then(argument("target_player", EntityArgumentType.player())
+                        .executes(new TpaDeny())
                 ).build()
         );
     }
@@ -253,6 +298,18 @@ public class CommandRegistry {
     }
 
     public static void registerUtilCommands(RootCommandNode<ServerCommandSource> node) {
+        node.addChild(literal("fly")
+                .requires(Permissions.require(PermissionsHolder.Permission.FLY.getPermissionString(), 4))
+                .executes(new Fly())
+                .build()
+        );
+
+        node.addChild(literal("god")
+                .requires(Permissions.require(PermissionsHolder.Permission.GOD.getPermissionString(), 4))
+                .executes(new God())
+                .build()
+        );
+
         node.addChild(literal("heal")
                 .requires(Permissions.require(PermissionsHolder.Permission.HEAL.getPermissionString(), 4))
                 .executes(new Heal())
@@ -280,6 +337,48 @@ public class CommandRegistry {
         node.addChild(literal("rtp")
                 .requires(Permissions.require(PermissionsHolder.Permission.RTP.getPermissionString(), 4))
                 .executes(new RandomTeleport())
+                .build()
+        );
+
+        node.addChild(literal("tppos")
+                .requires(Permissions.require(PermissionsHolder.Permission.TPPOS.getPermissionString(), 4))
+                .then(argument("position", Vec3ArgumentType.vec3())
+                        .then(argument("world", StringArgumentType.word())
+                                .suggests(WorldSuggestion.WORLDS_SUGGESTION_PROVIDER)
+                                .executes(new TeleportPosition())
+                        )
+                ).build()
+        );
+    }
+
+    public static void registerScreensCommands(RootCommandNode<ServerCommandSource> node) {
+        node.addChild(literal("anvil")
+                .requires(Permissions.require(PermissionsHolder.Permission.ANVIL.getPermissionString(), 4))
+                .executes(new Anvil())
+                .build()
+        );
+
+        node.addChild(literal("grindstone")
+                .requires(Permissions.require(PermissionsHolder.Permission.GRINDSTONE.getPermissionString(), 4))
+                .executes(new Grindstone())
+                .build()
+        );
+
+        node.addChild(literal("workbench")
+                .requires(Permissions.require(PermissionsHolder.Permission.WORKBENCH.getPermissionString(), 4))
+                .executes(new Workbench())
+                .build()
+        );
+
+        node.addChild(literal("trashbin")
+                .requires(Permissions.require(PermissionsHolder.Permission.TRASHBIN.getPermissionString(), 4))
+                .executes(new TrashBin())
+                .build()
+        );
+
+        node.addChild(literal("enderchest")
+                .requires(Permissions.require(PermissionsHolder.Permission.ENDERCHEST.getPermissionString(), 4))
+                .executes(new Enderchest())
                 .build()
         );
     }

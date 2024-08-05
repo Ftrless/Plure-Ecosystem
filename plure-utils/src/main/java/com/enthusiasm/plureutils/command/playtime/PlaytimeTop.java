@@ -115,8 +115,8 @@
 package com.enthusiasm.plureutils.command.playtime;
 
 import com.enthusiasm.plurecore.cache.CacheService;
+import com.enthusiasm.plurecore.utils.PlayerUtils;
 import com.enthusiasm.plurecore.utils.text.FormatUtils;
-import com.enthusiasm.plurecore.utils.text.TextUtils;
 import com.enthusiasm.plureutils.PlureUtilsEntrypoint;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -125,7 +125,6 @@ import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.command.ServerCommandSource;
-import net.minecraft.text.MutableText;
 import net.minecraft.util.WorldSavePath;
 
 import java.io.File;
@@ -143,11 +142,11 @@ public class PlaytimeTop implements Command<ServerCommandSource> {
         return SINGLE_SUCCESS;
     }
 
-    private void exec(CommandContext<ServerCommandSource> context) throws CommandSyntaxException {
+    private void exec(CommandContext<ServerCommandSource> context) {
         MinecraftServer server = context.getSource().getServer();
         Map<String, Long> topPlayers = getPlayerPlaytimeList(server.getSavePath(WorldSavePath.STATS), server);
 
-        MutableText header = TextUtils.translation("cmd.playtime.top.feedback", FormatUtils.Colors.DEFAULT);
+        PlayerUtils.sendFeedback(context, "cmd.playtime.top.feedback");
 
         int i = 1;
         for (Map.Entry<String, Long> entry : topPlayers.entrySet()) {
@@ -156,10 +155,8 @@ public class PlaytimeTop implements Command<ServerCommandSource> {
             long hours = (playTime % (20 * 60 * 60 * 24)) / (20 * 60 * 60);
             long minutes = (playTime % (20 * 60 * 60)) / (20 * 60);
 
-            header.append(TextUtils.translation("cmd.playtime.top.element", FormatUtils.Colors.DEFAULT, i++, entry.getKey(), days, hours, minutes) );
+            PlayerUtils.sendFeedback(context, "cmd.playtime.top.element", i++, entry.getKey(), days, hours, minutes);
         }
-
-        context.getSource().sendFeedback(() -> header, false);
     }
 
     private Map<String, Long> getPlayerPlaytimeList(Path worldFolder, MinecraftServer server) {

@@ -31,7 +31,7 @@ public class RandomTeleport implements Command<ServerCommandSource> {
         }
 
         String formattedRemainingTime = CooldownUtils.getRemainingTime(CooldownUtils.getTargetCooldown("rtp", senderPlayer.getUuid()), ConfigManager.getConfig().rtpCooldown);
-        Message onCooldown = TextUtils.translation("cooldown.global.feedback", FormatUtils.Colors.ERROR, formattedRemainingTime);
+        Message onCooldown = TextUtils.translation("cooldown.target.feedback", FormatUtils.Colors.ERROR, formattedRemainingTime);
 
         if (!CooldownUtils.isTargetCooldownExpired("rtp", senderPlayer.getUuid(), ConfigManager.getConfig().rtpCooldown)) {
             throw CommandHelper.createException(onCooldown);
@@ -47,27 +47,30 @@ public class RandomTeleport implements Command<ServerCommandSource> {
         teleportManager.findPosition((position) -> {
             if (position == null) {
                 PlayerUtils.sendFeedback(context, "cmd.rtp.error.failed-to-find", FormatUtils.Colors.ERROR);
+                return;
             }
 
             CooldownUtils.addTargetCooldown("rtp", senderPlayer.getUuid());
 
             PlayerUtils.sendFeedback(context, "cmd.rtp.feedback.position-found");
 
-            ThreadUtils.schedule(() -> PlayerUtils.teleportPlayer(
-                    senderPlayer,
-                    position.x,
-                    position.y,
-                    position.z,
-                    senderPlayer.getYaw(),
-                    senderPlayer.getPitch(),
-                    senderPlayer.getServerWorld()
-            ), 3000);
+            ThreadUtils.schedule(() -> {
+                PlayerUtils.teleportPlayer(
+                        senderPlayer,
+                        position.x,
+                        position.y,
+                        position.z,
+                        senderPlayer.getYaw(),
+                        senderPlayer.getPitch(),
+                        senderPlayer.getServerWorld()
+                );
 
-            PlayerUtils.sendFeedback(context, "cmd.rtp.feedback",
-                    String.format("%.0f", position.x),
-                    String.format("%.0f", position.y),
-                    String.format("%.0f", position.z)
-            );
+                PlayerUtils.sendFeedback(context, "cmd.rtp.feedback",
+                        String.format("%.0f", position.x),
+                        String.format("%.0f", position.y),
+                        String.format("%.0f", position.z)
+                );
+            }, 3000);
         });
     }
 }

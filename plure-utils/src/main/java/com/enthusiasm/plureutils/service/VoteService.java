@@ -21,7 +21,10 @@ public class VoteService {
         ThreadUtils.schedule(() -> endVote(voteType, server), 15000);
 
         MutableText resultMessage = voteMessage(voteType.equals("voteday") ? "/vote day" : "/vote sun", voteType);
-        server.getPlayerManager().broadcast(resultMessage, false);
+
+        server.getPlayerManager().getPlayerList().forEach(serverPlayerEntity -> {
+            serverPlayerEntity.sendMessage(resultMessage, false);
+        });
     }
 
     public static boolean checkVote(String voteType) {
@@ -54,7 +57,7 @@ public class VoteService {
                                     voteType.equals("voteday")
                                             ? "translate.voteday"
                                             : "translate.votesun"
-                            ).setStyle(Style.EMPTY.withColor(Formatting.LIGHT_PURPLE)),
+                            ).setStyle(Style.EMPTY.withColor(FormatUtils.getColor(FormatUtils.Colors.FOCUS))),
                             Text.literal(pros + "✔").setStyle(Style.EMPTY.withColor(Formatting.GREEN)),
                             Text.literal(cons + "✖").setStyle(Style.EMPTY.withColor(Formatting.RED))
                     );
@@ -66,7 +69,9 @@ public class VoteService {
                 }
             }
 
-            server.getPlayerManager().broadcast(resultMessage, false);
+            server.getPlayerManager().getPlayerList().forEach(serverPlayerEntity -> {
+                serverPlayerEntity.sendMessage(resultMessage, false);
+            });
 
             voteRecords.remove(voteType);
         }
@@ -87,7 +92,7 @@ public class VoteService {
                                 voteType.equals("voteday")
                                     ? "translate.voteday"
                                     : "translate.votesun"
-                        ).setStyle(Style.EMPTY.withColor(Formatting.LIGHT_PURPLE))
+                        ).setStyle(Style.EMPTY.withColor(FormatUtils.getColor(FormatUtils.Colors.FOCUS)))
                 ).append(voteYes).append(voteNo);
     }
 

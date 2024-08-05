@@ -35,7 +35,27 @@
   "cmd.home.delete.error.not-exist": "The point of home has not yet been set.",
   "cmd.home.delete.error.not-owner": "You do not have enough permissions to delete this home point.",
   "cmd.home.tp.feedback": "Teleportation to point of home.",
+  "cmd.home.tp.error.not-exist": "The point of home has not yet been set.",
   "cmd.home.tp.error.unknown-world": "Unknown world.",
+
+  "cmd.spawn.set.feedback": "Spawn point set.",
+  "cmd.spawn.tp.feedback": "You teleported to spawn.",
+  "cmd.spawn.force.feedback": "Player %s is forcibly teleported to spawn.",
+
+  "cmd.tpa.error.self-tpa": "You cannot request teleportation to yourself.",
+  "cmd.tpa.feedback.receiver": "%s wants to teleport to you.",
+  "cmd.tpa.feedback": "Request for teleportation to player sent.",
+  "cmd.tpaaccept.error.no-active-request": "No active teleportation requests.",
+  "cmd.tpaaccept.feedback.initiator": "%s has accepted your teleportation request.",
+  "cmd.tpaaccept.feedback.receiver": "%s teleported to you.",
+  "cmd.tpaaccept.feedback.initiator.oneself": "%s has accepted a request to teleport to you.",
+  "cmd.tpaaccept.feedback.receiver.oneself": "You have been teleported to %s.",
+  "cmd.tpadeny.error.no-active-request": "No active teleportation requests.",
+  "cmd.tpadeny.feedback.reciever": "You have denied the teleportation request.",
+  "cmd.tpadeny.feedback.initiator": "%s has denied your teleportation request.",
+  "cmd.tpahere.error.self-tpa": "You cannot request teleportation to yourself.",
+  "cmd.tpahere.feedback.receiver": "% has sent a teleportation request to myself.",
+  "cmd.tpahere.feedback": "You have sent a request to teleport %s player to yourself.",
 
   "cmd.playtime.feedback": "Playtime: %s",
   "cmd.playtime.target.feedback": "%s's playtime: %s",
@@ -70,10 +90,19 @@
   "cmd.nv.feedback": "Night vision mode %s.",
 
   "cmd.rtp.error.failed-to-find": "No safe location found!",
-  "cmd.rtp.error.on-cooldown": "Command on reload.",
   "cmd.rtp.feedback.position-finding": "Finding safe location. Please wait...",
   "cmd.rtp.feedback.position-found": "Safe location found. Teleportation in 3 seconds...",
   "cmd.rtp.feedback": "Teleport to random position (%s, %s, %s).",
+
+  "cmd.fly.feedback": "Fly has been %s.",
+  "cmd.god.feedback": "Invuln has been %s.",
+
+  "cmd.restart.at.feedback": "Server restart will occur in %s.",
+  "cmd.restart.force.feedback": "Server restart will be forced via %s.",
+  "cmd.restart.postpone.feedback": "Server restart has been postponed %s.",
+
+  "cmd.tppos.feedback": "Teleported to %s, %s, %s.",
+  "cmd.trashbin.name": "TrashBin",
 
   "translate.voteday": "Setting the daytime",
   "translate.votesun": "Clear weather setting",

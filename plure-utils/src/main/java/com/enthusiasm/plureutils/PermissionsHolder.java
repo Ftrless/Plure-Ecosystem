@@ -30,6 +30,10 @@ public class PermissionsHolder {
         SET_SPAWN("spawn.set"),
         TP_SPAWN("spawn.tp"),
         FORCE_SPAWN("spawn.force"),
+        TPA("tpa"),
+        TPAHERE("tpahere"),
+        TPAACCEPT("tpaaccept"),
+        TPADENY("tpadeny"),
         GMS("gms"),
         GMC("gmc"),
         GMA("gma"),
@@ -39,11 +43,20 @@ public class PermissionsHolder {
         VOTEDAY("voteday"),
         VOTESUN("votesun"),
         VOTE("vote"),
+        FLY("fly"),
+        GOD("god"),
+        ANVIL("anvil"),
+        WORKBENCH("workbench"),
+        GRINDSTONE("grindstone"),
+        TRASHBIN("trashbin"),
+        ENDERCHEST("enderchest"),
         HEAL("heal"),
         FEED("feed"),
         REPAIR("repair"),
         NIGHTVISION("nightvision"),
-        RTP("rtp");
+        RTP("rtp"),
+        TPPOS("tppos"),
+        KEEP_INV("keep-inv"),;
 
         private final String permissionString;
 
