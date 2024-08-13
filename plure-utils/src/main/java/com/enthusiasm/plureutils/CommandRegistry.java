@@ -343,7 +343,7 @@ public class CommandRegistry {
         node.addChild(literal("tppos")
                 .requires(Permissions.require(PermissionsHolder.Permission.TPPOS.getPermissionString(), 4))
                 .then(argument("position", Vec3ArgumentType.vec3())
-                        .then(argument("world", StringArgumentType.word())
+                        .then(argument("world", StringArgumentType.greedyString())
                                 .suggests(WorldSuggestion.WORLDS_SUGGESTION_PROVIDER)
                                 .executes(new TeleportPosition())
                         )

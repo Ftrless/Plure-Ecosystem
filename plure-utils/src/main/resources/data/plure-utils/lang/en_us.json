@@ -91,7 +91,7 @@
 
   "cmd.rtp.error.failed-to-find": "No safe location found!",
   "cmd.rtp.feedback.position-finding": "Finding safe location. Please wait...",
-  "cmd.rtp.feedback.position-found": "Safe location found. Teleportation in 3 seconds...",
+  "cmd.rtp.feedback.position-found": "Safe location found. Teleportation in 2 seconds...",
   "cmd.rtp.feedback": "Teleport to random position (%s, %s, %s).",
 
   "cmd.fly.feedback": "Fly has been %s.",
@@ -112,6 +112,8 @@
 
   "cooldown.global.feedback": "Voting on the reload. Remaining: %d.",
   "cooldown.target.feedback": "Command on the reload. Remaining: %d.",
+
+  "global.restart.notify-message": "Restart server via %s.",
 
   "generic.enabled": "enabled",
   "generic.disabled": "disabled"

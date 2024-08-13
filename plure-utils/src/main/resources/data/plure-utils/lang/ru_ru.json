@@ -90,7 +90,7 @@
 
   "cmd.rtp.error.failed-to-find": "Безопасная локация не найдена!",
   "cmd.rtp.feedback.position-finding": "Поиск безопасной локации. Пожалуйста, подождите...",
-  "cmd.rtp.feedback.position-found": "Безопасная локация найдена. Телепортация через 3 секунды...",
+  "cmd.rtp.feedback.position-found": "Безопасная локация найдена. Телепортация через 2 секунды...",
   "cmd.rtp.feedback": "Телепортирование к случайной позиции (%s, %s, %s).",
 
   "cmd.fly.feedback": "Режим полета %s.",
@@ -111,6 +111,8 @@
 
   "cooldown.global.feedback": "Голосование на перезарядке. Осталось: %s.",
   "cooldown.target.feedback": "Команда на перезарядке. Осталось: %s.",
+
+  "global.restart.notify-message": "Перезагрузка сервера через %s.",
 
   "generic.enabled": "включен",
   "generic.disabled": "выключен"

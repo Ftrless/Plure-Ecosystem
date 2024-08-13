@@ -30,11 +30,9 @@ public class TpaHere implements Command<ServerCommandSource> {
         MutableText oneSelf = TextUtils.translation("cmd.tpahere.error.self-tpa", FormatUtils.Colors.ERROR);
         MutableText msgToDest = TextUtils.translation(
                 "cmd.tpahere.feedback.receiver",
-                FormatUtils.Colors.ERROR,
-                senderPlayer.getEntityName(),
-                voteYes,
-                voteNo
-        );
+                FormatUtils.Colors.DEFAULT,
+                senderPlayer.getEntityName()
+        ).append(voteYes).append(voteNo);
 
         if (senderPlayer.equals(targetPlayer)) {
             throw CommandUtils.createException(oneSelf);

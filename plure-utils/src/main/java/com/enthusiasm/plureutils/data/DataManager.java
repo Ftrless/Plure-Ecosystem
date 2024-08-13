@@ -1,5 +1,6 @@
 package com.enthusiasm.plureutils.data;
 
+import com.enthusiasm.plureutils.PlureUtilsEntrypoint;
 import com.enthusiasm.plureutils.data.home.HomeDataManager;
 import com.enthusiasm.plureutils.data.spawn.SpawnDataManager;
 import com.enthusiasm.plureutils.data.warp.WarpDataManager;
@@ -17,8 +18,8 @@ public class DataManager {
 
     public static Path saveDir;
 
-    public static void onInitialize(MinecraftServer server) {
-        initFolder(server);
+    public static void onInitialize() {
+        initFolder(PlureUtilsEntrypoint.SERVER);
 
         warpDataManager = WarpDataManager.onServerStart();
         homeDataManager = HomeDataManager.onServerStart();

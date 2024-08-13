@@ -12,6 +12,7 @@ public class PermissionsHolder {
         BYPASS_PLAYER_LIMIT("bypass-player-limit"),
         BYPASS_TYPE_WARP("warps.bypass-type-warp"),
         BYPASS_TYPE_HOME("homes.bypass-type-home"),
+        BYPASS_RTP_COOLDOWN("rtp.bypass-rtp-cooldown"),
         CREATE_WARP("warps.create"),
         INFO_WARP("warps.info"),
         ACCESS_LIST_WARPS("warps.access"),

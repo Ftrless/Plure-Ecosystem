@@ -13,14 +13,19 @@ import net.minecraft.registry.tag.TagKey;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeKeys;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
 @Config(name = "plure-utils")
 public class PUConfig {
+    @Comment("Специальные миры")
+    @ConfigEntry.Category("common")
+    public List<String> specialWorlds = List.of("minecraft:mining");
+
     @Comment("Кулдаун на команду RTP в миллисекундах")
     @ConfigEntry.Category("cooldowns")
-    public int rtpCooldown = 60_000;
+    public int rtpCooldown = 30_000;
 
     @Comment("Кулдаун на глобальные команды в миллисекундах")
     @ConfigEntry.Category("cooldowns")
@@ -55,11 +60,62 @@ public class PUConfig {
             BiomeTags.IS_RIVER
     ));
 
-    @Comment("Включить рестарты")
+    @Comment("Включить систему рестартов")
     @ConfigEntry.Category("restart")
     public boolean enableRestarts = false;
 
     @Comment("Интервал рестарта в миллисекундах")
     @ConfigEntry.Category("restart")
     public int restartInterval = 8 * 3_600_000;
+
+    @Comment("Интервалы напоминаний о рестарте в миллисекундах")
+    @ConfigEntry.Category("restart")
+    public List<Integer> restartNotifyIntervals = List.of(
+            21_600_000,
+            10_800_000,
+            3_600_000,
+            1_800_000,
+            600_000,
+            300_000,
+            60_000,
+            30_000,
+            15_000,
+            10_000,
+            9_000,
+            8_000,
+            7_000,
+            6_000,
+            5_000,
+            4_000,
+            3_000,
+            2_000,
+            1_000
+    );
+
+    @Comment("Интервалы напоминаний в тайтле о рестарте в миллисекундах")
+    @ConfigEntry.Category("restart")
+    public List<Integer> restartTitleNotifyIntervals = List.of(
+            10_000,
+            9_000,
+            8_000,
+            7_000,
+            6_000,
+            5_000,
+            4_000,
+            3_000,
+            2_000,
+            1_000
+    );
+
+    @Comment("Включить систему автовайпов")
+    @ConfigEntry.Category("autowipe")
+    public boolean enableAutowipe = false;
+
+    @Comment("Пути до миров для автовайпа")
+    @ConfigEntry.Category("autowipe")
+    public List<String> autowipeWorlds = List.of("dimensions/minecraft/mining");
+
+    @Comment("Имя папки закешированных миров для копирования")
+    @ConfigEntry.Category("autowipe")
+    public String cachedWorldsDir = "cachedWorlds";
 }
