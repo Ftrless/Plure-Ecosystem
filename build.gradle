@@ -33,11 +33,11 @@ allprojects {
 		it.options.release = 21
 	}
 
-	tasks.withType(GenerateModuleMetadata) {
+	tasks.withType(GenerateModuleMetadata).configureEach {
 		enabled = false
 	}
 
-	tasks.withType(JavaCompile) {
+	tasks.withType(JavaCompile).configureEach {
 		options.encoding = "UTF-8"
 	}
 

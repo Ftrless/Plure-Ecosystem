@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "id": "plure-economy",
   "version": "${version}",
-  "name": "Plure Utils",
+  "name": "Plure Economy",
   "description": "Server-side economy",
   "authors": [
     "Ftrless"
