@@ -33,13 +33,13 @@ public class DatabaseService extends AbstractDatabaseService {
         }
 
         if (!exists) {
-            executeQuery(getTableSchema());
+            executeQuery(getTableSchema(tableName));
             LOGGER.info("Table '{}' created successfully.", tableName);
         }
     }
 
     @Override
-    public String getTableSchema() {
+    public String getTableSchema(String tableName) {
         return "CREATE TABLE IF NOT EXISTS kits_cooldowns (" +
                 "player_uuid VARCHAR(36) NOT NULL, " +
                 "kit_name VARCHAR(255) NOT NULL, " +
