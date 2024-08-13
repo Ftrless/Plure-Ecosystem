@@ -28,7 +28,7 @@ public abstract class AbstractDatabaseService {
         return this.connection.getConnection();
     }
 
-    public abstract String getTableSchema();
+    public abstract String getTableSchema(String tableName);
 
     public void executeQuery(String query) {
         CompletableFuture.runAsync(() -> {

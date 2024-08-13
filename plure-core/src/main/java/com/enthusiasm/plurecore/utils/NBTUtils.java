@@ -1,10 +1,12 @@
 package com.enthusiasm.plurecore.utils;
 
+import com.enthusiasm.plurecore.PlureCoreEntrypoint;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.nbt.NbtList;
 import net.minecraft.nbt.NbtString;
 
+import java.util.List;
 import java.util.UUID;
 
 public class NBTUtils {

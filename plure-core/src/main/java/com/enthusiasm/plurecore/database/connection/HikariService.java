@@ -33,36 +33,25 @@ public class HikariService {
         String address = addressSplit[0];
         String port = addressSplit.length > 1 ? addressSplit[1] : "3306";
 
-        configureConnection(
-                config,
-                address,
-                port,
-                this.credentials.getDatabase(),
-                this.credentials.getUsername(),
-                this.credentials.getPassword()
-        );
+        config.setDriverClassName("org.mariadb.jdbc.Driver");
+        config.setJdbcUrl(String.format("jdbc:%s://%s:%s/%s?autoReconnect=false&useSSL=false", "mariadb", address, port,  this.credentials.getDatabase()));
+        config.setUsername(this.credentials.getUsername());
+        config.setPassword(this.credentials.getPassword());
 
         Map<String, Object> properties = new HashMap<>(this.credentials.getProperties());
 
         overrideProperties(properties);
         setProperties(config, properties);
 
+        config.setInitializationFailTimeout(-1);
         config.setMaximumPoolSize(this.credentials.getMaxPoolSize());
         config.setMinimumIdle(this.credentials.getMinIdleConnections());
         config.setIdleTimeout(10_000);
         config.setMaxLifetime(this.credentials.getMaxLifetime());
         config.setKeepaliveTime(this.credentials.getKeepAliveTime());
         config.setConnectionTimeout(this.credentials.getConnectionTimeout());
-        config.setInitializationFailTimeout(-1);
 
         this.hikari = new HikariDataSource(config);
-    }
-
-    public void configureConnection(HikariConfig config, String address, String port, String databaseName, String username, String password) {
-        config.setDriverClassName("org.mariadb.jdbc.Driver");
-        config.setJdbcUrl(String.format("jdbc:%s://%s:%s/%s?autoReconnect=false&useSSL=false", "mariadb", address, port, databaseName));
-        config.setUsername(username);
-        config.setPassword(password);
     }
 
     public void shutdown() {

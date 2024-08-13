@@ -12,9 +12,9 @@ import net.minecraft.nbt.NbtOps;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.command.ServerCommandSource;
-import net.minecraft.server.command.TimeCommand;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.text.Text;
 import net.minecraft.world.World;
 import net.minecraft.world.dimension.DimensionType;
 
@@ -48,10 +48,6 @@ public class PlayerUtils {
 
         GameProfile gameProfile = CacheService.getUserProfile(userUUID.get());
 
-        if (gameProfile == null) {
-            return null;
-        }
-
         ServerPlayerEntity player = server.getPlayerManager().createPlayer(gameProfile);
         NbtCompound compound = server.getPlayerManager().loadPlayerData(player);
 
@@ -77,5 +73,9 @@ public class PlayerUtils {
 
     public static void sendFeedback(CommandContext<ServerCommandSource> ctx, String key, Object... args) {
         ctx.getSource().sendFeedback(() -> TextUtils.translation(key, FormatUtils.Colors.DEFAULT, args), false);
+    }
+
+    public static void sendFeedback(CommandContext<ServerCommandSource> ctx, Text feedback) {
+        ctx.getSource().sendFeedback(() -> feedback, false);
     }
 }

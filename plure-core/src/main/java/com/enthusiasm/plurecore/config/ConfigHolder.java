@@ -54,7 +54,6 @@ public class ConfigHolder<T> {
         CommentedFileConfig fileConfig = CommentedFileConfig
                 .builder(getConfigPath().toFile())
                 .preserveInsertionOrder()
-                .concurrent()
                 .build();
 
         fileConfig.set("configVersion", "1");
@@ -94,7 +93,6 @@ public class ConfigHolder<T> {
         CommentedFileConfig fileConfig = CommentedFileConfig
                 .builder(getConfigPath().toFile())
                 .preserveInsertionOrder()
-                .concurrent()
                 .build();
 
         fileConfig.checked();

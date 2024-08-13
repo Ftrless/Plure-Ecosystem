@@ -11,15 +11,19 @@ import java.util.function.Supplier;
 public final class ThreadUtils {
     private static final ExecutorService ASYNC_EXECUTOR = Executors.newWorkStealingPool();
     private static final ScheduledExecutorService SCHEDULED_EXECUTOR = Executors.newScheduledThreadPool(2);
+    private static MinecraftServer SERVER_INSTANCE;
+
+    public static void setServerInstance(MinecraftServer server) {
+        SERVER_INSTANCE = server;
+    }
 
     /**
      * Выполняет задачу в основном потоке Minecraft.
      *
-     * @param server Экземпляр сервера Minecraft
      * @param task   Задача для выполнения в основном потоке
      */
-    public static void runOnMainThread(MinecraftServer server, Runnable task) {
-        server.execute(task);
+    public static void runOnMainThread(Runnable task) {
+        SERVER_INSTANCE.execute(task);
     }
 
     /**

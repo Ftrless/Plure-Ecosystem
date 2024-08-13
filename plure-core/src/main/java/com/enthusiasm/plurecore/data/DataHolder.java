@@ -108,10 +108,6 @@ public class DataHolder<T> {
         return dataClass;
     }
 
-    public void setDataClass(Class<T> dataClass) {
-        this.dataClass = dataClass;
-    }
-
     public T getDataClassDefinition() {
         return dataClassDefinition;
     }

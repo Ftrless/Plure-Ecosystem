@@ -71,7 +71,7 @@ public class CacheService {
         return cache.containsKey(uuid);
     }
 
-    public static void clearCache() {
+    public static void invalidateCache() {
         cache.clear();
         saveCacheToDisk();
     }

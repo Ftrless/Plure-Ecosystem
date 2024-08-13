@@ -34,13 +34,19 @@ public class DataService {
         return dataHolderEntries;
     }
 
-    public static <T> DataHolderEntry newDataHolder(String dataName, Class<T> dataClass) {
-        Objects.requireNonNull(dataName);
+    public static <T> DataHolderEntry newDataHolder(String userUUID, Class<T> dataClass) {
+        Objects.requireNonNull(userUUID);
 
         DataSerializable definition = dataClass.getAnnotation(DataSerializable.class);
-        DataHolder<T> holder = new DataHolder<>(dataClass, definition, dataName);
+        DataHolder<T> holder = new DataHolder<>(dataClass, definition, userUUID);
 
-        return new DataHolderEntry(dataName, holder);
+        return new DataHolderEntry(userUUID, holder);
+    }
+
+    public static Set<DataHolderEntry> getDataHolderEntries(String dataName) {
+        Objects.requireNonNull(dataName);
+
+        return holderEntries.get(dataName);
     }
 
     private static <T> Set<DataHolderEntry> loadDataEntryHolders(

@@ -21,7 +21,12 @@ public class PlureCoreEntrypoint implements DedicatedServerModInitializer {
         PlayerEvents.init();
         DataManager.init();
 
+        ServerLifecycleEvents.SERVER_STARTING.register(this::onServerStarting);
         ServerLifecycleEvents.SERVER_STOPPING.register(this::onServerStopping);
+    }
+
+    private void onServerStarting(MinecraftServer minecraftServer) {
+        ThreadUtils.setServerInstance(minecraftServer);
     }
 
     private void onServerStopping(MinecraftServer minecraftServer) {
