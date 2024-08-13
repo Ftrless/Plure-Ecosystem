@@ -1,0 +1,4 @@
+{
+  "cmd.ignore.feedback.added": "Player %s messages are now ignored.",
+  "cmd.ignore.feedback.removed": "Player %s messages are no longer ignored."
+}
