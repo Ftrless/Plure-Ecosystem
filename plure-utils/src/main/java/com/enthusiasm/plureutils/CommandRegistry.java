@@ -349,6 +349,12 @@ public class CommandRegistry {
                         )
                 ).build()
         );
+
+        node.addChild(literal("vanish")
+                .requires(Permissions.require(PermissionsHolder.Permission.VANISH.getPermissionString(), 4))
+                .executes(new Vanish())
+                .build()
+        );
     }
 
     public static void registerScreensCommands(RootCommandNode<ServerCommandSource> node) {

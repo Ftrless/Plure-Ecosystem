@@ -88,6 +88,8 @@
   "cmd.feed.feedback": "Hunger filled.",
   "cmd.repair.feedback": "Item repaired.",
   "cmd.nv.feedback": "Night vision mode %s.",
+  "cmd.tppos.feedback": "Teleported to %s, %s, %s.",
+  "cmd.vanish.feedback": "Vanish mode %s.",
 
   "cmd.rtp.error.failed-to-find": "No safe location found!",
   "cmd.rtp.feedback.position-finding": "Finding safe location. Please wait...",
@@ -101,7 +103,6 @@
   "cmd.restart.force.feedback": "Server restart will be forced via %s.",
   "cmd.restart.postpone.feedback": "Server restart has been postponed %s.",
 
-  "cmd.tppos.feedback": "Teleported to %s, %s, %s.",
   "cmd.trashbin.name": "TrashBin",
 
   "translate.voteday": "Setting the daytime",

@@ -39,8 +39,6 @@ public class RestartService {
     private static final List<ScheduledFuture<?>> scheduledNotifyTasks = new ArrayList<>();
     private static MinecraftServer SERVER_INSTANCE;
 
-
-
     public static void onInitialize(MinecraftServer server) {
         if (!RESTART_STATE) {
             return;
@@ -53,12 +51,16 @@ public class RestartService {
     private static void scheduleRestartTask(long delay) {
         scheduledRestartTask = ThreadUtils.schedule(RestartService::restartServer, delay);
 
-        RESTART_NOTIFY_INTERVALS.forEach(interval ->
-                scheduledNotifyTasks.add(ThreadUtils.schedule(() -> RestartService.broadcastMessage(interval), delay - interval))
-        );
+        RESTART_NOTIFY_INTERVALS.forEach(interval -> {
+            if (interval < delay) {
+                scheduledNotifyTasks.add(ThreadUtils.schedule(() -> RestartService.broadcastMessage(interval), delay - interval));
+            }
+        });
 
         RESTART_TITLE_NOTIFY_INTERVALS.forEach(interval -> {
-            scheduledNotifyTasks.add(ThreadUtils.schedule(() -> RestartService.broadcastTitle(interval), delay - interval));
+            if (interval < delay) {
+                scheduledNotifyTasks.add(ThreadUtils.schedule(() -> RestartService.broadcastTitle(interval), delay - interval));
+            }
         });
     }
 
@@ -131,8 +133,8 @@ public class RestartService {
             Function<Text, Packet<?>> constructorTitle = TitleS2CPacket::new;
             Function<Text, Packet<?>> constructorSubTitle = SubtitleS2CPacket::new;
             try {
-                player.networkHandler.sendPacket(constructorTitle.apply(Texts.parse(player.getCommandSource(), broadcastTextTitle, player, 1)));
-                player.networkHandler.sendPacket(constructorSubTitle.apply(Texts.parse(player.getCommandSource(), broadcastTextSubTitle, player, 1)));
+                player.networkHandler.sendPacket(constructorTitle.apply(Texts.parse(player.getCommandSource(), broadcastTextTitle, player, 2)));
+                player.networkHandler.sendPacket(constructorSubTitle.apply(Texts.parse(player.getCommandSource(), broadcastTextSubTitle, player, 2)));
             } catch (CommandSyntaxException ignored) {}
         });
     }

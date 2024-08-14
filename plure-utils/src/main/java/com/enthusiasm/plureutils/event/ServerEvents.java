@@ -6,6 +6,7 @@ import com.enthusiasm.plureutils.data.DataManager;
 import com.enthusiasm.plureutils.service.AutowipeService;
 import com.enthusiasm.plureutils.service.RandomTeleportService;
 import com.enthusiasm.plureutils.service.RestartService;
+import com.enthusiasm.plureutils.service.VanishService;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
@@ -27,6 +28,7 @@ public class ServerEvents {
 
         DataManager.onInitialize();
         AutowipeService.onInitializeBar();
+        VanishService.onInitialize();
     }
 
     private static void onServerStarted(MinecraftServer minecraftServer) {

@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(DedicatedPlayerManager.class)
-public abstract class BypassLimitMixin {
+public abstract class DedicatedPlayerManagerMixin {
     @Shadow public abstract MinecraftDedicatedServer getServer();
 
     @Inject(method = "canBypassPlayerLimit", at = @At("HEAD"), cancellable = true)

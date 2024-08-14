@@ -87,6 +87,8 @@
   "cmd.feed.feedback": "Голод утолен.",
   "cmd.repair.feedback": "Предмет починен.",
   "cmd.nv.feedback": "Режим ночного зрения %s.",
+  "cmd.tppos.feedback": "Телепортация в %s, %s, %s.",
+  "cmd.vanish.feedback": "Режим невидимости %s.",
 
   "cmd.rtp.error.failed-to-find": "Безопасная локация не найдена!",
   "cmd.rtp.feedback.position-finding": "Поиск безопасной локации. Пожалуйста, подождите...",
@@ -100,7 +102,6 @@
   "cmd.restart.force.feedback": "Принудительный перезапуск сервера стоится через %s.",
   "cmd.restart.postpone.feedback": "Перезапуск сервера отложен на %s.",
 
-  "cmd.tppos.feedback": "Телепортация в %s, %s, %s.",
   "cmd.trashbin.name": "Корзина",
 
   "translate.voteday": "Установку дневного времени",

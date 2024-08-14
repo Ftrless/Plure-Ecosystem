@@ -7,3 +7,7 @@ moduleDependencies(project, [
 loom {
     accessWidenerPath = file("src/main/resources/plure-utils.accesswidener")
 }
+
+dependencies {
+    modImplementation include("eu.pb4:player-data-api:${project.player_data_api_version}")
+}
