@@ -22,6 +22,10 @@ public class PEConfig {
     @ConfigEntry.Category("database")
     public String password = "password";
 
+    @Comment("Имя таблицы")
+    @ConfigEntry.Category("database")
+    public String tableName = "economy";
+
     @Comment("Максимальный размер пула подключений")
     @ConfigEntry.Category("database")
     public int maxPoolSize = 10;

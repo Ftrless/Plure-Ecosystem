@@ -1,3 +1,15 @@
 {
-
+  "cmd.money.info.feedback": "Баланс: %d %s.",
+  "cmd.money.info.feedback.target": "Баланс игрока %s: %d %s.",
+  "cmd.money.pay.feedback": "Вы успешно передали игроку %s %d %s.",
+  "cmd.money.pay.feedback.target": "Новое зачисление от игрока %s: %d %s.",
+  "cmd.money.add.feedback": "Вы успешно выдали игроку %s %d %s.",
+  "cmd.money.take.feedback": "Вы успешно забрали у игрока %s %d %s.",
+  "cmd.money.set.feedback": "Вы успешно установили игроку %s баланс %d %s.",
+  "cmd.money.top.empty": "Топ игроков по балансу пуст.",
+  "cmd.money.top.header": "===[ Топ игроков по балансу ]===",
+  "cmd.money.top.element": "%d. %s - %d %s.",
+  "cmd.money.error.self-transfer": "Вы не можете сделать перевод самому себе.",
+  "cmd.money.error.insufficient-money": "Недостаточно коинов на балансе для совершения операции.",
+  "cmd.money.error.player-not-found": "Ой, кажется, цель перевода не найдена."
 }

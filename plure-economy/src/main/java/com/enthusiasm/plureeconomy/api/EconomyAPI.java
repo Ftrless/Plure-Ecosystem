@@ -5,17 +5,34 @@ import com.enthusiasm.plureeconomy.database.DatabaseService;
 import net.minecraft.server.network.ServerPlayerEntity;
 
 import java.util.Map;
+import java.util.Objects;
 import java.util.concurrent.CompletableFuture;
 
-public class EconomyWrapper {
+public class EconomyAPI {
     private static final DatabaseService databaseService = PlureEconomyEntrypoint.getDatabaseService();
+    public static final String[] DECLENSIONED_NAME = new String[]{ "коин", "коина", "коинов" };
+
+    public static CompletableFuture<Boolean> checkPlayerExists(ServerPlayerEntity player) {
+        CompletableFuture<Boolean> future = new CompletableFuture<>();
+
+        databaseService
+                .checkPlayerExists(player.getUuidAsString())
+                .thenAcceptAsync(future::complete);
+
+        return future;
+    }
+
+    public static void savePlayer(ServerPlayerEntity player) {
+        databaseService
+                .savePlayerData(player.getEntityName(), player.getUuidAsString(), 5);
+    }
 
     public static CompletableFuture<Double> getPlayerMoney(ServerPlayerEntity player) {
         CompletableFuture<Double> future = new CompletableFuture<>();
 
         databaseService
                 .getPlayerData(player.getUuidAsString())
-                .thenAcceptAsync(economyEntry -> future.complete(economyEntry == null ? null : economyEntry.money()));
+                .thenAcceptAsync(economyEntry -> future.complete(economyEntry.name().equals("EMPTY") ? null : economyEntry.money()));
 
         return future;
     }
@@ -30,7 +47,11 @@ public class EconomyWrapper {
         databaseService.updatePlayerMoney(player.getUuidAsString(), newBalance);
     }
 
-    public static void transferPlayerMoney(ServerPlayerEntity playerFrom, ServerPlayerEntity playerTo, double amount) {
+    public static boolean transferPlayerMoney(ServerPlayerEntity playerFrom, ServerPlayerEntity playerTo, double amount) {
+        if (playerFrom == null || playerTo == null) {
+            return false;
+        }
+
         CompletableFuture<Double> futureFrom = getPlayerMoney(playerFrom);
         CompletableFuture<Double> futureTo = getPlayerMoney(playerTo);
 
@@ -43,6 +64,8 @@ public class EconomyWrapper {
             updatePlayerMoney(playerFrom, moneyFrom, amount, EconomyActions.TAKE);
             updatePlayerMoney(playerTo, moneyTo, amount, EconomyActions.ADD);
         });
+
+        return true;
     }
 
     public static CompletableFuture<Map<String, Double>> getMoneyTop() {

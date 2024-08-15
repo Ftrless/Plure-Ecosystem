@@ -3,6 +3,7 @@ package com.enthusiasm.plureeconomy.database;
 import com.enthusiasm.plurecore.database.AbstractDatabaseService;
 import com.enthusiasm.plurecore.database.connection.HikariService;
 import com.enthusiasm.plureeconomy.api.EconomyEntry;
+import com.enthusiasm.plureeconomy.config.ConfigService;
 
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
@@ -16,7 +17,7 @@ public class DatabaseService extends AbstractDatabaseService {
     public DatabaseService(HikariService connection) {
         super(connection);
         init();
-        prepareTable("economy");
+        prepareTable(ConfigService.getConfig().tableName);
     }
 
     public void prepareTable(String tableName) {

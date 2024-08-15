@@ -1,3 +1,15 @@
 {
-
+  "cmd.money.info.feedback": "Balance: %d %s.",
+  "cmd.money.info.feedback.target": "Balance %s: %d %s.",
+  "cmd.money.pay.feedback": "You have successfully transferred to player %s %d %s.",
+  "cmd.money.pay.feedback.target": "New enrollment from player %s: %d %s.",
+  "cmd.money.add.feedback": "You have successfully granted %s player %d %s.",
+  "cmd.money.take.feedback": "You have successfully taken from player %s %d %s.",
+  "cmd.money.set.feedback": "You have successfully set player %s balance %d %s.",
+  "cmd.money.top.empty": "Top players by balance is empty.",
+  "cmd.money.top.header": "===[ Top players by balance ]===",
+  "cmd.money.top.element": "%d. %s - %d %s.",
+  "cmd.money.error.self-transfer": "You can't make a transfer to yourself.",
+  "cmd.money.error.insufficient-money": "Not enough coins in balance to complete transaction.",
+  "cmd.money.error.player-not-found": "Oops, purpose of translation was not found."
 }
