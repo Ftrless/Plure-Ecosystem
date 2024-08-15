@@ -10,7 +10,6 @@
     "vanish.ContainerMixin",
     "vanish.EntityMixin",
     "vanish.EntitySelectorMixin",
-    "vanish.EntityViewMixin",
     "vanish.ListCommandMixin",
     "vanish.LivingEntityMixin",
     "vanish.MapStateMixin",

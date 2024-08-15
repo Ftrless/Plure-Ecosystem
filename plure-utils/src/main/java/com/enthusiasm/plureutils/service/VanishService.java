@@ -36,7 +36,7 @@ public class VanishService {
     public static final Predicate<Entity> NO_SPECTATORS_AND_NO_VANISH = EntityPredicates.EXCEPT_SPECTATOR.and(entity -> !VanishService.isVanished(entity));
     public static final Predicate<Entity> CAN_BE_COLLIDED_WITH_AND_NO_VANISH = NO_SPECTATORS_AND_NO_VANISH.and(Entity::isCollidable);
 
-    public static final PlayerDataStorage<VanishData> VANISH_DATA_STORAGE = new JsonDataStorage<>("plure_storage/vanish", VanishData.class);
+    public static final PlayerDataStorage<VanishData> VANISH_DATA_STORAGE = new JsonDataStorage<>("vanish", VanishData.class);
 
     public static final Identifier VANISH_BAR = new Identifier("minecraft", "vanish_bar");
     public static final Text VANISH_BAR_COMPONENT = Text.literal("Вы в невидимости!").setStyle(Style.EMPTY.withColor(Formatting.WHITE));
@@ -147,10 +147,12 @@ public class VanishService {
 
     private static void vanish(ServerPlayerEntity actor) {
         broadcastToOthers(actor, new PlayerRemoveS2CPacket(Collections.singletonList(actor.getUuid())));
+        VANISH_BOSS_BAR.addPlayer(actor);
     }
 
     private static void unVanish(ServerPlayerEntity actor) {
         broadcastToOthers(actor, PlayerListS2CPacket.entryFromPlayer(Collections.singletonList(actor)));
+        VANISH_BOSS_BAR.removePlayer(actor);
     }
 
     public static boolean canViewVanished(ServerCommandSource observer) {

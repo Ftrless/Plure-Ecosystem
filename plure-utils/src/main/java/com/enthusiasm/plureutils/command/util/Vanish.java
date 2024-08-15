@@ -1,6 +1,8 @@
 package com.enthusiasm.plureutils.command.util;
 
 import com.enthusiasm.plurecore.utils.PlayerUtils;
+import com.enthusiasm.plurecore.utils.text.FormatUtils;
+import com.enthusiasm.plurecore.utils.text.TextUtils;
 import com.enthusiasm.plureutils.service.VanishService;
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.context.CommandContext;
@@ -22,6 +24,6 @@ public class Vanish implements Command<ServerCommandSource> {
         boolean vanished = VanishService.isVanished(senderPlayer);
 
         VanishService.setVanished(senderPlayer.getGameProfile(), senderPlayer.getServer(), !vanished);
-        PlayerUtils.sendFeedback(context, "cmd.vanish.feedback", vanished ? "generic.disabled" : "generic.enabled");
+        PlayerUtils.sendFeedback(context, "cmd.vanish.feedback", TextUtils.translation(vanished ? "generic.disabled" : "generic.enabled", FormatUtils.Colors.FOCUS));
     }
 }

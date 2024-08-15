@@ -2,6 +2,7 @@ package com.enthusiasm.plureutils.event;
 
 import com.enthusiasm.plureutils.config.ConfigManager;
 import com.enthusiasm.plureutils.service.AutowipeService;
+import com.enthusiasm.plureutils.service.VanishService;
 import net.fabricmc.fabric.api.entity.event.v1.ServerEntityWorldChangeEvents;
 import net.fabricmc.fabric.api.networking.v1.PacketSender;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
@@ -29,6 +30,10 @@ public class PlayerEvents {
 
         if (AutowipeService.AUTO_WIPE_BOSS_BAR.getPlayers().contains(player)) {
             AutowipeService.AUTO_WIPE_BOSS_BAR.removePlayer(player);
+        }
+
+        if (VanishService.isVanished(player)) {
+            VanishService.VANISH_BOSS_BAR.addPlayer(player);
         }
     }
 
