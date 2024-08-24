@@ -1,8 +1,5 @@
 package com.enthusiasm.plurekits.database;
 
-import com.enthusiasm.plurecore.database.AbstractDatabaseService;
-import com.enthusiasm.plurecore.database.connection.HikariService;
-
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
@@ -11,6 +8,9 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
+
+import com.enthusiasm.plurecore.database.AbstractDatabaseService;
+import com.enthusiasm.plurecore.database.connection.HikariService;
 
 public class DatabaseService extends AbstractDatabaseService {
     public DatabaseService(HikariService connection) {

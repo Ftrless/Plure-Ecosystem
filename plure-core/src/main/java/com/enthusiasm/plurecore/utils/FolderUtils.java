@@ -1,13 +1,14 @@
 package com.enthusiasm.plurecore.utils;
 
-import com.enthusiasm.plurecore.PlureCoreEntrypoint;
-import net.fabricmc.loader.api.FabricLoader;
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.concurrent.Future;
+
+import net.fabricmc.loader.api.FabricLoader;
+
+import com.enthusiasm.plurecore.PlureCoreEntrypoint;
 
 public class FolderUtils {
     public static Path getConfigFolder() {

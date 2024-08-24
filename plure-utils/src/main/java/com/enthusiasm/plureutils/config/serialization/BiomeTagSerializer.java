@@ -1,14 +1,16 @@
 package com.enthusiasm.plureutils.config.serialization;
 
-import com.enthusiasm.plurecore.config.serialization.IDataSerializer;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import it.unimi.dsi.fastutil.objects.ReferenceArrayList;
+
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.biome.Biome;
 
-import java.util.List;
-import java.util.stream.Collectors;
+import com.enthusiasm.plurecore.config.serialization.IDataSerializer;
 
 public class BiomeTagSerializer implements IDataSerializer<ReferenceArrayList<TagKey<Biome>>, List<String>> {
     @Override

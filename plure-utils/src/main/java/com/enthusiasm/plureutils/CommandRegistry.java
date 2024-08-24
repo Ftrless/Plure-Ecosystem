@@ -1,5 +1,19 @@
 package com.enthusiasm.plureutils;
 
+import static net.minecraft.server.command.CommandManager.*;
+
+import com.mojang.brigadier.CommandDispatcher;
+import com.mojang.brigadier.arguments.BoolArgumentType;
+import com.mojang.brigadier.arguments.StringArgumentType;
+import com.mojang.brigadier.tree.CommandNode;
+import com.mojang.brigadier.tree.RootCommandNode;
+import me.lucko.fabric.api.permissions.v0.Permissions;
+
+import net.minecraft.command.CommandRegistryAccess;
+import net.minecraft.command.argument.EntityArgumentType;
+import net.minecraft.command.argument.Vec3ArgumentType;
+import net.minecraft.server.command.ServerCommandSource;
+
 import com.enthusiasm.plureutils.command.gamemode.Gma;
 import com.enthusiasm.plureutils.command.gamemode.Gmc;
 import com.enthusiasm.plureutils.command.gamemode.Gms;
@@ -28,18 +42,6 @@ import com.enthusiasm.plureutils.util.suggetion.NickSuggestion;
 import com.enthusiasm.plureutils.util.suggetion.VoteSuggestion;
 import com.enthusiasm.plureutils.util.suggetion.WarpSuggestion;
 import com.enthusiasm.plureutils.util.suggetion.WorldSuggestion;
-import com.mojang.brigadier.CommandDispatcher;
-import com.mojang.brigadier.arguments.BoolArgumentType;
-import com.mojang.brigadier.arguments.StringArgumentType;
-import com.mojang.brigadier.tree.CommandNode;
-import com.mojang.brigadier.tree.RootCommandNode;
-import me.lucko.fabric.api.permissions.v0.Permissions;
-import net.minecraft.command.CommandRegistryAccess;
-import net.minecraft.command.argument.EntityArgumentType;
-import net.minecraft.command.argument.Vec3ArgumentType;
-import net.minecraft.server.command.ServerCommandSource;
-
-import static net.minecraft.server.command.CommandManager.*;
 
 public class CommandRegistry {
     public static void register(

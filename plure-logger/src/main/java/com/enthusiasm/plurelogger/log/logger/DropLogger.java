@@ -1,5 +1,12 @@
 package com.enthusiasm.plurelogger.log.logger;
 
+import java.io.File;
+
+import net.minecraft.item.ItemStack;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.util.math.Vec3d;
+
 import com.enthusiasm.plurecore.utils.FileUtils;
 import com.enthusiasm.plurecore.utils.FolderUtils;
 import com.enthusiasm.plurelogger.event.PlayerDropCallback;
@@ -8,12 +15,6 @@ import com.enthusiasm.plurelogger.helper.IDHelper;
 import com.enthusiasm.plurelogger.helper.IOHelper;
 import com.enthusiasm.plurelogger.helper.VectorHelper;
 import com.enthusiasm.plurelogger.log.AbstractLogger;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.math.Vec3d;
-
-import java.io.File;
 
 public class DropLogger extends AbstractLogger {
     private final String rootLogDir;

@@ -1,13 +1,15 @@
 package com.enthusiasm.plureutils.mixin.vanish;
 
-import com.enthusiasm.plureutils.service.VanishService;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.injection.At;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.world.EntityView;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.injection.At;
+
+import com.enthusiasm.plureutils.service.VanishService;
 
 @Mixin(EntityView.class)
 public class EntityViewMixin {

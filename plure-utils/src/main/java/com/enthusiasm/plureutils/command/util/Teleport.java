@@ -1,12 +1,14 @@
 package com.enthusiasm.plureutils.command.util;
 
-import com.enthusiasm.plurecore.utils.PlayerUtils;
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
+
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.Vec3d;
+
+import com.enthusiasm.plurecore.utils.PlayerUtils;
 
 public class Teleport implements Command<ServerCommandSource> {
     @Override

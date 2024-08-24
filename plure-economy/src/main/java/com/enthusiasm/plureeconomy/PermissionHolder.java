@@ -1,11 +1,12 @@
 package com.enthusiasm.plureeconomy;
 
+import java.util.concurrent.CompletableFuture;
+
 import com.mojang.authlib.GameProfile;
 import me.lucko.fabric.api.permissions.v0.Permissions;
+
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
-
-import java.util.concurrent.CompletableFuture;
 
 public class PermissionHolder {
     public enum Permission {

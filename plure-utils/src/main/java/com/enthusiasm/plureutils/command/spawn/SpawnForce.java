@@ -1,5 +1,13 @@
 package com.enthusiasm.plureutils.command.spawn;
 
+import com.mojang.brigadier.Command;
+import com.mojang.brigadier.Message;
+import com.mojang.brigadier.context.CommandContext;
+import com.mojang.brigadier.exceptions.CommandSyntaxException;
+
+import net.minecraft.server.command.ServerCommandSource;
+import net.minecraft.server.network.ServerPlayerEntity;
+
 import com.enthusiasm.plurecore.utils.PlayerUtils;
 import com.enthusiasm.plurecore.utils.WorldUtils;
 import com.enthusiasm.plurecore.utils.text.FormatUtils;
@@ -8,12 +16,6 @@ import com.enthusiasm.plureutils.command.CommandHelper;
 import com.enthusiasm.plureutils.data.DataManager;
 import com.enthusiasm.plureutils.data.spawn.SpawnData;
 import com.enthusiasm.plureutils.data.spawn.SpawnDataManager;
-import com.mojang.brigadier.Command;
-import com.mojang.brigadier.Message;
-import com.mojang.brigadier.context.CommandContext;
-import com.mojang.brigadier.exceptions.CommandSyntaxException;
-import net.minecraft.server.command.ServerCommandSource;
-import net.minecraft.server.network.ServerPlayerEntity;
 
 public class SpawnForce implements Command<ServerCommandSource> {
     @Override

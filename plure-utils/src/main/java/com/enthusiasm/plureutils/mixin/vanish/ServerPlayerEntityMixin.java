@@ -1,19 +1,21 @@
 package com.enthusiasm.plureutils.mixin.vanish;
 
-import com.enthusiasm.plureutils.data.vanish.VanishData;
-import com.enthusiasm.plureutils.service.VanishService;
-import com.enthusiasm.plureutils.util.VanishedEntity;
 import com.mojang.authlib.GameProfile;
 import eu.pb4.playerdata.api.PlayerDataApi;
+import org.spongepowered.asm.mixin.Final;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
+
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import org.spongepowered.asm.mixin.Final;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.Unique;
+
+import com.enthusiasm.plureutils.data.vanish.VanishData;
+import com.enthusiasm.plureutils.service.VanishService;
+import com.enthusiasm.plureutils.util.VanishedEntity;
 
 @Mixin(ServerPlayerEntity.class)
 public abstract class ServerPlayerEntityMixin extends PlayerEntity implements VanishedEntity {

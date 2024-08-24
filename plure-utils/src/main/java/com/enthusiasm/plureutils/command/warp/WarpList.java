@@ -1,5 +1,20 @@
 package com.enthusiasm.plureutils.command.warp;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
+
+import com.mojang.brigadier.Command;
+import com.mojang.brigadier.Message;
+import com.mojang.brigadier.context.CommandContext;
+import com.mojang.brigadier.exceptions.CommandSyntaxException;
+
+import net.minecraft.server.command.ServerCommandSource;
+import net.minecraft.text.ClickEvent;
+import net.minecraft.text.HoverEvent;
+import net.minecraft.text.MutableText;
+
 import com.enthusiasm.plurecore.cache.CacheService;
 import com.enthusiasm.plurecore.utils.text.FormatUtils;
 import com.enthusiasm.plurecore.utils.text.TextJoiner;
@@ -8,19 +23,6 @@ import com.enthusiasm.plureutils.command.CommandHelper;
 import com.enthusiasm.plureutils.data.DataManager;
 import com.enthusiasm.plureutils.data.warp.WarpData;
 import com.enthusiasm.plureutils.data.warp.WarpDataManager;
-import com.mojang.brigadier.Command;
-import com.mojang.brigadier.Message;
-import com.mojang.brigadier.context.CommandContext;
-import com.mojang.brigadier.exceptions.CommandSyntaxException;
-import net.minecraft.server.command.ServerCommandSource;
-import net.minecraft.text.ClickEvent;
-import net.minecraft.text.HoverEvent;
-import net.minecraft.text.MutableText;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
 
 public class WarpList implements Command<ServerCommandSource> {
     private static final String GLOBAL_HEADER_TRANSLATION = "cmd.warp.list.global.header.feedback";
@@ -51,7 +53,7 @@ public class WarpList implements Command<ServerCommandSource> {
     }
 
     private void sendWarps(CommandContext<ServerCommandSource> context, List<Map.Entry<String, WarpData>> warps,
-                           Message listEmpty, boolean throwErrorIfEmpty) throws CommandSyntaxException {
+                        Message listEmpty, boolean throwErrorIfEmpty) throws CommandSyntaxException {
         if (warps.isEmpty()) {
             if (throwErrorIfEmpty) {
                 throw CommandHelper.createException(listEmpty);
@@ -74,7 +76,7 @@ public class WarpList implements Command<ServerCommandSource> {
     }
 
     private void sendCombinedWarps(CommandContext<ServerCommandSource> context, List<Map.Entry<String, WarpData>> combinedWarps,
-                                   List<Map.Entry<String, WarpData>> invitedWarps) throws CommandSyntaxException {
+                                List<Map.Entry<String, WarpData>> invitedWarps) throws CommandSyntaxException {
         if (invitedWarps.isEmpty() && combinedWarps.isEmpty()) {
             return;
         }

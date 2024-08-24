@@ -1,15 +1,17 @@
 package com.enthusiasm.plureutils.data.spawn;
 
-import com.enthusiasm.plureutils.PlureUtilsEntrypoint;
-import com.enthusiasm.plureutils.data.DataManager;
+import java.io.File;
+import java.io.IOException;
+
+import org.jetbrains.annotations.Nullable;
+
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtIo;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.world.PersistentState;
-import org.jetbrains.annotations.Nullable;
 
-import java.io.File;
-import java.io.IOException;
+import com.enthusiasm.plureutils.PlureUtilsEntrypoint;
+import com.enthusiasm.plureutils.data.DataManager;
 
 public class SpawnDataManager extends PersistentState {
     private File spawnDataFile;

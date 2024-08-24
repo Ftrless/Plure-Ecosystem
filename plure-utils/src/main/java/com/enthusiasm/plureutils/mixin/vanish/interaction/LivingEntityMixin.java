@@ -1,11 +1,13 @@
 package com.enthusiasm.plureutils.mixin.vanish.interaction;
 
-import com.enthusiasm.plureutils.service.VanishService;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
-import net.minecraft.entity.LivingEntity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
+
+import net.minecraft.entity.LivingEntity;
+
+import com.enthusiasm.plureutils.service.VanishService;
 
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin {

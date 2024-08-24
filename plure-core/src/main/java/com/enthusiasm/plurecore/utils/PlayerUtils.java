@@ -1,12 +1,13 @@
 package com.enthusiasm.plurecore.utils;
 
-import com.enthusiasm.plurecore.cache.CacheService;
-import com.enthusiasm.plurecore.utils.text.FormatUtils;
-import com.enthusiasm.plurecore.utils.text.TextUtils;
+import java.util.Optional;
+import java.util.UUID;
+
 import com.mojang.authlib.GameProfile;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.serialization.Dynamic;
+
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtOps;
 import net.minecraft.registry.RegistryKey;
@@ -18,8 +19,9 @@ import net.minecraft.text.Text;
 import net.minecraft.world.World;
 import net.minecraft.world.dimension.DimensionType;
 
-import java.util.Optional;
-import java.util.UUID;
+import com.enthusiasm.plurecore.cache.CacheService;
+import com.enthusiasm.plurecore.utils.text.FormatUtils;
+import com.enthusiasm.plurecore.utils.text.TextUtils;
 
 public class PlayerUtils {
     public static ServerPlayerEntity getPlayer(CommandContext<ServerCommandSource> context) {

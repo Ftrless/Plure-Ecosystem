@@ -1,13 +1,15 @@
 package com.enthusiasm.plurecore;
 
+import net.fabricmc.api.DedicatedServerModInitializer;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import net.minecraft.server.MinecraftServer;
+
 import com.enthusiasm.plurecore.cache.CacheService;
 import com.enthusiasm.plurecore.event.PlayerEvents;
 import com.enthusiasm.plurecore.utils.ThreadUtils;
-import net.fabricmc.api.DedicatedServerModInitializer;
-import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
-import net.minecraft.server.MinecraftServer;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class PlureCoreEntrypoint implements DedicatedServerModInitializer {
     public static final Logger LOGGER = LoggerFactory.getLogger("PlureCore");

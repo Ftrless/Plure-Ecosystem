@@ -1,16 +1,18 @@
 package com.enthusiasm.plureutils.mixin.vanish;
 
-import com.enthusiasm.plureutils.service.VanishService;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
 import net.minecraft.block.entity.BarrelBlockEntity;
 import net.minecraft.block.entity.ChestBlockEntity;
 import net.minecraft.block.entity.ShulkerBoxBlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EnderChestInventory;
 import net.minecraft.server.network.ServerPlayerEntity;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
+import com.enthusiasm.plureutils.service.VanishService;
 
 @Mixin(value = {BarrelBlockEntity.class, ChestBlockEntity.class, EnderChestInventory.class, ShulkerBoxBlockEntity.class})
 public abstract class ContainerMixin {

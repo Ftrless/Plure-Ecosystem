@@ -1,16 +1,16 @@
 package com.enthusiasm.plurelogger.log;
 
+import java.io.File;
+
 import com.enthusiasm.plurecore.utils.FolderUtils;
 import com.enthusiasm.plurelogger.log.logger.ChatLogger;
 import com.enthusiasm.plurelogger.log.logger.DeathLogger;
 import com.enthusiasm.plurelogger.log.logger.DropLogger;
 import com.enthusiasm.plurelogger.log.logger.FtbTeamsLogger;
 
-import java.io.File;
-
 public class LogManager {
     public static String rootLogDir;
-    
+
     public static void init() {
         String minecraftRoot = System.getProperty("user.dir");
 

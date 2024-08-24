@@ -1,12 +1,14 @@
 package com.enthusiasm.plureutils.command.util.screens;
 
-import com.enthusiasm.plureutils.command.util.screens.handler.AnvilHandler;
+import org.jetbrains.annotations.NotNull;
+
 import net.minecraft.screen.ScreenHandlerContext;
 import net.minecraft.screen.ScreenHandlerFactory;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.stat.Stats;
 import net.minecraft.text.Text;
-import org.jetbrains.annotations.NotNull;
+
+import com.enthusiasm.plureutils.command.util.screens.handler.AnvilHandler;
 
 public class Anvil extends SimpleScreen {
     private static final ScreenHandlerFactory SCREEN_HANDLER_FACTORY = (syncId, inventory, player) ->

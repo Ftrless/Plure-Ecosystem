@@ -1,16 +1,18 @@
 package com.enthusiasm.plureutils.mixin.vanish;
 
-import com.enthusiasm.plureutils.service.VanishService;
+import java.util.List;
+
 import com.llamalad7.mixinextras.injector.ModifyReceiver;
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.command.ServerCommandSource;
-import net.minecraft.server.network.ServerPlayerEntity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 
-import java.util.List;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.command.ServerCommandSource;
+import net.minecraft.server.network.ServerPlayerEntity;
+
+import com.enthusiasm.plureutils.service.VanishService;
 
 @Mixin(MinecraftServer.class)
 public abstract class MinecraftServerMixin {

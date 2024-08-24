@@ -1,12 +1,12 @@
 package com.enthusiasm.plurecore.utils;
 
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.network.ServerPlayerEntity;
-
 import java.util.List;
 import java.util.concurrent.*;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
+
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.network.ServerPlayerEntity;
 
 public final class ThreadUtils {
     private static final ExecutorService ASYNC_EXECUTOR = Executors.newWorkStealingPool();
@@ -109,4 +109,3 @@ public final class ThreadUtils {
         }
     }
 }
-

@@ -1,12 +1,11 @@
 package com.enthusiasm.plurechat.data;
 
-import com.enthusiasm.plurechat.PlureChatEntrypoint;
+import java.util.*;
+import java.util.stream.Stream;
+
 import com.enthusiasm.plurecore.data.DataHolder;
 import com.enthusiasm.plurecore.data.DataHolderEntry;
 import com.enthusiasm.plurecore.data.DataService;
-
-import java.util.*;
-import java.util.stream.Stream;
 
 public class DataManager {
     private static final Map<UUID, List<UUID>> users = new HashMap<>();

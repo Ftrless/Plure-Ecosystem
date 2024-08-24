@@ -4,14 +4,16 @@ import com.mojang.brigadier.Command;
 import com.mojang.brigadier.Message;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
-import com.enthusiasm.plurecore.utils.text.TextUtils;
+
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
-import com.enthusiasm.plurecore.utils.PlayerUtils;
-import com.enthusiasm.plurecore.utils.text.FormatUtils;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
+
+import com.enthusiasm.plurecore.utils.PlayerUtils;
+import com.enthusiasm.plurecore.utils.text.FormatUtils;
+import com.enthusiasm.plurecore.utils.text.TextUtils;
 
 public class NightVision implements Command<ServerCommandSource> {
     @Override

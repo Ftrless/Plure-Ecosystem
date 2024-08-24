@@ -1,12 +1,12 @@
 package com.enthusiasm.plureeconomy.api;
 
-import com.enthusiasm.plureeconomy.PlureEconomyEntrypoint;
-import com.enthusiasm.plureeconomy.database.DatabaseService;
+import java.util.Map;
+import java.util.concurrent.CompletableFuture;
+
 import net.minecraft.server.network.ServerPlayerEntity;
 
-import java.util.Map;
-import java.util.Objects;
-import java.util.concurrent.CompletableFuture;
+import com.enthusiasm.plureeconomy.PlureEconomyEntrypoint;
+import com.enthusiasm.plureeconomy.database.DatabaseService;
 
 public class EconomyAPI {
     private static final DatabaseService databaseService = PlureEconomyEntrypoint.getDatabaseService();
@@ -47,9 +47,9 @@ public class EconomyAPI {
         databaseService.updatePlayerMoney(player.getUuidAsString(), newBalance);
     }
 
-    public static boolean transferPlayerMoney(ServerPlayerEntity playerFrom, ServerPlayerEntity playerTo, double amount) {
+    public static void transferPlayerMoney(ServerPlayerEntity playerFrom, ServerPlayerEntity playerTo, double amount) {
         if (playerFrom == null || playerTo == null) {
-            return false;
+            return;
         }
 
         CompletableFuture<Double> futureFrom = getPlayerMoney(playerFrom);
@@ -64,8 +64,6 @@ public class EconomyAPI {
             updatePlayerMoney(playerFrom, moneyFrom, amount, EconomyActions.TAKE);
             updatePlayerMoney(playerTo, moneyTo, amount, EconomyActions.ADD);
         });
-
-        return true;
     }
 
     public static CompletableFuture<Map<String, Double>> getMoneyTop() {

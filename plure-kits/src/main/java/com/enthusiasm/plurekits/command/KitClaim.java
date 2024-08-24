@@ -1,5 +1,16 @@
 package com.enthusiasm.plurekits.command;
 
+import com.mojang.brigadier.Command;
+import com.mojang.brigadier.arguments.StringArgumentType;
+import com.mojang.brigadier.context.CommandContext;
+import com.mojang.brigadier.exceptions.CommandSyntaxException;
+
+import net.minecraft.server.command.ServerCommandSource;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.stat.Stats;
+import net.minecraft.text.MutableText;
+import net.minecraft.util.Util;
+
 import com.enthusiasm.plurecore.utils.CommandUtils;
 import com.enthusiasm.plurecore.utils.PlayerUtils;
 import com.enthusiasm.plurecore.utils.TimeUtils;
@@ -11,15 +22,6 @@ import com.enthusiasm.plurekits.data.DataManager;
 import com.enthusiasm.plurekits.data.kit.KitData;
 import com.enthusiasm.plurekits.data.player.PlayerKitData;
 import com.enthusiasm.plurekits.util.InventoryUtils;
-import com.mojang.brigadier.Command;
-import com.mojang.brigadier.arguments.StringArgumentType;
-import com.mojang.brigadier.context.CommandContext;
-import com.mojang.brigadier.exceptions.CommandSyntaxException;
-import net.minecraft.server.command.ServerCommandSource;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.stat.Stats;
-import net.minecraft.text.MutableText;
-import net.minecraft.util.Util;
 
 public class KitClaim implements Command<ServerCommandSource> {
     @Override

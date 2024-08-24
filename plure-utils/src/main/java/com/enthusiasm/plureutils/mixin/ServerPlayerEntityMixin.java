@@ -1,17 +1,17 @@
 package com.enthusiasm.plureutils.mixin;
 
-import com.enthusiasm.plureutils.PermissionsHolder;
-import com.enthusiasm.plureutils.PlureUtilsEntrypoint;
-import me.lucko.fabric.api.permissions.v0.Permissions;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.network.packet.s2c.play.EntityStatusEffectS2CPacket;
 import net.minecraft.network.packet.s2c.play.ExperienceBarUpdateS2CPacket;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
+import com.enthusiasm.plureutils.PermissionsHolder;
 
 @Mixin(ServerPlayerEntity.class)
 public class ServerPlayerEntityMixin {

@@ -1,21 +1,22 @@
 package com.enthusiasm.plureutils.config;
 
-import com.enthusiasm.plurecore.config.annotation.Comment;
-import com.enthusiasm.plurecore.config.annotation.Config;
-import com.enthusiasm.plurecore.config.annotation.ConfigEntry;
-import com.enthusiasm.plureutils.config.serialization.BiomeKeySerializer;
-import com.enthusiasm.plureutils.config.serialization.BiomeTagSerializer;
+import java.util.List;
+import java.util.Set;
+
 import it.unimi.dsi.fastutil.objects.ReferenceArrayList;
 import it.unimi.dsi.fastutil.objects.ReferenceOpenHashSet;
+
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.tag.BiomeTags;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeKeys;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
+import com.enthusiasm.plurecore.config.annotation.Comment;
+import com.enthusiasm.plurecore.config.annotation.Config;
+import com.enthusiasm.plurecore.config.annotation.ConfigEntry;
+import com.enthusiasm.plureutils.config.serialization.BiomeKeySerializer;
+import com.enthusiasm.plureutils.config.serialization.BiomeTagSerializer;
 
 @Config(name = "plure-utils")
 public class PUConfig {

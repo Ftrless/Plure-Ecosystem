@@ -1,18 +1,19 @@
 package com.enthusiasm.plurecore.utils;
 
+import java.util.Collection;
+import java.util.Locale;
+import java.util.concurrent.CompletableFuture;
+import java.util.function.Supplier;
+
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.brigadier.suggestion.SuggestionProvider;
 import com.mojang.brigadier.suggestion.Suggestions;
 import com.mojang.brigadier.suggestion.SuggestionsBuilder;
-import net.minecraft.server.command.ServerCommandSource;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Collection;
-import java.util.Locale;
-import java.util.concurrent.CompletableFuture;
-import java.util.function.Supplier;
+import net.minecraft.server.command.ServerCommandSource;
 
 public class SuggestionUtils {
     public static CompletableFuture<Suggestions> buildSuggestions(SuggestionsBuilder builder, Collection<String> suggestionCollection) {
@@ -48,4 +49,3 @@ public class SuggestionUtils {
         R apply(T o) throws CommandSyntaxException;
     }
 }
-

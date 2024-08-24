@@ -1,17 +1,19 @@
 package com.enthusiasm.plurekits.command;
 
-import com.enthusiasm.plurecore.utils.PlayerUtils;
-import com.enthusiasm.plurecore.utils.text.TextUtils;
-import com.enthusiasm.plurekits.data.DataManager;
+import java.util.Collection;
+
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
+
 import net.minecraft.command.argument.EntityArgumentType;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
 
-import java.util.Collection;
+import com.enthusiasm.plurecore.utils.PlayerUtils;
+import com.enthusiasm.plurecore.utils.text.TextUtils;
+import com.enthusiasm.plurekits.data.DataManager;
 
 public class KitResetPlayer implements Command<ServerCommandSource> {
     @Override

@@ -1,5 +1,13 @@
 package com.enthusiasm.plureutils.command.util;
 
+import com.mojang.brigadier.Command;
+import com.mojang.brigadier.Message;
+import com.mojang.brigadier.context.CommandContext;
+import com.mojang.brigadier.exceptions.CommandSyntaxException;
+
+import net.minecraft.server.command.ServerCommandSource;
+import net.minecraft.server.network.ServerPlayerEntity;
+
 import com.enthusiasm.plurecore.utils.CooldownUtils;
 import com.enthusiasm.plurecore.utils.PlayerUtils;
 import com.enthusiasm.plurecore.utils.ThreadUtils;
@@ -9,12 +17,6 @@ import com.enthusiasm.plureutils.PermissionsHolder;
 import com.enthusiasm.plureutils.command.CommandHelper;
 import com.enthusiasm.plureutils.config.ConfigManager;
 import com.enthusiasm.plureutils.service.RandomTeleportService;
-import com.mojang.brigadier.Command;
-import com.mojang.brigadier.Message;
-import com.mojang.brigadier.context.CommandContext;
-import com.mojang.brigadier.exceptions.CommandSyntaxException;
-import net.minecraft.server.command.ServerCommandSource;
-import net.minecraft.server.network.ServerPlayerEntity;
 
 public class RandomTeleport implements Command<ServerCommandSource> {
     @Override

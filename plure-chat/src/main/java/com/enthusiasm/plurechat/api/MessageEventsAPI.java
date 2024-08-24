@@ -2,6 +2,7 @@ package com.enthusiasm.plurechat.api;
 
 import net.fabricmc.fabric.api.event.Event;
 import net.fabricmc.fabric.api.event.EventFactory;
+
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.MutableText;
 

@@ -1,11 +1,11 @@
 package com.enthusiasm.plurechat;
 
-import com.enthusiasm.plurechat.api.MessageEventsAPI;
-import com.enthusiasm.plurechat.compat.LuckPermsAPI;
-import com.enthusiasm.plurechat.data.DataManager;
-import com.enthusiasm.plurechat.event.MessageEvents;
-import com.enthusiasm.plurecore.utils.text.FormatUtils;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.stream.Stream;
+
 import net.fabricmc.fabric.api.message.v1.ServerMessageEvents;
+
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.ClickEvent;
 import net.minecraft.text.MutableText;
@@ -13,11 +13,11 @@ import net.minecraft.text.Style;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import java.util.stream.Stream;
+import com.enthusiasm.plurechat.api.MessageEventsAPI;
+import com.enthusiasm.plurechat.compat.LuckPermsAPI;
+import com.enthusiasm.plurechat.data.DataManager;
+import com.enthusiasm.plurechat.event.MessageEvents;
+import com.enthusiasm.plurecore.utils.text.FormatUtils;
 
 public class ChatService {
     private static final Text INDENT = Text.of(" ");

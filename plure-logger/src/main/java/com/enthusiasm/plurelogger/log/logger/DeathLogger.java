@@ -1,5 +1,16 @@
 package com.enthusiasm.plurelogger.log.logger;
 
+import java.io.File;
+import java.io.IOException;
+
+import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.item.ItemStack;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.util.collection.DefaultedList;
+import net.minecraft.util.math.Vec3d;
+
 import com.enthusiasm.plurecore.utils.FileUtils;
 import com.enthusiasm.plurecore.utils.FolderUtils;
 import com.enthusiasm.plurelogger.PlureLoggerEntrypoint;
@@ -8,16 +19,6 @@ import com.enthusiasm.plurelogger.helper.DateHelper;
 import com.enthusiasm.plurelogger.helper.IDHelper;
 import com.enthusiasm.plurelogger.helper.IOHelper;
 import com.enthusiasm.plurelogger.log.AbstractLogger;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.collection.DefaultedList;
-import net.minecraft.util.math.Vec3d;
-
-import java.io.File;
-import java.io.IOException;
 
 public class DeathLogger extends AbstractLogger {
     private final String rootLogDir;

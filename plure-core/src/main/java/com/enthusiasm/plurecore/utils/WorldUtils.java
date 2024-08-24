@@ -1,11 +1,11 @@
 package com.enthusiasm.plurecore.utils;
 
+import java.util.stream.Stream;
+
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.world.World;
-
-import java.util.stream.Stream;
 
 public class WorldUtils {
     public static ServerWorld getServerWorld(String worldName, MinecraftServer server) {

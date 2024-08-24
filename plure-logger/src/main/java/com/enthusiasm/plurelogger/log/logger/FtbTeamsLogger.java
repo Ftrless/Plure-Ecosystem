@@ -1,15 +1,17 @@
 package com.enthusiasm.plurelogger.log.logger;
 
+import java.io.File;
+
+import dev.ftb.mods.ftbteams.api.Team;
+import dev.ftb.mods.ftbteams.api.event.*;
+
+import net.minecraft.server.network.ServerPlayerEntity;
+
 import com.enthusiasm.plurecore.utils.FileUtils;
 import com.enthusiasm.plurecore.utils.FolderUtils;
 import com.enthusiasm.plurelogger.helper.DateHelper;
 import com.enthusiasm.plurelogger.helper.IOHelper;
 import com.enthusiasm.plurelogger.log.AbstractLogger;
-import dev.ftb.mods.ftbteams.api.Team;
-import dev.ftb.mods.ftbteams.api.event.*;
-import net.minecraft.server.network.ServerPlayerEntity;
-
-import java.io.File;
 
 public class FtbTeamsLogger extends AbstractLogger {
     private final String rootLogDir;

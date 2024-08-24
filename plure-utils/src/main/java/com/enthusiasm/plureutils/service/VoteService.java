@@ -1,16 +1,17 @@
 package com.enthusiasm.plureutils.service;
 
-import com.enthusiasm.plurecore.utils.ThreadUtils;
-import com.enthusiasm.plurecore.utils.text.FormatUtils;
-import com.enthusiasm.plurecore.utils.text.TextUtils;
-import com.enthusiasm.plureutils.command.WeatherManager;
+import java.util.HashMap;
+import java.util.Map;
+
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.*;
 import net.minecraft.util.Formatting;
 
-import java.util.HashMap;
-import java.util.Map;
+import com.enthusiasm.plurecore.utils.ThreadUtils;
+import com.enthusiasm.plurecore.utils.text.FormatUtils;
+import com.enthusiasm.plurecore.utils.text.TextUtils;
+import com.enthusiasm.plureutils.command.WeatherManager;
 
 public class VoteService {
     private static final HashMap<String, HashMap<String, Boolean>> voteRecords = new HashMap<>();

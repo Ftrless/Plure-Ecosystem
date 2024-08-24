@@ -1,21 +1,23 @@
 package com.enthusiasm.plurekits;
 
-import com.enthusiasm.plurecore.utils.FolderUtils;
-import com.enthusiasm.plurekits.data.DataManager;
-import com.enthusiasm.plurekits.data.kit.KitData;
-import com.enthusiasm.plurekits.data.player.PlayerKitData;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtIo;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.util.Util;
-import org.jetbrains.annotations.Nullable;
-
 import java.io.File;
 import java.nio.file.Files;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Stream;
+
+import org.jetbrains.annotations.Nullable;
+
+import net.minecraft.nbt.NbtCompound;
+import net.minecraft.nbt.NbtIo;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.util.Util;
+
+import com.enthusiasm.plurecore.utils.FolderUtils;
+import com.enthusiasm.plurekits.data.DataManager;
+import com.enthusiasm.plurekits.data.kit.KitData;
+import com.enthusiasm.plurekits.data.player.PlayerKitData;
 
 public class KitService {
     private static final Map<String, KitData> KITS = new HashMap<>();

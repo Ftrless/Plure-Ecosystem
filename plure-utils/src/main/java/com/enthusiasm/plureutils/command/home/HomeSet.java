@@ -1,16 +1,18 @@
 package com.enthusiasm.plureutils.command.home;
 
+import java.util.Collections;
+
+import com.mojang.brigadier.Command;
+import com.mojang.brigadier.context.CommandContext;
+import com.mojang.brigadier.exceptions.CommandSyntaxException;
+
+import net.minecraft.server.command.ServerCommandSource;
+import net.minecraft.server.network.ServerPlayerEntity;
+
 import com.enthusiasm.plurecore.utils.PlayerUtils;
 import com.enthusiasm.plureutils.data.DataManager;
 import com.enthusiasm.plureutils.data.home.HomeData;
 import com.enthusiasm.plureutils.data.home.HomeDataManager;
-import com.mojang.brigadier.Command;
-import com.mojang.brigadier.context.CommandContext;
-import com.mojang.brigadier.exceptions.CommandSyntaxException;
-import net.minecraft.server.command.ServerCommandSource;
-import net.minecraft.server.network.ServerPlayerEntity;
-
-import java.util.Collections;
 
 public class HomeSet implements Command<ServerCommandSource> {
     @Override

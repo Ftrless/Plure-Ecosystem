@@ -1,9 +1,9 @@
 package com.enthusiasm.plurecore.utils.text;
 
+import java.util.stream.Collector;
+
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
-
-import java.util.stream.Collector;
 
 public class TextJoiner {
     private final MutableText prepend;
@@ -63,4 +63,3 @@ public class TextJoiner {
         );
     }
 }
-

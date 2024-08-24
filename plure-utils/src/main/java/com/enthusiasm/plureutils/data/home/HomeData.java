@@ -1,13 +1,13 @@
 package com.enthusiasm.plureutils.data.home;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
+
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.nbt.NbtList;
 import net.minecraft.nbt.NbtString;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
 
 public class HomeData {
     public String world;

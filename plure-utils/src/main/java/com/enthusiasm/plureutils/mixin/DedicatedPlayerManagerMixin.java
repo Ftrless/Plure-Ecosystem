@@ -1,14 +1,16 @@
 package com.enthusiasm.plureutils.mixin;
 
-import com.enthusiasm.plureutils.PermissionsHolder;
 import com.mojang.authlib.GameProfile;
-import net.minecraft.server.dedicated.DedicatedPlayerManager;
-import net.minecraft.server.dedicated.MinecraftDedicatedServer;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+
+import net.minecraft.server.dedicated.DedicatedPlayerManager;
+import net.minecraft.server.dedicated.MinecraftDedicatedServer;
+
+import com.enthusiasm.plureutils.PermissionsHolder;
 
 @Mixin(DedicatedPlayerManager.class)
 public abstract class DedicatedPlayerManagerMixin {

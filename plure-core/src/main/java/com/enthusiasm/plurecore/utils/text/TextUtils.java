@@ -1,14 +1,11 @@
 package com.enthusiasm.plurecore.utils.text;
 
-import com.mojang.brigadier.context.CommandContext;
+import java.util.Arrays;
+
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Style;
 import net.minecraft.text.Text;
-import net.minecraft.text.TextColor;
-
-import java.util.Arrays;
 
 public class TextUtils {
     private static MutableText parseVariable(String var) {

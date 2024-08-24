@@ -1,7 +1,5 @@
 package com.enthusiasm.plurecore.utils;
 
-import com.enthusiasm.plurecore.PlureCoreEntrypoint;
-
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.channels.AsynchronousFileChannel;
@@ -9,8 +7,9 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
-import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
+
+import com.enthusiasm.plurecore.PlureCoreEntrypoint;
 
 public class FileUtils {
     /**

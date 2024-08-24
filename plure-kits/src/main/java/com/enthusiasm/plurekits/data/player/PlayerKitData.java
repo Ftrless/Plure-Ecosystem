@@ -1,13 +1,14 @@
 package com.enthusiasm.plurekits.data.player;
 
-import com.enthusiasm.plurekits.PlureKitsEntrypoint;
-import com.enthusiasm.plurekits.database.DatabaseService;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.util.Util;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
+
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.util.Util;
+
+import com.enthusiasm.plurekits.PlureKitsEntrypoint;
+import com.enthusiasm.plurekits.database.DatabaseService;
 
 public class PlayerKitData {
     private final Map<String, Long> kitUsedTimes;

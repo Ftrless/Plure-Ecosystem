@@ -1,16 +1,18 @@
 package com.enthusiasm.plureutils.config.serialization;
 
 
-import com.enthusiasm.plurecore.config.serialization.IDataSerializer;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 import it.unimi.dsi.fastutil.objects.ReferenceOpenHashSet;
+
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.biome.Biome;
 
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
+import com.enthusiasm.plurecore.config.serialization.IDataSerializer;
 
 public class BiomeKeySerializer implements IDataSerializer<ReferenceOpenHashSet<RegistryKey<Biome>>, List<String>> {
     @Override

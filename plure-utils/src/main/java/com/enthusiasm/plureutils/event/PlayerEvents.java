@@ -1,15 +1,17 @@
 package com.enthusiasm.plureutils.event;
 
-import com.enthusiasm.plureutils.config.ConfigManager;
-import com.enthusiasm.plureutils.service.AutowipeService;
-import com.enthusiasm.plureutils.service.VanishService;
 import net.fabricmc.fabric.api.entity.event.v1.ServerEntityWorldChangeEvents;
 import net.fabricmc.fabric.api.networking.v1.PacketSender;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
+
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayNetworkHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
+
+import com.enthusiasm.plureutils.config.ConfigManager;
+import com.enthusiasm.plureutils.service.AutowipeService;
+import com.enthusiasm.plureutils.service.VanishService;
 
 public class PlayerEvents {
     public static void init() {

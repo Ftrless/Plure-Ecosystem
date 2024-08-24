@@ -1,10 +1,5 @@
 package com.enthusiasm.plureeconomy.database;
 
-import com.enthusiasm.plurecore.database.AbstractDatabaseService;
-import com.enthusiasm.plurecore.database.connection.HikariService;
-import com.enthusiasm.plureeconomy.api.EconomyEntry;
-import com.enthusiasm.plureeconomy.config.ConfigService;
-
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
@@ -12,6 +7,11 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
+
+import com.enthusiasm.plurecore.database.AbstractDatabaseService;
+import com.enthusiasm.plurecore.database.connection.HikariService;
+import com.enthusiasm.plureeconomy.api.EconomyEntry;
+import com.enthusiasm.plureeconomy.config.ConfigService;
 
 public class DatabaseService extends AbstractDatabaseService {
     public DatabaseService(HikariService connection) {
@@ -135,4 +135,3 @@ public class DatabaseService extends AbstractDatabaseService {
         executePreparedQuery(query, uuid);
     }
 }
-

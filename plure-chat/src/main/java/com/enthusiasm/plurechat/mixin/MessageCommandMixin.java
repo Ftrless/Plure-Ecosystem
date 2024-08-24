@@ -1,16 +1,18 @@
 package com.enthusiasm.plurechat.mixin;
 
-import com.enthusiasm.plurechat.event.MessageEvents;
-import net.minecraft.network.message.SignedMessage;
-import net.minecraft.server.command.MessageCommand;
-import net.minecraft.server.command.ServerCommandSource;
-import net.minecraft.server.network.ServerPlayerEntity;
+import java.util.Collection;
+
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import java.util.Collection;
+import net.minecraft.network.message.SignedMessage;
+import net.minecraft.server.command.MessageCommand;
+import net.minecraft.server.command.ServerCommandSource;
+import net.minecraft.server.network.ServerPlayerEntity;
+
+import com.enthusiasm.plurechat.event.MessageEvents;
 
 @Mixin(MessageCommand.class)
 public class MessageCommandMixin {

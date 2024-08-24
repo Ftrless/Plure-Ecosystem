@@ -1,20 +1,21 @@
 package com.enthusiasm.plurecore.config;
 
+import java.io.IOException;
+import java.lang.reflect.Field;
+import java.nio.file.Files;
+import java.nio.file.Path;
+
+import com.electronwill.nightconfig.core.file.CommentedFileConfig;
+import org.jetbrains.annotations.NotNull;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.enthusiasm.plurecore.config.annotation.Comment;
 import com.enthusiasm.plurecore.config.annotation.Config;
 import com.enthusiasm.plurecore.config.annotation.ConfigEntry;
 import com.enthusiasm.plurecore.config.serialization.IDataSerializer;
 import com.enthusiasm.plurecore.utils.FolderUtils;
-import com.electronwill.nightconfig.core.file.CommentedFileConfig;
 import com.enthusiasm.plurecore.utils.ReflectUtils;
-import org.jetbrains.annotations.NotNull;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import java.io.IOException;
-import java.lang.reflect.Field;
-import java.nio.file.Files;
-import java.nio.file.Path;
 
 public class ConfigHolder<T> {
     public static final Logger LOGGER = LoggerFactory.getLogger("PlureCore-Config");

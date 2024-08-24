@@ -1,9 +1,13 @@
 package com.enthusiasm.plureutils.service;
 
-import com.enthusiasm.plurecore.utils.ChunkUtils;
-import com.enthusiasm.plureutils.config.ConfigManager;
+import java.util.Comparator;
+import java.util.UUID;
+import java.util.concurrent.CompletableFuture;
+import java.util.function.Consumer;
+
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -24,10 +28,8 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.border.WorldBorder;
 import net.minecraft.world.chunk.WorldChunk;
 
-import java.util.Comparator;
-import java.util.UUID;
-import java.util.concurrent.CompletableFuture;
-import java.util.function.Consumer;
+import com.enthusiasm.plurecore.utils.ChunkUtils;
+import com.enthusiasm.plureutils.config.ConfigManager;
 
 public class RandomTeleportService {
     private static final Object2ObjectOpenHashMap<UUID, RandomTeleportService> LOCATORS = new Object2ObjectOpenHashMap<>();

@@ -1,10 +1,11 @@
 package com.enthusiasm.plurekits.data;
 
-import com.enthusiasm.plurekits.data.player.PlayerKitData;
-import net.minecraft.server.network.ServerPlayerEntity;
-
 import java.util.LinkedHashMap;
 import java.util.UUID;
+
+import net.minecraft.server.network.ServerPlayerEntity;
+
+import com.enthusiasm.plurekits.data.player.PlayerKitData;
 
 public class DataManager {
     private final LinkedHashMap<UUID, PlayerKitData> kitDataMap;

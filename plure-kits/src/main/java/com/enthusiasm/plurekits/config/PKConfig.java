@@ -1,12 +1,12 @@
 package com.enthusiasm.plurekits.config;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import com.enthusiasm.plurecore.config.annotation.Comment;
 import com.enthusiasm.plurecore.config.annotation.Config;
 import com.enthusiasm.plurecore.config.annotation.ConfigEntry;
 import com.enthusiasm.plurekits.config.serialization.HashMapSerializer;
-
-import java.util.HashMap;
-import java.util.Map;
 
 @Config(name = "plure-kits")
 public class PKConfig {

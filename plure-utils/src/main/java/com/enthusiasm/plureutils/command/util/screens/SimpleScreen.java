@@ -3,13 +3,14 @@ package com.enthusiasm.plureutils.command.util.screens;
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
+import org.jetbrains.annotations.NotNull;
+
 import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.screen.ScreenHandlerFactory;
 import net.minecraft.screen.SimpleNamedScreenHandlerFactory;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
-import org.jetbrains.annotations.NotNull;
 
 public abstract class SimpleScreen implements Command<ServerCommandSource> {
     @Override

@@ -1,18 +1,20 @@
 package com.enthusiasm.plurekits;
 
-import com.enthusiasm.plurekits.command.*;
-import com.enthusiasm.plurekits.suggestion.KitSuggestion;
+import static net.minecraft.server.command.CommandManager.argument;
+import static net.minecraft.server.command.CommandManager.literal;
+
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.tree.CommandNode;
 import me.lucko.fabric.api.permissions.v0.Permissions;
+
 import net.minecraft.command.CommandRegistryAccess;
 import net.minecraft.command.argument.EntityArgumentType;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 
-import static net.minecraft.server.command.CommandManager.argument;
-import static net.minecraft.server.command.CommandManager.literal;
+import com.enthusiasm.plurekits.command.*;
+import com.enthusiasm.plurekits.suggestion.KitSuggestion;
 
 public class CommandRegistry {
     public static void register(

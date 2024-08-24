@@ -11,6 +11,7 @@
   "cmd.warp.list.player.header.feedback": "Ваши варпы:%s",
   "cmd.warp.list.element": "%s",
   "cmd.warp.list.hover": "Нажмите для телепортации",
+  "cmd.warp.list.invited_hover": "Нажмите для телепортации. Владелец: %s",
   "cmd.warp.list.error.empty": "Список варпов пуст.",
   "cmd.warp.info.feedback": "Информация о варпе %s:\n- Владелец: %s\n- Тип: %s\n- Координаты: %s\n- Мир: %s\n- Посещения: %s",
   "cmd.warp.info.type.private": "Приватный",
@@ -57,10 +58,10 @@
   "cmd.tpahere.feedback": "Вы отправили запрос на телепортацию игрока %s к себе.",
 
   "cmd.playtime.feedback": "Наигранное время: %s",
-  "cmd.playtime.target.feedback": "Наигранное время %s'а: %s",
+  "cmd.playtime.target.feedback": "Наигранное время игрока %s: %s",
   "cmd.playtime.target.error.player-not-found": "Игрок не найден!",
-  "cmd.playtime.top.feedback": "Топ игроков по наигранному времени:",
-  "cmd.playtime.top.element": "\n%d. %s - %dд. %dч. %dм.",
+  "cmd.playtime.top.header": "===[Топ игроков по наигранному времени ]===",
+  "cmd.playtime.top.element": "%d. %s - %dд. %dч. %dм.",
 
   "cmd.day.error.already_daytime": "Уже день.",
   "cmd.day.feedback": "Время установлено на день.",

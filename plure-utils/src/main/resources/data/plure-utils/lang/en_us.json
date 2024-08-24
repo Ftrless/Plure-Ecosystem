@@ -60,8 +60,8 @@
   "cmd.playtime.feedback": "Playtime: %s",
   "cmd.playtime.target.feedback": "%s's playtime: %s",
   "cmd.playtime.target.error.player-not-found": "Player not found!",
-  "cmd.playtime.top.feedback": "Top players by playtime:",
-  "cmd.playtime.top.element": "\n%d. %s - %dd. %dh. %dm.",
+  "cmd.playtime.top.header": "===[ Top players by playtime ]===",
+  "cmd.playtime.top.element": "%d. %s - %dd. %dh. %dm.",
 
   "cmd.day.feedback": "Time is set for the day.",
   "cmd.day.error.already_daytime": "It is already daytime.",

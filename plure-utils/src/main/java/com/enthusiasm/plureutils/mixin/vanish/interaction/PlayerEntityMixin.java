@@ -1,12 +1,14 @@
 package com.enthusiasm.plureutils.mixin.vanish.interaction;
 
-import com.enthusiasm.plureutils.service.VanishService;
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import com.llamalad7.mixinextras.injector.v2.WrapWithCondition;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.PlayerEntity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
+
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.PlayerEntity;
+
+import com.enthusiasm.plureutils.service.VanishService;
 
 @Mixin(PlayerEntity.class)
 public class PlayerEntityMixin {

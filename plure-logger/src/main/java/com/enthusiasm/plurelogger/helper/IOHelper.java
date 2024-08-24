@@ -1,11 +1,11 @@
 package com.enthusiasm.plurelogger.helper;
 
-import com.enthusiasm.plurecore.utils.FolderUtils;
-
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
+
+import com.enthusiasm.plurecore.utils.FolderUtils;
 
 public class IOHelper {
     public static File initLogFile(String target, String logDir, String pattern, boolean createDir) {

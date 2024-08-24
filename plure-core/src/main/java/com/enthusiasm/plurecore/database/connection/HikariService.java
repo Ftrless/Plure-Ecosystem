@@ -1,14 +1,15 @@
 package com.enthusiasm.plurecore.database.connection;
 
-import com.enthusiasm.plurecore.PlureCoreEntrypoint;
-import com.zaxxer.hikari.HikariConfig;
-import com.zaxxer.hikari.HikariDataSource;
-
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
+
+import com.zaxxer.hikari.HikariConfig;
+import com.zaxxer.hikari.HikariDataSource;
+
+import com.enthusiasm.plurecore.PlureCoreEntrypoint;
 
 public class HikariService {
     private final ConnectionCredentials credentials;
@@ -34,7 +35,7 @@ public class HikariService {
         String port = addressSplit.length > 1 ? addressSplit[1] : "3306";
 
         config.setDriverClassName("org.mariadb.jdbc.Driver");
-        config.setJdbcUrl(String.format("jdbc:%s://%s:%s/%s?autoReconnect=false&useSSL=false", "mariadb", address, port,  this.credentials.getDatabase()));
+        config.setJdbcUrl(String.format("jdbc:mariadb://%s:%s/%s?autoReconnect=false&useSSL=false", address, port,  this.credentials.getDatabase()));
         config.setUsername(this.credentials.getUsername());
         config.setPassword(this.credentials.getPassword());
 

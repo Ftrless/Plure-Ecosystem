@@ -1,12 +1,11 @@
 package com.enthusiasm.plurecore.data;
 
-import com.enthusiasm.plurecore.PlureCoreEntrypoint;
-import com.enthusiasm.plurecore.data.annotation.DataSerializable;
-import com.enthusiasm.plurecore.utils.FolderUtils;
-
 import java.io.File;
 import java.nio.file.Path;
 import java.util.*;
+
+import com.enthusiasm.plurecore.data.annotation.DataSerializable;
+import com.enthusiasm.plurecore.utils.FolderUtils;
 
 public class DataService {
     private static final Map<String, Set<DataHolderEntry>> holderEntries = new HashMap<>();

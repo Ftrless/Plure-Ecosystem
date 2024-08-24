@@ -4,6 +4,7 @@ import net.fabricmc.loader.impl.FabricLoaderImpl;
 import net.luckperms.api.LuckPerms;
 import net.luckperms.api.LuckPermsProvider;
 import net.luckperms.api.model.user.User;
+
 import net.minecraft.server.network.ServerPlayerEntity;
 
 public class LuckPermsAPI {

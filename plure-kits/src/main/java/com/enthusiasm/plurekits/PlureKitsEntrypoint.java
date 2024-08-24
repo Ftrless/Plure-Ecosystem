@@ -1,17 +1,19 @@
 package com.enthusiasm.plurekits;
 
+import net.fabricmc.api.DedicatedServerModInitializer;
+import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import net.minecraft.server.MinecraftServer;
+
 import com.enthusiasm.plurecore.database.connection.ConnectionCredentials;
 import com.enthusiasm.plurecore.database.connection.HikariService;
 import com.enthusiasm.plurekits.config.ConfigService;
 import com.enthusiasm.plurekits.config.PKConfig;
 import com.enthusiasm.plurekits.database.DatabaseService;
 import com.enthusiasm.plurekits.event.PlayerEvents;
-import net.fabricmc.api.DedicatedServerModInitializer;
-import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
-import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
-import net.minecraft.server.MinecraftServer;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class PlureKitsEntrypoint implements DedicatedServerModInitializer {
     public static final Logger LOGGER = LoggerFactory.getLogger("PlureKits");

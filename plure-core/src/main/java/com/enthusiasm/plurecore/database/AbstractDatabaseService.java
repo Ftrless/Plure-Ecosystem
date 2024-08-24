@@ -1,16 +1,16 @@
 package com.enthusiasm.plurecore.database;
 
-import com.enthusiasm.plurecore.PlureCoreEntrypoint;
-import com.enthusiasm.plurecore.database.connection.HikariService;
-import com.enthusiasm.plurecore.utils.ThreadUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.concurrent.CompletableFuture;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.enthusiasm.plurecore.database.connection.HikariService;
+import com.enthusiasm.plurecore.utils.ThreadUtils;
 
 public abstract class AbstractDatabaseService {
     private final HikariService connection;

@@ -1,6 +1,7 @@
 plugins {
 	id 'fabric-loom' version '1.7-SNAPSHOT'
 	id 'maven-publish'
+	id "com.diffplug.spotless" version "6.20.0"
 }
 
 static def moduleDependencies(project, List<String> depNames) {
@@ -17,7 +18,7 @@ def getSubprojectVersion(project) {
 	def version = project.properties["${project.name}_version"]
 
 	if (!version) {
-		throw new NullPointerException("Could not find version for " + project.name)
+		throw new NullPointerException("Не удалось найти версию для модуля " + project.name)
 	}
 
 	return version
@@ -28,6 +29,8 @@ allprojects {
 
 	apply plugin: "java-library"
 	apply plugin: "fabric-loom"
+	apply plugin: "checkstyle"
+	apply plugin: "com.diffplug.spotless"
 
 	tasks.withType(JavaCompile).configureEach {
 		it.options.release = 21
@@ -86,11 +89,25 @@ allprojects {
 		mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
 		modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
-		include modImplementation("me.lucko:fabric-permissions-api:0.3.1")
-		implementation "com.electronwill.night-config:toml:${project.nightconfig_version}"
-
+		modImplementation "me.lucko:fabric-permissions-api:0.3.1"
 		modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 	}
+
+	spotless {
+		java {
+			removeUnusedImports()
+			importOrder('java', 'javax', '', 'net.minecraft', 'com.enthusiasm')
+			indentWithSpaces()
+			trimTrailingWhitespace()
+		}
+	}
+}
+
+dependencies {
+	include("me.lucko:fabric-permissions-api:0.3.1")
+	include("com.electronwill.night-config:toml:${project.nightconfig_version}")
+	include('com.zaxxer:HikariCP:4.0.3')
+	include('org.mariadb.jdbc:mariadb-java-client:3.1.3')
 }
 
 loom {
@@ -117,6 +134,103 @@ dependencies {
 			def projectName = it.name
 			api project(path: ":${projectName}", configuration: "namedElements")
 			include project("${projectName}:")
+		}
+	}
+}
+
+tasks.register('createSubmodule') {
+	doLast {
+		Scanner scanner = new Scanner(System.in)
+		println "\nВведите название модуля: "
+		def moduleName = scanner.nextLine().trim()
+
+		if (moduleName) {
+			def newModuleName = "plure-${moduleName}"
+			def newModuleId = "plure${moduleName}"
+			def newName = "Plure ${moduleName.capitalize()}"
+
+			def templateDir = file('template-module')
+			if (!templateDir.exists()) {
+				println "Шаблонная папка '${templateDir}' не существует. Убедитесь, что путь указан правильно."
+				return
+			}
+
+			def destDir = file("./${newModuleName}")
+			if (destDir.exists()) {
+				println "Папка назначения '${destDir}' уже существует. Удалите её или используйте другое имя модуля."
+				return
+			}
+
+			copy {
+				from templateDir
+				into destDir
+			}
+
+			if (!destDir.exists() || destDir.listFiles()?.size() <= 0) {
+				println "Ошибка копирования. Проверьте права на запись и доступность директорий."
+				return
+			}
+
+			def settingsFile = file('./settings.gradle')
+			if (!settingsFile.exists()) {
+				println "Файл 'settings.gradle' не найден. Убедитесь, что он существует в корне проекта."
+				return
+			}
+
+			settingsFile.withWriterAppend { writer ->
+				writer.writeLine("include '${newModuleName}'")
+			}
+
+			def gradleProperties = file('./gradle.properties')
+			if (!gradleProperties.exists()) {
+				println "Файл 'gradle.properties' не найден. Убедитесь, что он существует в корне проекта."
+				return
+			}
+
+			gradleProperties.withWriterAppend { writer ->
+				writer.writeLine("${newModuleName}_version=1.0.0")
+			}
+
+			def oldPackagePath = "com.enthusiasm.template"
+			def newPackagePath = "com.enthusiasm.${newModuleId}"
+
+			def oldEntryPoint = "TemplateEntrypoint"
+			def newEntryPoint = "Plure${moduleName.capitalize()}Entrypoint"
+
+			fileTree(destDir).matching {
+				include '**/*.java'
+			}.each { File file ->
+				def content = file.text
+				content = content.replaceAll(oldPackagePath, newPackagePath)
+				content = content.replaceAll(oldEntryPoint, newEntryPoint)
+				file.text = content
+
+				def renamedFile = file.toPath().resolveSibling(newEntryPoint + ".java").toFile()
+				file.renameTo(renamedFile)
+			}
+
+			def oldPackageDir = file("${destDir}/src/main/java/com/enthusiasm/template")
+			def newPackageDir = file("${destDir}/src/main/java/com/enthusiasm/${newModuleId}")
+			if (oldPackageDir.exists()) {
+				oldPackageDir.renameTo(newPackageDir)
+			} else {
+				println "Папка с пакетом '${oldPackageDir}' не найдена."
+			}
+
+			def fabricModFile = file("${destDir}/src/main/resources/fabric.mod.json")
+			if (fabricModFile.exists()) {
+				def fabricModContent = fabricModFile.text
+				fabricModContent = fabricModContent.replaceAll('"id": "template"', '"id": "' + newModuleId + '"')
+				fabricModContent = fabricModContent.replaceAll('"name": "Template Module"', '"name": "' + newName + '"')
+				fabricModContent = fabricModContent.replaceAll('com.enthusiasm.template.TemplateEntrypoint', newPackagePath + '.' + newEntryPoint)
+				fabricModFile.text = fabricModContent
+			} else {
+				println "Файл 'fabric.mod.json' не найден. Проверьте структуру шаблонного модуля."
+			}
+
+			println "Модуль '${newModuleName}' успешно создан и зарегистрирован."
+		} else {
+			println "Название модуля не может быть пустым."
 		}
 	}
 }

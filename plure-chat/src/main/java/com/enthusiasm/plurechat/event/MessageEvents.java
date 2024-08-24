@@ -2,6 +2,7 @@ package com.enthusiasm.plurechat.event;
 
 import net.fabricmc.fabric.api.event.Event;
 import net.fabricmc.fabric.api.event.EventFactory;
+
 import net.minecraft.server.network.ServerPlayerEntity;
 
 public final class MessageEvents {

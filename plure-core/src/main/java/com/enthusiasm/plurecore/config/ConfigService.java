@@ -1,10 +1,10 @@
 package com.enthusiasm.plurecore.config;
 
-import com.enthusiasm.plurecore.config.annotation.Config;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+
+import com.enthusiasm.plurecore.config.annotation.Config;
 
 public class ConfigService {
     private static final Map<Class<?>, ConfigHolder<?>> holders = new HashMap<>();

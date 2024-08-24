@@ -1,8 +1,8 @@
 package com.enthusiasm.plurecore.utils;
 
-import com.enthusiasm.plurecore.utils.text.TextUtils;
-
 import java.util.Locale;
+
+import com.enthusiasm.plurecore.utils.text.TextUtils;
 
 public class TimeUtils {
     public static final String[] SECONDS = { "секунду", "секунды", "секунд" };

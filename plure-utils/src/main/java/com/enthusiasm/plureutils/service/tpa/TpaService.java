@@ -1,10 +1,11 @@
 package com.enthusiasm.plureutils.service.tpa;
 
-import com.enthusiasm.plurecore.utils.ThreadUtils;
-import net.minecraft.server.network.ServerPlayerEntity;
-
 import java.util.*;
 import java.util.concurrent.ScheduledFuture;
+
+import net.minecraft.server.network.ServerPlayerEntity;
+
+import com.enthusiasm.plurecore.utils.ThreadUtils;
 
 public class TpaService {
     private static final List<TpaRequestEntry> activeTeleportRequests = new ArrayList<>();

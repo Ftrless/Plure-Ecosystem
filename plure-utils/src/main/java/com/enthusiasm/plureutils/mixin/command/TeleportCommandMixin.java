@@ -1,9 +1,10 @@
 package com.enthusiasm.plureutils.mixin.command;
 
-import net.minecraft.server.command.TeleportCommand;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
+
+import net.minecraft.server.command.TeleportCommand;
 
 @Mixin(TeleportCommand.class)
 public class TeleportCommandMixin {

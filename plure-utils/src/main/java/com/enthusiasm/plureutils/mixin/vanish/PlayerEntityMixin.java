@@ -1,10 +1,12 @@
 package com.enthusiasm.plureutils.mixin.vanish;
 
-import com.enthusiasm.plureutils.service.VanishService;
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
-import net.minecraft.entity.player.PlayerEntity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
+
+import net.minecraft.entity.player.PlayerEntity;
+
+import com.enthusiasm.plureutils.service.VanishService;
 
 @Mixin(PlayerEntity.class)
 public abstract class PlayerEntityMixin {

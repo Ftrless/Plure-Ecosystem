@@ -1,11 +1,13 @@
 package com.enthusiasm.plurekits.event;
 
-import com.enthusiasm.plurekits.data.DataManager;
 import net.fabricmc.fabric.api.networking.v1.PacketSender;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
+
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayNetworkHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
+
+import com.enthusiasm.plurekits.data.DataManager;
 
 public class PlayerEvents {
     public static void init() {

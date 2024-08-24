@@ -1,17 +1,19 @@
 package com.enthusiasm.plureutils.command.vote;
 
-import com.enthusiasm.plurecore.utils.text.TextUtils;
-import com.enthusiasm.plureutils.command.CommandHelper;
-import com.enthusiasm.plureutils.service.VoteService;
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.Message;
 import com.mojang.brigadier.arguments.BoolArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.context.CommandContext;
+import com.mojang.brigadier.exceptions.CommandSyntaxException;
+
+import net.minecraft.server.command.ServerCommandSource;
+
 import com.enthusiasm.plurecore.utils.PlayerUtils;
 import com.enthusiasm.plurecore.utils.text.FormatUtils;
-import com.mojang.brigadier.exceptions.CommandSyntaxException;
-import net.minecraft.server.command.ServerCommandSource;
+import com.enthusiasm.plurecore.utils.text.TextUtils;
+import com.enthusiasm.plureutils.command.CommandHelper;
+import com.enthusiasm.plureutils.service.VoteService;
 
 public class Vote implements Command<ServerCommandSource> {
     @Override

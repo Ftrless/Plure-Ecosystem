@@ -1,18 +1,20 @@
 package com.enthusiasm.plurekits.command;
 
-import com.enthusiasm.plurekits.KitService;
-import com.enthusiasm.plurekits.data.kit.KitData;
+import java.util.concurrent.atomic.AtomicInteger;
+
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import eu.pb4.sgui.api.gui.SimpleGuiBuilder;
+
 import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
 
-import java.util.concurrent.atomic.AtomicInteger;
+import com.enthusiasm.plurekits.KitService;
+import com.enthusiasm.plurekits.data.kit.KitData;
 
 public class KitView implements Command<ServerCommandSource> {
     @Override

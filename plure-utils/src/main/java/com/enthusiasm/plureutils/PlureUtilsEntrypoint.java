@@ -1,12 +1,14 @@
 package com.enthusiasm.plureutils;
 
+import net.fabricmc.api.DedicatedServerModInitializer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import net.minecraft.server.MinecraftServer;
+
 import com.enthusiasm.plureutils.config.ConfigManager;
 import com.enthusiasm.plureutils.event.PlayerEvents;
 import com.enthusiasm.plureutils.event.ServerEvents;
-import net.fabricmc.api.DedicatedServerModInitializer;
-import net.minecraft.server.MinecraftServer;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class PlureUtilsEntrypoint implements DedicatedServerModInitializer {
     public static final Logger LOGGER = LoggerFactory.getLogger("PlureUtils");

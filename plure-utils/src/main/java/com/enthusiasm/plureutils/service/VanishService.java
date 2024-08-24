@@ -1,14 +1,17 @@
 package com.enthusiasm.plureutils.service;
 
-import com.enthusiasm.plureutils.PermissionsHolder;
-import com.enthusiasm.plureutils.PlureUtilsEntrypoint;
-import com.enthusiasm.plureutils.data.vanish.VanishData;
-import com.enthusiasm.plureutils.util.VanishedEntity;
+import java.util.Collections;
+import java.util.List;
+import java.util.UUID;
+import java.util.function.Predicate;
+
 import com.mojang.authlib.GameProfile;
 import eu.pb4.playerdata.api.PlayerDataApi;
 import eu.pb4.playerdata.api.storage.JsonDataStorage;
 import eu.pb4.playerdata.api.storage.PlayerDataStorage;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
+import org.jetbrains.annotations.NotNull;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.boss.BossBar;
 import net.minecraft.entity.boss.BossBarManager;
@@ -24,12 +27,11 @@ import net.minecraft.text.Style;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
-import org.jetbrains.annotations.NotNull;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.UUID;
-import java.util.function.Predicate;
+import com.enthusiasm.plureutils.PermissionsHolder;
+import com.enthusiasm.plureutils.PlureUtilsEntrypoint;
+import com.enthusiasm.plureutils.data.vanish.VanishData;
+import com.enthusiasm.plureutils.util.VanishedEntity;
 
 public class VanishService {
     public static final ThreadLocal<Entity> ACTIVE_ENTITY = ThreadLocal.withInitial(() -> null);

@@ -1,17 +1,19 @@
 package com.enthusiasm.plureutils.command.util;
 
-import com.enthusiasm.plurecore.config.ConfigHolder;
-import com.enthusiasm.plurecore.utils.text.TextUtils;
-import com.enthusiasm.plurecore.utils.PlayerUtils;
-import com.enthusiasm.plurecore.utils.text.FormatUtils;
-import com.enthusiasm.plureutils.command.CommandHelper;
-import com.enthusiasm.plureutils.config.ConfigManager;
-import com.enthusiasm.plureutils.config.PUConfig;
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
+
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.text.MutableText;
+
+import com.enthusiasm.plurecore.config.ConfigHolder;
+import com.enthusiasm.plurecore.utils.PlayerUtils;
+import com.enthusiasm.plurecore.utils.text.FormatUtils;
+import com.enthusiasm.plurecore.utils.text.TextUtils;
+import com.enthusiasm.plureutils.command.CommandHelper;
+import com.enthusiasm.plureutils.config.ConfigManager;
+import com.enthusiasm.plureutils.config.PUConfig;
 
 public class ConfigReload implements Command<ServerCommandSource> {
     @Override

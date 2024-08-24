@@ -1,18 +1,20 @@
 package com.enthusiasm.plureeconomy;
 
-import com.enthusiasm.plurecore.utils.suggestion.NickSuggestionProvider;
-import com.enthusiasm.plureeconomy.command.*;
+import static net.minecraft.server.command.CommandManager.argument;
+import static net.minecraft.server.command.CommandManager.literal;
+
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.DoubleArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.tree.CommandNode;
 import me.lucko.fabric.api.permissions.v0.Permissions;
+
 import net.minecraft.command.CommandRegistryAccess;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 
-import static net.minecraft.server.command.CommandManager.argument;
-import static net.minecraft.server.command.CommandManager.literal;
+import com.enthusiasm.plurecore.utils.suggestion.NickSuggestionProvider;
+import com.enthusiasm.plureeconomy.command.*;
 
 public class CommandRegistry {
     public static void register(
@@ -45,7 +47,7 @@ public class CommandRegistry {
                 .requires(Permissions.require(PermissionHolder.Permission.ADD.getPermissionString(), 4))
                 .then(argument("target_player", StringArgumentType.word())
                         .suggests(NickSuggestionProvider.PROVIDER)
-                        .then(argument("amount", DoubleArgumentType.doubleArg())
+                        .then(argument("amount", DoubleArgumentType.doubleArg(0.01))
                                 .executes(new MoneyAdd())
                         )
                 ).build()
@@ -55,7 +57,7 @@ public class CommandRegistry {
                 .requires(Permissions.require(PermissionHolder.Permission.TAKE.getPermissionString(), 4))
                 .then(argument("target_player", StringArgumentType.word())
                         .suggests(NickSuggestionProvider.PROVIDER)
-                        .then(argument("amount", DoubleArgumentType.doubleArg())
+                        .then(argument("amount", DoubleArgumentType.doubleArg(0.01))
                                 .executes(new MoneyTake())
                         )
                 ).build()
@@ -65,7 +67,7 @@ public class CommandRegistry {
                 .requires(Permissions.require(PermissionHolder.Permission.SET.getPermissionString(), 4))
                 .then(argument("target_player", StringArgumentType.word())
                         .suggests(NickSuggestionProvider.PROVIDER)
-                        .then(argument("amount", DoubleArgumentType.doubleArg())
+                        .then(argument("amount", DoubleArgumentType.doubleArg(0.01))
                                 .executes(new MoneySet())
                         )
                 ).build()

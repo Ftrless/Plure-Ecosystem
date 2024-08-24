@@ -1,7 +1,13 @@
 package com.enthusiasm.plureutils.service;
 
-import com.enthusiasm.plureutils.PlureUtilsEntrypoint;
-import com.enthusiasm.plureutils.config.ConfigManager;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.List;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
+
 import net.minecraft.entity.boss.BossBar;
 import net.minecraft.entity.boss.BossBarManager;
 import net.minecraft.entity.boss.CommandBossBar;
@@ -11,13 +17,8 @@ import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.WorldSavePath;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.List;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.TimeUnit;
+import com.enthusiasm.plureutils.PlureUtilsEntrypoint;
+import com.enthusiasm.plureutils.config.ConfigManager;
 
 public class AutowipeService {
     private static final boolean WIPE_STATE = ConfigManager.getConfig().enableAutowipe;

@@ -1,20 +1,22 @@
 package com.enthusiasm.plureutils.command.tpa;
 
-import com.enthusiasm.plurecore.utils.CommandUtils;
-import com.enthusiasm.plurecore.utils.text.FormatUtils;
-import com.enthusiasm.plurecore.utils.text.TextUtils;
-import com.enthusiasm.plureutils.service.tpa.TpaRequestEntry;
-import com.enthusiasm.plureutils.service.tpa.TpaService;
+import java.util.List;
+import java.util.Optional;
+
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
+
 import net.minecraft.command.argument.EntityArgumentType;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.MutableText;
 
-import java.util.List;
-import java.util.Optional;
+import com.enthusiasm.plurecore.utils.CommandUtils;
+import com.enthusiasm.plurecore.utils.text.FormatUtils;
+import com.enthusiasm.plurecore.utils.text.TextUtils;
+import com.enthusiasm.plureutils.service.tpa.TpaRequestEntry;
+import com.enthusiasm.plureutils.service.tpa.TpaService;
 
 public class TpaDeny implements Command<ServerCommandSource> {
     @Override

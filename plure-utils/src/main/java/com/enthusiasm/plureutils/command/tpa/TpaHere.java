@@ -1,19 +1,21 @@
 package com.enthusiasm.plureutils.command.tpa;
 
+import com.mojang.brigadier.Command;
+import com.mojang.brigadier.context.CommandContext;
+import com.mojang.brigadier.exceptions.CommandSyntaxException;
+
+import net.minecraft.command.argument.EntityArgumentType;
+import net.minecraft.server.command.ServerCommandSource;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.text.*;
+import net.minecraft.util.Formatting;
+
 import com.enthusiasm.plurecore.utils.CommandUtils;
 import com.enthusiasm.plurecore.utils.PlayerUtils;
 import com.enthusiasm.plurecore.utils.text.FormatUtils;
 import com.enthusiasm.plurecore.utils.text.TextUtils;
 import com.enthusiasm.plureutils.service.tpa.TpaRequestEntry;
 import com.enthusiasm.plureutils.service.tpa.TpaService;
-import com.mojang.brigadier.Command;
-import com.mojang.brigadier.context.CommandContext;
-import com.mojang.brigadier.exceptions.CommandSyntaxException;
-import net.minecraft.command.argument.EntityArgumentType;
-import net.minecraft.server.command.ServerCommandSource;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.text.*;
-import net.minecraft.util.Formatting;
 
 public class TpaHere implements Command<ServerCommandSource> {
     @Override

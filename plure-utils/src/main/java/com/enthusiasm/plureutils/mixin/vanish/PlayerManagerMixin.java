@@ -1,23 +1,25 @@
 package com.enthusiasm.plureutils.mixin.vanish;
 
-import com.enthusiasm.plureutils.data.vanish.VanishData;
-import com.enthusiasm.plureutils.service.VanishService;
-import com.enthusiasm.plureutils.util.VanishedEntity;
+import java.util.List;
+
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import eu.pb4.playerdata.api.PlayerDataApi;
 import me.lucko.fabric.api.permissions.v0.Options;
-import net.minecraft.network.ClientConnection;
-import net.minecraft.server.PlayerManager;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.text.Text;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import java.util.List;
+import net.minecraft.network.ClientConnection;
+import net.minecraft.server.PlayerManager;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.text.Text;
+
+import com.enthusiasm.plureutils.data.vanish.VanishData;
+import com.enthusiasm.plureutils.service.VanishService;
+import com.enthusiasm.plureutils.util.VanishedEntity;
 
 @Mixin(PlayerManager.class)
 public class PlayerManagerMixin {

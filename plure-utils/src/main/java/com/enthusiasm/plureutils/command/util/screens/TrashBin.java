@@ -1,6 +1,5 @@
 package com.enthusiasm.plureutils.command.util.screens;
 
-import com.enthusiasm.plurecore.utils.text.FormatUtils;
 import org.jetbrains.annotations.NotNull;
 
 import net.minecraft.inventory.SimpleInventory;
@@ -8,6 +7,8 @@ import net.minecraft.screen.GenericContainerScreenHandler;
 import net.minecraft.screen.ScreenHandlerFactory;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
+
+import com.enthusiasm.plurecore.utils.text.FormatUtils;
 
 public class TrashBin extends SimpleScreen {
     private static final ScreenHandlerFactory SCREEN_HANDLER_FACTORY = (syncId, inventory, player) ->

@@ -1,14 +1,15 @@
 package com.enthusiasm.plurekits.command;
 
-import com.enthusiasm.plurekits.KitService;
-import com.enthusiasm.plurekits.data.DataManager;
-import com.enthusiasm.plurekits.data.kit.KitData;
-import com.enthusiasm.plurekits.data.player.PlayerKitData;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Stream;
+
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import eu.pb4.sgui.api.gui.SimpleGui;
 import eu.pb4.sgui.api.gui.SimpleGuiBuilder;
+
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.screen.ScreenHandlerType;
@@ -17,9 +18,10 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
 import net.minecraft.util.Util;
 
-import java.util.Map;
-import java.util.function.Function;
-import java.util.stream.Stream;
+import com.enthusiasm.plurekits.KitService;
+import com.enthusiasm.plurekits.data.DataManager;
+import com.enthusiasm.plurekits.data.kit.KitData;
+import com.enthusiasm.plurekits.data.player.PlayerKitData;
 
 public class KitAll implements Command<ServerCommandSource> {
     @Override

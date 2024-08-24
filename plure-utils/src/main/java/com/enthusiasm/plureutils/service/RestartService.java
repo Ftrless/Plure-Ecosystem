@@ -1,29 +1,29 @@
 package com.enthusiasm.plureutils.service;
 
-import com.enthusiasm.plurecore.utils.ThreadUtils;
-import com.enthusiasm.plurecore.utils.TimeUtils;
-import com.enthusiasm.plurecore.utils.text.FormatUtils;
-import com.enthusiasm.plurecore.utils.text.TextUtils;
-import com.enthusiasm.plureutils.config.ConfigManager;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.TimeUnit;
+import java.util.function.Function;
+
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
+
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.s2c.play.SubtitleS2CPacket;
 import net.minecraft.network.packet.s2c.play.TitleS2CPacket;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.command.TitleCommand;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Style;
 import net.minecraft.text.Text;
 import net.minecraft.text.Texts;
-import net.minecraft.util.Formatting;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.ScheduledFuture;
-import java.util.concurrent.TimeUnit;
-import java.util.function.Function;
+import com.enthusiasm.plurecore.utils.ThreadUtils;
+import com.enthusiasm.plurecore.utils.TimeUtils;
+import com.enthusiasm.plurecore.utils.text.FormatUtils;
+import com.enthusiasm.plurecore.utils.text.TextUtils;
+import com.enthusiasm.plureutils.config.ConfigManager;
 
 public class RestartService {
     private static final boolean RESTART_STATE = ConfigManager.getConfig().enableRestarts;
@@ -69,7 +69,7 @@ public class RestartService {
             player.networkHandler.disconnect(RestartService.RESTART_MESSAGE);
         });
 
-        ThreadUtils.runOnMainThread(() -> SERVER_INSTANCE.saveAll(false, false, false));
+        ThreadUtils.runOnMainThread(() -> SERVER_INSTANCE.saveAll(false, true, true));
         SERVER_INSTANCE.stop(true);
     }
 
@@ -89,7 +89,7 @@ public class RestartService {
 
         shutdownCurrentTasks();
         scheduleRestartTask(
-               forceMillis
+            forceMillis
         );
     }
 

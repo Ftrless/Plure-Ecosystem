@@ -1,5 +1,10 @@
 package com.enthusiasm.plurelogger.log.logger;
 
+import java.io.File;
+
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.text.MutableText;
+
 import com.enthusiasm.plurechat.api.MessageEventsAPI;
 import com.enthusiasm.plurecore.utils.FileUtils;
 import com.enthusiasm.plurecore.utils.FolderUtils;
@@ -7,10 +12,6 @@ import com.enthusiasm.plurelogger.event.PlayerConnectCallback;
 import com.enthusiasm.plurelogger.helper.DateHelper;
 import com.enthusiasm.plurelogger.helper.IOHelper;
 import com.enthusiasm.plurelogger.log.AbstractLogger;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.text.MutableText;
-
-import java.io.File;
 
 public class ChatLogger extends AbstractLogger {
     private final String rootLogDir;

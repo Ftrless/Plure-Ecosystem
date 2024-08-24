@@ -1,11 +1,13 @@
 package com.enthusiasm.plurekits.suggestion;
 
-import com.enthusiasm.plurecore.utils.SuggestionUtils;
-import com.enthusiasm.plurekits.KitService;
+import java.util.Map;
+
 import com.mojang.brigadier.suggestion.SuggestionProvider;
+
 import net.minecraft.server.command.ServerCommandSource;
 
-import java.util.Map;
+import com.enthusiasm.plurecore.utils.SuggestionUtils;
+import com.enthusiasm.plurekits.KitService;
 
 public class KitSuggestion {
     public static final SuggestionProvider<ServerCommandSource> ALL_KITS_SUGGESTION_PROVIDER =

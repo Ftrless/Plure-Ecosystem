@@ -1,10 +1,10 @@
 package com.enthusiasm.plurekits.config.serialization;
 
-import com.enthusiasm.plurecore.config.serialization.IDataSerializer;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import com.enthusiasm.plurecore.config.serialization.IDataSerializer;
 
 public class HashMapSerializer implements IDataSerializer<HashMap<String, String>, List<String>> {
     public List<String> serialize(HashMap<String, String> map) {

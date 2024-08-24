@@ -1,24 +1,26 @@
 package com.enthusiasm.plurecore.data;
 
-import com.enthusiasm.plurecore.PlureCoreEntrypoint;
-import com.enthusiasm.plurecore.data.annotation.DataAttribute;
-import com.enthusiasm.plurecore.data.annotation.DataSerializable;
-import com.enthusiasm.plurecore.utils.FolderUtils;
-import com.enthusiasm.plurecore.utils.NBTUtils;
-import com.enthusiasm.plurecore.utils.ReflectUtils;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtHelper;
-import net.minecraft.nbt.NbtIo;
-import org.jetbrains.annotations.NotNull;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.io.EOFException;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.nio.file.Files;
 import java.nio.file.Path;
+
+import org.jetbrains.annotations.NotNull;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import net.minecraft.nbt.NbtCompound;
+import net.minecraft.nbt.NbtHelper;
+import net.minecraft.nbt.NbtIo;
+
+import com.enthusiasm.plurecore.PlureCoreEntrypoint;
+import com.enthusiasm.plurecore.data.annotation.DataAttribute;
+import com.enthusiasm.plurecore.data.annotation.DataSerializable;
+import com.enthusiasm.plurecore.utils.FolderUtils;
+import com.enthusiasm.plurecore.utils.NBTUtils;
+import com.enthusiasm.plurecore.utils.ReflectUtils;
 
 public class DataHolder<T> {
     public static final Logger LOGGER = LoggerFactory.getLogger("PlureCore-Data");

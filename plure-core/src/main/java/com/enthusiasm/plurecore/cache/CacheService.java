@@ -1,15 +1,16 @@
 package com.enthusiasm.plurecore.cache;
 
-import com.enthusiasm.plurecore.utils.FileUtils;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import com.mojang.authlib.GameProfile;
-
 import java.io.File;
 import java.lang.reflect.Type;
 import java.nio.file.Path;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.mojang.authlib.GameProfile;
+
+import com.enthusiasm.plurecore.utils.FileUtils;
 
 public class CacheService {
     private static final Map<UUID, String> cache = new ConcurrentHashMap<>();

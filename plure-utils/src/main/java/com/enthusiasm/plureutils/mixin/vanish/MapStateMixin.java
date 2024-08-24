@@ -1,13 +1,15 @@
 package com.enthusiasm.plureutils.mixin.vanish;
 
-import com.enthusiasm.plureutils.service.VanishService;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.llamalad7.mixinextras.sugar.Local;
-import net.minecraft.item.map.MapState;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
+
+import net.minecraft.item.map.MapState;
+
+import com.enthusiasm.plureutils.service.VanishService;
 
 @Mixin(MapState.class)
 public abstract class MapStateMixin {

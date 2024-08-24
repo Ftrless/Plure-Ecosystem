@@ -1,14 +1,15 @@
 package com.enthusiasm.plureutils.data.warp;
 
-import com.enthusiasm.plureutils.PlureUtilsEntrypoint;
-import com.enthusiasm.plureutils.data.DataManager;
+import java.io.File;
+import java.io.IOException;
+import java.util.*;
+
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtIo;
 import net.minecraft.world.PersistentState;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.*;
+import com.enthusiasm.plureutils.PlureUtilsEntrypoint;
+import com.enthusiasm.plureutils.data.DataManager;
 
 public class WarpDataManager extends PersistentState {
     private File warpDataFile;
@@ -139,4 +140,3 @@ public class WarpDataManager extends PersistentState {
         }
     }
 }
-
