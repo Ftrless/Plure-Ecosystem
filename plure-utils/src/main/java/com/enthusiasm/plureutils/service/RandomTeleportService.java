@@ -2,7 +2,6 @@ package com.enthusiasm.plureutils.service;
 
 import java.util.Comparator;
 import java.util.UUID;
-import java.util.concurrent.CompletableFuture;
 import java.util.function.Consumer;
 
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
@@ -29,12 +28,13 @@ import net.minecraft.world.border.WorldBorder;
 import net.minecraft.world.chunk.WorldChunk;
 
 import com.enthusiasm.plurecore.utils.ChunkUtils;
+import com.enthusiasm.plureutils.PlureUtilsEntrypoint;
 import com.enthusiasm.plureutils.config.ConfigManager;
 
 public class RandomTeleportService {
     private static final Object2ObjectOpenHashMap<UUID, RandomTeleportService> LOCATORS = new Object2ObjectOpenHashMap<>();
     private static final ObjectOpenHashSet<UUID> PENDING_REMOVAL = new ObjectOpenHashSet<>();
-    private static final ChunkTicketType<ChunkPos> LOCATE = ChunkTicketType.create("locate", Comparator.comparingLong(ChunkPos::toLong), 200);
+    private static final ChunkTicketType<ChunkPos> LOCATE = ChunkTicketType.create("locate", Comparator.comparingLong(ChunkPos::toLong), 600);
     private static final Random RANDOM = Random.createLocal();
     private static final int MAX_ATTEMPTS = 256;
     private final ServerWorld world;
@@ -45,7 +45,6 @@ public class RandomTeleportService {
     private final int centerZ;
     private Consumer<Vec3d> callback;
     private ChunkPos queuedPos;
-    private boolean queuedLoading = false;
     private long stopTime;
     private int attempts;
     private int x;
@@ -57,9 +56,13 @@ public class RandomTeleportService {
 
     public static void update() {
         if (!LOCATORS.isEmpty()) {
-            LOCATORS.values().forEach(RandomTeleportService::tick);
-            LOCATORS.keySet().removeAll(PENDING_REMOVAL);
-            PENDING_REMOVAL.clear();
+            try {
+                LOCATORS.values().forEach(RandomTeleportService::tick);
+                LOCATORS.keySet().removeAll(PENDING_REMOVAL);
+                PENDING_REMOVAL.clear();
+            } catch (Exception e) {
+                PlureUtilsEntrypoint.LOGGER.error("Error while updating random teleport service ", e);
+            }
         }
     }
 
@@ -76,23 +79,19 @@ public class RandomTeleportService {
 
     private void tick() {
         if (System.currentTimeMillis() <= this.stopTime) {
-            if (queuedLoading) return;
+            WorldChunk chunk = ChunkUtils.getChunkIfLoaded(this.world, this.queuedPos.x, this.queuedPos.z);
 
-            queuedLoading = true;
-            CompletableFuture<WorldChunk> chunkFuture = ChunkUtils.loadChunkAsync(this.world, this.queuedPos.x, this.queuedPos.z);
-
-            chunkFuture.whenComplete((chunk, throwable) -> this.onChunkLoaded(chunk));
+            if (chunk != null) {
+                this.onChunkLoaded(chunk);
+            }
         } else {
-            queuedLoading = false;
             this.onChunkLoaded(null);
         }
     }
 
     private void onChunkLoaded(WorldChunk chunk) {
-        PENDING_REMOVAL.add(this.uuid);
-
         if (chunk == null) {
-            queuedLoading = false;
+            PENDING_REMOVAL.add(this.uuid);
             this.callback.accept(null);
             return;
         }
@@ -100,11 +99,12 @@ public class RandomTeleportService {
         Vec3d pos = this.findSafePositionInChunk(chunk, this.x, this.z);
 
         if (pos != null) {
+            PENDING_REMOVAL.add(this.uuid);
             this.callback.accept(pos);
             return;
         }
 
-        queuedLoading = false;
+        PENDING_REMOVAL.add(this.uuid);
 
         this.newPosition();
     }

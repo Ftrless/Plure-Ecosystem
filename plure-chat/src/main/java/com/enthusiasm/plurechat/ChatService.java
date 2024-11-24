@@ -99,7 +99,10 @@ public class ChatService {
         PlureChatEntrypoint.LOGGER.info(messageBuilder.getString());
 
         sender.sendMessage(messageBuilderForSender, false);
-        target.sendMessage(messageBuilderForTarget, false);
+
+        if (!DataManager.checkContainsIgnorableUser(target.getUuid(), sender.getUuid())) {
+            target.sendMessage(messageBuilderForTarget, false);
+        }
     }
 
     private static MutableText getDisplayType(String message, boolean isPrivate, boolean forSender) {

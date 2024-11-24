@@ -99,7 +99,7 @@
   "cmd.fly.feedback": "Режим полета %s.",
   "cmd.god.feedback": "Режим бога %s.",
 
-  "cmd.restart.at.feedback": "Сервер перезапуститься через %s.",
+  "cmd.restart.at.feedback": "Сервер перезапустится через %s.",
   "cmd.restart.force.feedback": "Принудительный перезапуск сервера стоится через %s.",
   "cmd.restart.postpone.feedback": "Перезапуск сервера отложен на %s.",
 

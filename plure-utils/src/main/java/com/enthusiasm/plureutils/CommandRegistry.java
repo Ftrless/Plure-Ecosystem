@@ -22,6 +22,9 @@ import com.enthusiasm.plureutils.command.home.HomeSet;
 import com.enthusiasm.plureutils.command.home.HomeTp;
 import com.enthusiasm.plureutils.command.playtime.Playtime;
 import com.enthusiasm.plureutils.command.playtime.PlaytimeTop;
+import com.enthusiasm.plureutils.command.restart.RestartAt;
+import com.enthusiasm.plureutils.command.restart.RestartForce;
+import com.enthusiasm.plureutils.command.restart.RestartPostpone;
 import com.enthusiasm.plureutils.command.spawn.SpawnForce;
 import com.enthusiasm.plureutils.command.spawn.SpawnSet;
 import com.enthusiasm.plureutils.command.spawn.SpawnTp;
@@ -52,6 +55,7 @@ public class CommandRegistry {
         CommandNode<ServerCommandSource> warpNode = dispatcher.register(literal("warp"));
         CommandNode<ServerCommandSource> homeNode = dispatcher.register(literal("home"));
         CommandNode<ServerCommandSource> spawnNode = dispatcher.register(literal("spawn"));
+        CommandNode<ServerCommandSource> restartNode = dispatcher.register(literal("restart"));
         RootCommandNode<ServerCommandSource> rootNode = dispatcher.getRoot();
 
         registerWarpCommands(warpNode);
@@ -64,6 +68,7 @@ public class CommandRegistry {
         registerVoteCommands(rootNode);
         registerUtilCommands(rootNode);
         registerScreensCommands(rootNode);
+        registerRestartCommands(restartNode);
     }
 
     public static void registerWarpCommands(CommandNode<ServerCommandSource> node) {
@@ -387,6 +392,30 @@ public class CommandRegistry {
         node.addChild(literal("enderchest")
                 .requires(Permissions.require(PermissionsHolder.Permission.ENDERCHEST.getPermissionString(), 4))
                 .executes(new Enderchest())
+                .build()
+        );
+    }
+
+    private static void registerRestartCommands(CommandNode<ServerCommandSource> node) {
+        node.addChild(literal("at")
+                .requires(Permissions.require(PermissionsHolder.Permission.RESTART_AT.getPermissionString(), 4))
+                .executes(new RestartAt())
+                .build()
+        );
+
+        node.addChild(literal("force")
+                .requires(Permissions.require(PermissionsHolder.Permission.FORCE_RESTART.getPermissionString(), 4))
+                .then(argument("time", StringArgumentType.word())
+                        .executes(new RestartForce())
+                )
+                .build()
+        );
+
+        node.addChild(literal("postpone")
+                .requires(Permissions.require(PermissionsHolder.Permission.POSTPONE_RESTART.getPermissionString(), 4))
+                .then(argument("time", StringArgumentType.word())
+                        .executes(new RestartPostpone())
+                )
                 .build()
         );
     }

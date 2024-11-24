@@ -5,7 +5,14 @@ loom {
 }
 
 dependencies {
-    implementation('com.zaxxer:HikariCP:4.0.3')
-    implementation('org.mariadb.jdbc:mariadb-java-client:3.1.3')
-    implementation("com.electronwill.night-config:toml:${project.nightconfig_version}")
+    include implementation('com.zaxxer:HikariCP:5.0.0')
+    include implementation('org.mariadb.jdbc:mariadb-java-client:3.1.3')
+    include implementation("com.electronwill.night-config:toml:${project.nightconfig_version}")
+    include implementation("com.electronwill.night-config:core:${project.nightconfig_version}")
+    include implementation('org.reflections:reflections:0.10.2')
+    include implementation("org.bytedeco:ffmpeg-platform:6.1.1-1.5.10")
+
+    include('org.javassist:javassist:3.28.0-GA')
+
+    include("me.lucko:fabric-permissions-api:0.3.1")
 }

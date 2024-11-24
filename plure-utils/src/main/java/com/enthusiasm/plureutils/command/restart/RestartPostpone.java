@@ -24,6 +24,6 @@ public class RestartPostpone implements Command<ServerCommandSource> {
     public void exec(CommandContext<ServerCommandSource> context, long time) throws CommandSyntaxException {
         RestartService.postponeRestart(time);
 
-        PlayerUtils.sendFeedback(context, "cmd.restart.postpone.feedback");
+        PlayerUtils.sendFeedback(context, "cmd.restart.postpone.feedback", TimeUtils.getFormattedRemainingTime(time));
     }
 }

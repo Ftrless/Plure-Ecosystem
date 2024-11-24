@@ -10,10 +10,10 @@ pluginManagement {
 }
 
 include 'plure-utils'
-include 'plure-protect'
+///include 'plure-protect'
 include 'plure-logger'
 include 'plure-kits'
-include 'plure-economy'
+//include 'plure-economy'
 include 'plure-core'
 include 'plure-chat'
-include 'plure-bans'
+//include 'plure-bans'

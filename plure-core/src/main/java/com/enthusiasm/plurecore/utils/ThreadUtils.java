@@ -108,4 +108,12 @@ public final class ThreadUtils {
             SCHEDULED_EXECUTOR.shutdownNow();
         }
     }
+
+    /**
+     * Принудительно останавливает все исполнители.
+     */
+    public static void forceShutdown() {
+        ASYNC_EXECUTOR.shutdownNow();
+        SCHEDULED_EXECUTOR.shutdownNow();
+    }
 }

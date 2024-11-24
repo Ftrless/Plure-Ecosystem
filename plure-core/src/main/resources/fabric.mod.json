@@ -19,7 +19,9 @@
   "license": "CC0-1.0",
   "icon": "assets/modid/icon.png",
   "environment": "*",
-  "mixins": [],
+  "mixins": [
+    "plure-core.mixins.json"
+  ],
   "accessWidener": "plure-core.accesswidener",
   "depends": {
     "fabricloader": ">=0.15.10",

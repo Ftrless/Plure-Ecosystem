@@ -24,6 +24,6 @@ public class RestartForce implements Command<ServerCommandSource> {
     public void exec(CommandContext<ServerCommandSource> context, long time) throws CommandSyntaxException {
         RestartService.forceRestart(time);
 
-        PlayerUtils.sendFeedback(context, "cmd.restart.force.feedback");
+        PlayerUtils.sendFeedback(context, "cmd.restart.force.feedback", TimeUtils.getFormattedRemainingTime(time));
     }
 }

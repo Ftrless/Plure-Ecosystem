@@ -40,41 +40,38 @@ public class RestartService {
     private static MinecraftServer SERVER_INSTANCE;
 
     public static void onInitialize(MinecraftServer server) {
-        if (!RESTART_STATE) {
-            return;
-        }
-
         SERVER_INSTANCE = server;
-        scheduleRestartTask(RESTART_INTERVAL);
+
+        if (RESTART_STATE) {
+            scheduleRestartTask(RESTART_INTERVAL);
+        }
     }
 
     private static void scheduleRestartTask(long delay) {
         scheduledRestartTask = ThreadUtils.schedule(RestartService::restartServer, delay);
 
         RESTART_NOTIFY_INTERVALS.forEach(interval -> {
-            if (interval < delay) {
+            if (interval <= delay) {
                 scheduledNotifyTasks.add(ThreadUtils.schedule(() -> RestartService.broadcastMessage(interval), delay - interval));
             }
         });
 
         RESTART_TITLE_NOTIFY_INTERVALS.forEach(interval -> {
-            if (interval < delay) {
+            if (interval <= delay) {
                 scheduledNotifyTasks.add(ThreadUtils.schedule(() -> RestartService.broadcastTitle(interval), delay - interval));
             }
         });
     }
 
     private static void restartServer() {
-        SERVER_INSTANCE.getPlayerManager().getPlayerList().forEach(player -> {
-            player.networkHandler.disconnect(RestartService.RESTART_MESSAGE);
-        });
-
         ThreadUtils.runOnMainThread(() -> SERVER_INSTANCE.saveAll(false, true, true));
-        SERVER_INSTANCE.stop(true);
+        SERVER_INSTANCE.stop(false);
     }
 
     public static void postponeRestart(long postponeMillis) {
-        if (scheduledRestartTask == null) return;
+        if (scheduledRestartTask == null) {
+            return;
+        }
 
         var currentDelay = scheduledRestartTask.getDelay(TimeUnit.MILLISECONDS);
 
@@ -85,9 +82,10 @@ public class RestartService {
     }
 
     public static void forceRestart(long forceMillis) {
-        if (scheduledRestartTask == null) return;
+        if (scheduledRestartTask != null) {
+            shutdownCurrentTasks();
+        }
 
-        shutdownCurrentTasks();
         scheduleRestartTask(
             forceMillis
         );

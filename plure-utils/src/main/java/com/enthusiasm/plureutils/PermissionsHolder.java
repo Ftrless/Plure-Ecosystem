@@ -61,6 +61,9 @@ public class PermissionsHolder {
         RTP("rtp"),
         TPPOS("tppos"),
         VANISH("vanish"),
+        RESTART_AT("restart-at"),
+        FORCE_RESTART("force-restart"),
+        POSTPONE_RESTART("postpone-restart"),
         KEEP_INV("keep-inv");
 
         private final String permissionString;
