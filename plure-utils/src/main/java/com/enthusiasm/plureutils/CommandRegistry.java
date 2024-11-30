@@ -75,24 +75,6 @@ public class CommandRegistry {
         registerViewCommands(viewNode);
     }
 
-    private static void registerViewCommands(CommandNode<ServerCommandSource> node) {
-        node.addChild(literal("inv")
-                .requires(Permissions.require(PermissionsHolder.Permission.VIEW_INV.getPermissionString(), 4))
-                .then(argument("target_player", StringArgumentType.word())
-                        .suggests(NickSuggestion.NICK_SUGGESTION_PROVIDER)
-                        .executes(new ViewInv()))
-                .build()
-        );
-
-        node.addChild(literal("echest")
-                .requires(Permissions.require(PermissionsHolder.Permission.VIEW_ECHEST.getPermissionString(), 4))
-                .then(argument("target_player", StringArgumentType.word())
-                        .suggests(NickSuggestion.NICK_SUGGESTION_PROVIDER)
-                        .executes(new ViewEChest()))
-                .build()
-        );
-    }
-
     public static void registerWarpCommands(CommandNode<ServerCommandSource> node) {
         node.addChild(literal("create")
                 .requires(Permissions.require(PermissionsHolder.Permission.CREATE_WARP.getPermissionString(), 4))
@@ -438,6 +420,24 @@ public class CommandRegistry {
                 .then(argument("time", StringArgumentType.word())
                         .executes(new RestartPostpone())
                 )
+                .build()
+        );
+    }
+
+    private static void registerViewCommands(CommandNode<ServerCommandSource> node) {
+        node.addChild(literal("inv")
+                .requires(Permissions.require(PermissionsHolder.Permission.VIEW_INV.getPermissionString(), 4))
+                .then(argument("target_player", StringArgumentType.word())
+                        .suggests(NickSuggestion.NICK_SUGGESTION_PROVIDER)
+                        .executes(new ViewInv()))
+                .build()
+        );
+
+        node.addChild(literal("echest")
+                .requires(Permissions.require(PermissionsHolder.Permission.VIEW_ECHEST.getPermissionString(), 4))
+                .then(argument("target_player", StringArgumentType.word())
+                        .suggests(NickSuggestion.NICK_SUGGESTION_PROVIDER)
+                        .executes(new ViewEChest()))
                 .build()
         );
     }

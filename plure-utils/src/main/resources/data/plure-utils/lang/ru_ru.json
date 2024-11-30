@@ -61,7 +61,6 @@
   "cmd.playtime.target.feedback": "Наигранное время игрока %s: %s",
   "cmd.playtime.target.error.player-not-found": "Игрок не найден!",
   "cmd.playtime.top.header": "===[Топ игроков по наигранному времени ]===",
-  "cmd.playtime.top.element": "%d. %s - %dд. %dч. %dм.",
 
   "cmd.day.error.already_daytime": "Уже день.",
   "cmd.day.feedback": "Время установлено на день.",

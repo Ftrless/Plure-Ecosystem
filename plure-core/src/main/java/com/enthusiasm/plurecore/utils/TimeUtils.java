@@ -32,6 +32,7 @@ public class TimeUtils {
                     case "d", "day", "days" -> Double.parseDouble(numberOnly) * 60 * 60 * 24 * 1000L;
                     case "h", "hour", "hours" -> Double.parseDouble(numberOnly) * 60 * 60 * 1000L;
                     case "m", "minute", "minutes" -> Double.parseDouble(numberOnly) * 60 * 1000L;
+                    case "s", "second", "seconds" -> Double.parseDouble(numberOnly) * 1000L;
                     default -> Double.parseDouble(numberOnly);
                 };
             }

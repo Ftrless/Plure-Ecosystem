@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.*;
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
@@ -23,6 +22,7 @@ import net.minecraft.util.WorldSavePath;
 import com.enthusiasm.plurecore.cache.CacheService;
 import com.enthusiasm.plurecore.utils.PlayerUtils;
 import com.enthusiasm.plurecore.utils.ThreadUtils;
+import com.enthusiasm.plurecore.utils.TimeUtils;
 import com.enthusiasm.plureutils.PlureUtilsEntrypoint;
 
 public class PlaytimeTop implements Command<ServerCommandSource> {
@@ -39,18 +39,12 @@ public class PlaytimeTop implements Command<ServerCommandSource> {
 
         PlayerUtils.sendFeedback(context, "cmd.playtime.top.header");
 
-        ThreadUtils.runAsync(() -> getPlayerPlaytimeList(statsPath))
+        getPlayerPlaytimeList(statsPath)
                 .thenAcceptAsync(topPlayers -> {
                     AtomicInteger count = new AtomicInteger(1);
                     topPlayers.forEach((playerName, playTime) -> {
-                        long days = playTime / (20 * 60 * 60 * 24);
-                        long hours = (playTime % (20 * 60 * 60 * 24)) / (20 * 60 * 60);
-                        long minutes = (playTime % (20 * 60 * 60)) / (20 * 60);
-
-                        ThreadUtils.runOnMainThread(() ->
-                                 PlayerUtils.sendFeedback(context, "cmd.playtime.top.element",
-                                         count.getAndIncrement(), playerName, days, hours, minutes
-                                 )
+                        PlayerUtils.sendFeedback(context, "cmd.playtime.top.element",
+                                count.getAndIncrement(), playerName, TimeUtils.getFormattedRemainingTime(playTime * 50)
                         );
                     });
                 })
@@ -60,59 +54,49 @@ public class PlaytimeTop implements Command<ServerCommandSource> {
                 });
     }
 
-    private Map<String, Long> getPlayerPlaytimeList(Path statsFolder) {
+    private CompletableFuture<Map<String, Long>> getPlayerPlaytimeList(Path statsFolder) {
         File[] statFiles = statsFolder.toFile().listFiles((dir, name) -> name.endsWith(".json"));
 
         if (statFiles == null) {
-            return Collections.emptyMap();
+            return CompletableFuture.completedFuture(Collections.emptyMap());
         }
 
-        Map<String, Long> playtimeMap = new ConcurrentHashMap<>();
+        List<CompletableFuture<Optional<Map.Entry<String, Long>>>> futures = Arrays.stream(statFiles)
+                .map(this::readPlayerPlaytimeEntry)
+                .toList();
 
-        Arrays.stream(statFiles).forEach(file -> {
-            UUID playerUUID = UUID.fromString(file.getName().replace(".json", ""));
-            CompletableFuture<Long> playTimeFuture = readPlaytimeFromFile(file);
-
-            playTimeFuture.thenAcceptAsync(playTime ->
-                    CacheService.getUserByUUID(playerUUID)
-                            .ifPresent(playerName -> playtimeMap.put(playerName, playTime))
-            );
-        });
-
-        CompletableFuture.allOf(playtimeMap.values().toArray(new CompletableFuture[0])).join();
-
-        return playtimeMap.entrySet().stream()
-                .sorted(Map.Entry.<String, Long>comparingByValue().reversed())
-                .limit(5)
-                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (existing, replacement) -> existing, LinkedHashMap::new));
+        return CompletableFuture.allOf(futures.toArray(new CompletableFuture[0]))
+                .thenApply(v -> futures.stream()
+                        .map(CompletableFuture::join)
+                        .flatMap(Optional::stream)
+                        .sorted(Map.Entry.<String, Long>comparingByValue().reversed())
+                        .limit(5)
+                        .collect(Collectors.toMap(
+                                Map.Entry::getKey,
+                                Map.Entry::getValue,
+                                (existing, replacement) -> existing,
+                                LinkedHashMap::new
+                        )));
     }
 
-    private CompletableFuture<Long> readPlaytimeFromFile(File file) {
-        CompletableFuture<Long> future = new CompletableFuture<>();
-
-        ThreadUtils.runAsync(() -> {
+    private CompletableFuture<Optional<Map.Entry<String, Long>>> readPlayerPlaytimeEntry(File file) {
+        return ThreadUtils.runAsync(() -> {
             try (FileReader fileReader = new FileReader(file)) {
                 JsonObject jsonObject = JsonParser.parseReader(fileReader).getAsJsonObject();
+                UUID playerUUID = UUID.fromString(file.getName().replace(".json", ""));
 
-                if (jsonObject.has("stats")) {
-                    JsonObject statsObject = jsonObject.getAsJsonObject("stats");
+                long playTime = jsonObject
+                        .getAsJsonObject("stats")
+                        .getAsJsonObject("minecraft:custom")
+                        .get("minecraft:play_time")
+                        .getAsLong();
 
-                    if (statsObject.has("minecraft:custom")) {
-                        JsonObject customStatsObject = statsObject.getAsJsonObject("minecraft:custom");
-
-                        if (customStatsObject.has("minecraft:play_time")) {
-                            future.complete(customStatsObject.get("minecraft:play_time").getAsLong());
-                            return;
-                        }
-                    }
-                }
-
-                future.complete(0L);
-            } catch (IOException e) {
-                PlureUtilsEntrypoint.LOGGER.error("Oops, reading error:", e);
+                return CacheService.getUserByUUID(playerUUID)
+                        .map(playerName -> Map.entry(playerName, playTime));
+            } catch (IOException | NullPointerException | IllegalArgumentException e) {
+                PlureUtilsEntrypoint.LOGGER.error("Error reading playtime data from file: " + file.getName(), e);
+                return Optional.empty();
             }
         });
-
-        return future;
     }
 }
