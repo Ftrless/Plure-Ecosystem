@@ -9,7 +9,8 @@ loom {
 }
 
 dependencies {
-    modImplementation include("eu.pb4:player-data-api:${project.player_data_api_version}")
+    modImplementation("eu.pb4:player-data-api:${project.player_data_api_version}")
+    modImplementation("eu.pb4:sgui:${project.sgui_version}")
 
     include(implementation(annotationProcessor("io.github.llamalad7:mixinextras-fabric:0.4.1")))
 }

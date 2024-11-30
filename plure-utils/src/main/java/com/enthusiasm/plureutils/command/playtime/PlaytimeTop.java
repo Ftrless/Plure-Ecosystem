@@ -39,17 +39,19 @@ public class PlaytimeTop implements Command<ServerCommandSource> {
 
         PlayerUtils.sendFeedback(context, "cmd.playtime.top.header");
 
-        CompletableFuture.supplyAsync(() -> getPlayerPlaytimeList(statsPath))
+        ThreadUtils.runAsync(() -> getPlayerPlaytimeList(statsPath))
                 .thenAcceptAsync(topPlayers -> {
-                    PlayerUtils.sendFeedback(context, "cmd.playtime.top.header");
-
                     AtomicInteger count = new AtomicInteger(1);
                     topPlayers.forEach((playerName, playTime) -> {
                         long days = playTime / (20 * 60 * 60 * 24);
                         long hours = (playTime % (20 * 60 * 60 * 24)) / (20 * 60 * 60);
                         long minutes = (playTime % (20 * 60 * 60)) / (20 * 60);
 
-                        PlayerUtils.sendFeedback(context, "cmd.playtime.top.element", count.getAndIncrement(), playerName, days, hours, minutes);
+                        ThreadUtils.runOnMainThread(() ->
+                                 PlayerUtils.sendFeedback(context, "cmd.playtime.top.element",
+                                         count.getAndIncrement(), playerName, days, hours, minutes
+                                 )
+                        );
                     });
                 })
                 .exceptionally(ex -> {

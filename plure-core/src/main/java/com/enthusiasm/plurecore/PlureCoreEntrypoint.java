@@ -1,7 +1,6 @@
 package com.enthusiasm.plurecore;
 
 import net.fabricmc.api.DedicatedServerModInitializer;
-import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,7 +8,6 @@ import org.slf4j.LoggerFactory;
 import net.minecraft.server.MinecraftServer;
 
 import com.enthusiasm.plurecore.cache.CacheService;
-import com.enthusiasm.plurecore.command.CommandRegistry;
 import com.enthusiasm.plurecore.event.PlayerEvents;
 import com.enthusiasm.plurecore.utils.ThreadUtils;
 
@@ -25,10 +23,6 @@ public class PlureCoreEntrypoint implements DedicatedServerModInitializer {
 
         ServerLifecycleEvents.SERVER_STARTING.register(this::onServerStarting);
         ServerLifecycleEvents.SERVER_STOPPING.register(this::onServerStopping);
-
-        CommandRegistrationCallback.EVENT.register(((dispatcher, registryAccess, environment) -> {
-            CommandRegistry.build("plurecore");
-        }));
     }
 
     private void onServerStarting(MinecraftServer minecraftServer) {

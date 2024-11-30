@@ -1,4 +1,4 @@
-package com.enthusiasm.plureutils.command;
+package com.enthusiasm.plureutils.command.weather;
 
 import net.minecraft.server.world.ServerWorld;
 

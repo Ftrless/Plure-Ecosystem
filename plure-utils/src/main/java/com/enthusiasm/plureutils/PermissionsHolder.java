@@ -64,6 +64,8 @@ public class PermissionsHolder {
         RESTART_AT("restart-at"),
         FORCE_RESTART("force-restart"),
         POSTPONE_RESTART("postpone-restart"),
+        VIEW_INV("view.inv"),
+        VIEW_ECHEST("view.echest"),
         KEEP_INV("keep-inv");
 
         private final String permissionString;

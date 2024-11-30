@@ -11,7 +11,7 @@ import net.minecraft.util.Formatting;
 import com.enthusiasm.plurecore.utils.ThreadUtils;
 import com.enthusiasm.plurecore.utils.text.FormatUtils;
 import com.enthusiasm.plurecore.utils.text.TextUtils;
-import com.enthusiasm.plureutils.command.WeatherManager;
+import com.enthusiasm.plureutils.command.weather.WeatherManager;
 
 public class VoteService {
     private static final HashMap<String, HashMap<String, Boolean>> voteRecords = new HashMap<>();

@@ -34,6 +34,8 @@ import com.enthusiasm.plureutils.command.tpa.TpaDeny;
 import com.enthusiasm.plureutils.command.tpa.TpaHere;
 import com.enthusiasm.plureutils.command.util.*;
 import com.enthusiasm.plureutils.command.util.screens.*;
+import com.enthusiasm.plureutils.command.view.ViewEChest;
+import com.enthusiasm.plureutils.command.view.ViewInv;
 import com.enthusiasm.plureutils.command.vote.Vote;
 import com.enthusiasm.plureutils.command.vote.VoteDay;
 import com.enthusiasm.plureutils.command.vote.VoteSun;
@@ -56,6 +58,7 @@ public class CommandRegistry {
         CommandNode<ServerCommandSource> homeNode = dispatcher.register(literal("home"));
         CommandNode<ServerCommandSource> spawnNode = dispatcher.register(literal("spawn"));
         CommandNode<ServerCommandSource> restartNode = dispatcher.register(literal("restart"));
+        CommandNode<ServerCommandSource> viewNode = dispatcher.register(literal("view"));
         RootCommandNode<ServerCommandSource> rootNode = dispatcher.getRoot();
 
         registerWarpCommands(warpNode);
@@ -69,6 +72,25 @@ public class CommandRegistry {
         registerUtilCommands(rootNode);
         registerScreensCommands(rootNode);
         registerRestartCommands(restartNode);
+        registerViewCommands(viewNode);
+    }
+
+    private static void registerViewCommands(CommandNode<ServerCommandSource> node) {
+        node.addChild(literal("inv")
+                .requires(Permissions.require(PermissionsHolder.Permission.VIEW_INV.getPermissionString(), 4))
+                .then(argument("target_player", StringArgumentType.word())
+                        .suggests(NickSuggestion.NICK_SUGGESTION_PROVIDER)
+                        .executes(new ViewInv()))
+                .build()
+        );
+
+        node.addChild(literal("echest")
+                .requires(Permissions.require(PermissionsHolder.Permission.VIEW_ECHEST.getPermissionString(), 4))
+                .then(argument("target_player", StringArgumentType.word())
+                        .suggests(NickSuggestion.NICK_SUGGESTION_PROVIDER)
+                        .executes(new ViewEChest()))
+                .build()
+        );
     }
 
     public static void registerWarpCommands(CommandNode<ServerCommandSource> node) {

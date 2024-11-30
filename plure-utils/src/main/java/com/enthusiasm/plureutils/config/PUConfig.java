@@ -67,11 +67,12 @@ public class PUConfig {
 
     @Comment("Интервал рестарта в миллисекундах")
     @ConfigEntry.Category("restart")
-    public int restartInterval = 8 * 3_600_000;
+    public int restartInterval = 12 * 3_600_000;
 
     @Comment("Интервалы напоминаний о рестарте в миллисекундах")
     @ConfigEntry.Category("restart")
     public List<Integer> restartNotifyIntervals = List.of(
+            28_800_000,
             21_600_000,
             10_800_000,
             3_600_000,
@@ -81,11 +82,6 @@ public class PUConfig {
             60_000,
             30_000,
             15_000,
-            10_000,
-            9_000,
-            8_000,
-            7_000,
-            6_000,
             5_000,
             4_000,
             3_000,
@@ -96,11 +92,6 @@ public class PUConfig {
     @Comment("Интервалы напоминаний в тайтле о рестарте в миллисекундах")
     @ConfigEntry.Category("restart")
     public List<Integer> restartTitleNotifyIntervals = List.of(
-            10_000,
-            9_000,
-            8_000,
-            7_000,
-            6_000,
             5_000,
             4_000,
             3_000,
