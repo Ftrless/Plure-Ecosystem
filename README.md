@@ -1,1 +1,1 @@
-Essential mods mostly for public servers, based on fabric modloader.
+Essential mods, **mostly** for public servers. Based on fabric modloader.
