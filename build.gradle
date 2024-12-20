@@ -4,6 +4,14 @@ plugins {
 	id "com.diffplug.spotless" version "6.20.0"
 }
 
+configurations {
+	transitiveInclude {
+		exclude group: "com.mojang"
+		exclude group: "org.jetbrains.kotlin"
+		exclude group: "org.jetbrains.kotlinx"
+	}
+}
+
 static def moduleDependencies(project, List<String> depNames) {
 	def deps = depNames.iterator().collect { project.dependencies.project(path: ":$it", configuration: 'namedElements') }
 
@@ -107,6 +115,23 @@ allprojects {
 	}
 }
 
+dependencies {
+	include('com.zaxxer:HikariCP:5.0.0')
+	include('org.mariadb.jdbc:mariadb-java-client:3.1.3')
+	include("com.electronwill.night-config:toml:${project.nightconfig_version}")
+	include("com.electronwill.night-config:core:${project.nightconfig_version}")
+
+	transitiveInclude("org.hibernate:hibernate-hikaricp:6.6.0.Final")
+	transitiveInclude('org.hibernate:hibernate-hikaricp:6.6.0.Final')
+	transitiveInclude('org.hibernate:hibernate-jcache:6.6.0.Final')
+	transitiveInclude('org.ehcache:ehcache:3.10.8')
+
+	include('org.javassist:javassist:3.28.0-GA')
+	include("me.lucko:fabric-permissions-api:0.3.1")
+	include("eu.pb4:player-data-api:${project.player_data_api_version}")
+	include("eu.pb4:sgui:${project.sgui_version}")
+}
+
 loom {
 	serverOnlyMinecraftJar()
 
@@ -137,6 +162,10 @@ dependencies {
 			def projectName = it.name
 			api project(path: ":${projectName}", configuration: "namedElements")
 			include project("${projectName}:")
+		}
+
+		configurations.transitiveInclude.resolvedConfiguration.resolvedArtifacts.each { artifact ->
+			include(artifact.moduleVersion.id.toString())
 		}
 	}
 }
