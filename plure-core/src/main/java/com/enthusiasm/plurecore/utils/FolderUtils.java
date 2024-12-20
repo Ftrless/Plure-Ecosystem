@@ -20,9 +20,7 @@ public class FolderUtils {
     }
 
     public static Path getDataFolder(String folder) {
-        return FabricLoader.getInstance().getGameDir()
-                .resolve("world")
-                .resolve("plure_storage")
+        return getDataFolder()
                 .resolve(folder);
     }
 

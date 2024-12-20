@@ -1,19 +1,26 @@
 package com.enthusiasm.plurelogger;
 
 import net.fabricmc.api.DedicatedServerModInitializer;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-import com.enthusiasm.plurelogger.log.LogManager;
+import net.minecraft.server.MinecraftServer;
+
+import com.enthusiasm.plurelogger.config.ConfigWrapper;
+import com.enthusiasm.plurelogger.registry.ModRegistry;
+import com.enthusiasm.plurelogger.utils.Logger;
 
 public class PlureLoggerEntrypoint implements DedicatedServerModInitializer {
-    public static final Logger LOGGER = LoggerFactory.getLogger("PlureLogger");
+    public static MinecraftServer SERVER;
 
     @Override
     public void onInitializeServer() {
-        LOGGER.info("Initializing PlureLogger");
+        Logger.logInfo("Initializing PlureLogger");
 
-        LogManager.init();
-        LogManager.initLoggers();
+        if (ensureEnabled()) {
+            ModRegistry.registerEvents();
+        }
+    }
+
+    private static boolean ensureEnabled() {
+        return ConfigWrapper.getConfig().enable;
     }
 }

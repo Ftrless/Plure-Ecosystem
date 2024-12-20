@@ -1,5 +1,5 @@
 plugins {
-	id 'fabric-loom' version '1.7-SNAPSHOT'
+	id 'fabric-loom' version '1.8-SNAPSHOT'
 	id 'maven-publish'
 	id "com.diffplug.spotless" version "6.20.0"
 }
@@ -94,6 +94,7 @@ allprojects {
 
 		modImplementation "me.lucko:fabric-permissions-api:0.3.1"
 		modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+		compileOnly annotationProcessor("org.projectlombok:lombok:1.18.30")
 	}
 
 	spotless {
@@ -107,6 +108,8 @@ allprojects {
 }
 
 loom {
+	serverOnlyMinecraftJar()
+
 	runs {
 		server {
 			ideConfigGenerated project.rootProject == project
@@ -122,6 +125,10 @@ subprojects {
 
 subprojects.each {
 	remapJar.dependsOn("${it.path}:remapJar")
+}
+
+remapJar {
+	addNestedDependencies = true
 }
 
 dependencies {

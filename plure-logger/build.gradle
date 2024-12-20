@@ -5,6 +5,15 @@ moduleDependencies(project, [
         "plure-chat"
 ])
 
+loom {
+    accessWidenerPath = file("src/main/resources/plure-logger.accesswidener")
+}
+
 dependencies {
     modApi "dev.ftb.mods:ftb-teams-fabric:${project.ftb_teams_version}"
+
+    implementation('org.hibernate:hibernate-core:6.6.0.Final')
+    implementation('org.hibernate:hibernate-hikaricp:6.6.0.Final')
+    implementation('org.hibernate:hibernate-jcache:6.6.0.Final')
+    implementation('org.ehcache:ehcache:3.10.8')
 }

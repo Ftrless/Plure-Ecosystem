@@ -10,6 +10,10 @@ dependencies {
     include implementation("com.electronwill.night-config:toml:${project.nightconfig_version}")
     include implementation("com.electronwill.night-config:core:${project.nightconfig_version}")
 
+    include('org.hibernate:hibernate-core:6.6.0.Final')
+    include('org.hibernate:hibernate-hikaricp:6.6.0.Final')
+    include('org.hibernate:hibernate-jcache:6.6.0.Final')
+    include('org.ehcache:ehcache:3.10.8')
     include('org.javassist:javassist:3.28.0-GA')
     include("me.lucko:fabric-permissions-api:0.3.1")
     include("eu.pb4:player-data-api:${project.player_data_api_version}")
