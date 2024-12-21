@@ -24,6 +24,7 @@ public record DeathEntity(Instant date, boolean isSaved, int exp,
         locationTag.putInt("y", location.y());
         locationTag.putInt("z", location.z());
         locationTag.putString("dimension", location.dimension());
+
         tag.put("location", locationTag);
 
         tag.putString("reason", reason);

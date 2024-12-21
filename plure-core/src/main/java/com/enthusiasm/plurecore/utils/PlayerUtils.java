@@ -25,7 +25,10 @@ import com.enthusiasm.plurecore.utils.text.TextUtils;
 
 public class PlayerUtils {
     public static ServerPlayerEntity getPlayer(CommandContext<ServerCommandSource> context) {
-        String requestedName = StringArgumentType.getString(context, "target_player");
+        return getPlayer(context, "target_player");
+    }
+    public static ServerPlayerEntity getPlayer(CommandContext<ServerCommandSource> context, String argumentName) {
+        String requestedName = StringArgumentType.getString(context, argumentName);
 
         if (requestedName == null) {
             return null;

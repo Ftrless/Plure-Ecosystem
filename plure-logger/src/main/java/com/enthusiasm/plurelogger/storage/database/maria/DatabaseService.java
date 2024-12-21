@@ -5,7 +5,6 @@ import java.time.temporal.ChronoUnit;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import com.enthusiasm.plurelogger.storage.IDatabaseService;
 import com.mojang.authlib.GameProfile;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.criteria.*;

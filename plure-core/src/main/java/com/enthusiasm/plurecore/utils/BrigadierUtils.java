@@ -1,4 +1,4 @@
-package com.enthusiasm.plurelogger.utils;
+package com.enthusiasm.plurecore.utils;
 
 import java.util.Locale;
 

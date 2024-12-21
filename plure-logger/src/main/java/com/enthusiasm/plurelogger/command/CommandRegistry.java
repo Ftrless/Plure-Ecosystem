@@ -11,9 +11,9 @@ import net.minecraft.command.CommandRegistryAccess;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 
+import com.enthusiasm.plurecore.utils.BrigadierUtils;
 import com.enthusiasm.plurelogger.PermissionHolder;
 import com.enthusiasm.plurelogger.command.commands.*;
-import com.enthusiasm.plurelogger.utils.BrigadierUtils;
 
 public class CommandRegistry {
     public static void init() {

@@ -126,6 +126,7 @@ dependencies {
 	transitiveInclude('org.hibernate:hibernate-jcache:6.6.0.Final')
 	transitiveInclude('org.ehcache:ehcache:3.10.8')
 
+	include('org.reflections:reflections:0.10.2')
 	include('org.javassist:javassist:3.28.0-GA')
 	include("me.lucko:fabric-permissions-api:0.3.1")
 	include("eu.pb4:player-data-api:${project.player_data_api_version}")
@@ -229,26 +230,21 @@ tasks.register('createSubmodule') {
 			def oldEntryPoint = "TemplateEntrypoint"
 			def newEntryPoint = "Plure${moduleName.capitalize()}Entrypoint"
 
+			def oldModuleId = "templateid"
+
 			fileTree(destDir).matching {
 				include '**/*.java'
 			}.each { File file ->
 				def content = file.text
 				content = content.replaceAll(oldPackagePath, newPackagePath)
 				content = content.replaceAll(oldEntryPoint, newEntryPoint)
+				content = content.replace(oldModuleId, newModuleId)
 				file.text = content
 
-				if (file.name == oldEntryPoint) {
+				if (file.name.replace(".java", "") == oldEntryPoint) {
 					def renamedFile = file.toPath().resolveSibling(newEntryPoint + ".java").toFile()
 					file.renameTo(renamedFile)
 				}
-			}
-
-			def oldPackageDir = file("${destDir}/src/main/java/com/enthusiasm/template")
-			def newPackageDir = file("${destDir}/src/main/java/com/enthusiasm/${newModuleId}")
-			if (oldPackageDir.exists()) {
-				oldPackageDir.renameTo(newPackageDir)
-			} else {
-				println "Папка с пакетом '${oldPackageDir}' не найдена."
 			}
 
 			def fabricModFile = file("${destDir}/src/main/resources/fabric.mod.json")
@@ -260,6 +256,14 @@ tasks.register('createSubmodule') {
 				fabricModFile.text = fabricModContent
 			} else {
 				println "Файл 'fabric.mod.json' не найден. Проверьте структуру шаблонного модуля."
+			}
+
+			def oldPackageDir = file("${destDir}/src/main/java/com/enthusiasm/template")
+			def newPackageDir = file("${destDir}/src/main/java/com/enthusiasm/${newModuleId}")
+			if (oldPackageDir.exists()) {
+				oldPackageDir.renameTo(newPackageDir)
+			} else {
+				println "Папка с пакетом '${oldPackageDir}' не найдена."
 			}
 
 			println "Модуль '${newModuleName}' успешно создан и зарегистрирован."
